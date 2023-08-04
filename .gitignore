@@ -1,0 +1,31 @@
+### HTML5 ###
+# Template for HTML5 projects
+
+## Derived B.S.
+.DS_Store
+
+## Dump Folder
+_dump/
+
+## Special Files
+*.sublime-build
+
+## Tests
+*-test-[0-9].*
+
+## Stashes
+**/*-{stash-[0-9]}.*
+**/*-{stash-[0-9]}
+
+## Docs
+CHANGECONTROL.md
+build/readme
+readme.sh
+docs/uml
+
+## Extras
+interfaceOverlay.js
+main.js
+style
+index.html
+!docs/JSDoc/index.html
