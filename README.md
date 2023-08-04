@@ -5,11 +5,14 @@
 ![stars](https://img.shields.io/github/stars/Justin-Byrne/MouseMove)
 ![license](https://img.shields.io/github/license/Justin-Byrne/MouseMove)
 <img src=https://img.shields.io/badge/Mousetrap-1.6.0-yellow />
+<img src=https://img.shields.io/badge/Version-0.1.0-green />
 
 JavaScript automated mouse cursor for web presentation
 
 - [Requirements](#requirements)
 - [Installation](#installation)
+  - [Mousetrap](#Mousetrap)
+  - [MouseMove](#MouseMove)
 - [Usage](#usage)
 - [Support](#support)
 - [Structure](#structure)
@@ -38,7 +41,7 @@ git clone https://github.com/Justin-Byrne/MouseMove.git
 <script src="script/libs/mousetrap-<version>.js"></script>
 ```
 
-### Mouse Move
+### MouseMove
 
 > Copy script `<mouse-move-path>/script/mousemove-<version>.js` to `<your-project-path>/script/mousemove-<version>.js`
 
@@ -85,7 +88,7 @@ Please [open an issue](https://github.com/Justin-Byrne/MouseMove/issues/new) for
 └── script
     ├── libs
     │   └── mousetrap-v1.6.5.js
-    ├── mousemove-v0.5.4.js
+    ├── mousemove-v0.1.0.js
     └── source
         └── classes
             ├── MouseMove.js
