@@ -16,7 +16,7 @@ declare DIRECTORY=../script/source
 
 declare SLEEP=0
 
-declare FINAL_COMMAND=compile.sh
+declare COMPILE=compile.sh
 
 # WATCH ############################
 
@@ -26,5 +26,5 @@ do
 
 	sleep $SLEEP
 
-	sh $FINAL_COMMAND
+	sh $COMPILE
 done

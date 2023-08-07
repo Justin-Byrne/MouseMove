@@ -131,6 +131,18 @@ function compile_output()
     echo "${PROMPT} ${FG_PINK}MouseMove Compiling Complete \t${FG_BLUE}[${OUTPUT}]${NOCOLOR}\n"
 }
 
+function compile_readme()
+{
+
+
+    if command -v readme.sh .
+    then
+        $(sh readme.sh)
+
+        echo "${PROMPT} ${FG_PINK}Read Me Complete \t\t\t${FG_BLUE}[../README.md]${NOCOLOR}\n"
+    fi
+}
+
 function compile_api()
 {
     if command -v jsdoc2md
@@ -163,6 +175,8 @@ done
 # COMPILE ##########################
 
 compile_output
+
+compile_readme
 
 compile_api
 

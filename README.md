@@ -5,14 +5,14 @@
 ![stars](https://img.shields.io/github/stars/Justin-Byrne/MouseMove)
 ![license](https://img.shields.io/github/license/Justin-Byrne/MouseMove)
 <img src=https://img.shields.io/badge/Mousetrap-1.6.0-yellow />
-<img src=https://img.shields.io/badge/Version-0.1.0-green />
+<img src=https://img.shields.io/badge/Version-0.1.2-green />
 
 JavaScript automated mouse cursor for web presentation
 
 - [Requirements](#requirements)
 - [Installation](#installation)
-  - [Mousetrap](#Mousetrap)
-  - [MouseMove](#MouseMove)
+  - [Mousetrap](#mousetrap)
+  - [MouseMove](#mousemove)
 - [Usage](#usage)
 - [Support](#support)
 - [Structure](#structure)
@@ -76,8 +76,6 @@ Please [open an issue](https://github.com/Justin-Byrne/MouseMove/issues/new) for
 
 ```
 .
-├── LICENSE
-├── README.md
 ├── build
 │   ├── compile.sh
 │   └── watch.sh
@@ -85,19 +83,21 @@ Please [open an issue](https://github.com/Justin-Byrne/MouseMove/issues/new) for
 │   ├── API.md
 │   ├── CHANGELOG.md
 │   └── FUNDING.yml
-└── script
-    ├── libs
-    │   └── mousetrap-v1.6.5.js
-    ├── mousemove-v0.1.0.js
-    └── source
-        └── classes
-            ├── MouseMove.js
-            ├── Object
-            │   └── Cursor.js
-            └── Subject
-                ├── List.js
-                ├── Pattern.js
-                └── Point.js
+├── script
+│   ├── libs
+│   │   └── mousetrap-v1.6.5.js
+│   ├── source
+│   │   └── classes
+│   │       ├── Object
+│   │       │   └── Cursor.js
+│   │       ├── Subject
+│   │       │   ├── List.js
+│   │       │   ├── Pattern.js
+│   │       │   └── Point.js
+│   │       └── MouseMove.js
+│   └── mousemove-v0.1.2.js
+├── LICENSE
+└── README.md
 ```
  
 ## Copyright

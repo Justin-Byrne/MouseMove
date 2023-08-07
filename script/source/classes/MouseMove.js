@@ -38,13 +38,17 @@ class MouseMove
 		{
 			hotkeys: [ 'ctrl+g', 'command+g' ] 					// For mousetrap
 		},
+		mousetrap:
+		{
+			cdn: '//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.6.0/mousetrap.min.js'
+		},
 		about:
 	    {
 	        Author:    'Justin Don Byrne',
-	        Created:   'July, 27 2023',
+	        Created:   'Aug, 04 2023',
 	        Library:   'Mouse Move: Automated mouse cursor for web presentation',
-	        Updated:   'Aug, 04 2023',
-	        Version:   '0.1.0',
+	        Updated:   'Aug, 07 2023',
+	        Version:   '0.1.2',
 	        Copyright: 'Copyright (c) 2023 Justin Don Byrne'
 	    }
 	}
@@ -77,7 +81,7 @@ class MouseMove
 		 */
 		set cursor ( cursor )
 		{
-			this._cursor = ( cursor instanceof Cursor  ) ? cursor : this._cursor;
+			this._cursor = ( cursor instanceof Cursor  ) ? cursor     : this._cursor;
 
 			this._cursor = ( this._cursor == undefined ) ? new Cursor : this._cursor;
 		}

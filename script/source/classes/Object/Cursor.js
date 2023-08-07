@@ -98,6 +98,8 @@ class Cursor
 
 	//// 	[ POSITION ]    ////////////////////////////////
 
+		_getElementByXPath = ( path ) => document.evaluate ( path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;
+
 		/**
 		 * Set position property
 		 * @param 			{Point} point 								X & Y coordinates
@@ -134,23 +136,16 @@ class Cursor
 		 */
 		set angle ( id )
 		{
-			if ( document.getElementById ( id ) != null )
+			let _element = this.#_getElement ( id );
+
+
+			if ( _element != undefined )
 			{
-				let _element = document.getElementById ( id );
-
-				let _destination =
-				{
-					x: this.#_toNumber ( _element.style.left ) + ( this.#_toNumber ( _element.style.width )  / 2 ),
-
-					y: this.#_toNumber ( _element.style.top  ) + ( this.#_toNumber ( _element.style.height ) / 2 )
-				}
+				let _destination = this.#_getCenterPoint ( _element );
 
 
 		  		this.#_config.calculations.angle = Math.atan2 ( _destination.y - this.position.y, _destination.x - this.position.x );
 			}
-			else
-
-				console.log ( ` >> [ ERROR ]: Id ${id} is not a valid identifier !` );
 		}
 
 		/**
@@ -170,23 +165,16 @@ class Cursor
 		 */
 		set distance ( id )
 		{
-			if ( document.getElementById ( id ) != null )
+			let _element = this.#_getElement ( id );
+
+
+			if ( _element != undefined )
 			{
-				let _element = document.getElementById ( id );
-
-				let _point =
-				{
-					x: this.#_toNumber ( _element.style.left ) + ( this.#_toNumber ( _element.style.width  ) / 2 ),
-
-					y: this.#_toNumber ( _element.style.top  ) + ( this.#_toNumber ( _element.style.height ) / 2 )
-				}
+				let _point = this.#_getCenterPoint ( _element );
 
 
 				this.#_config.calculations.distance = Math.sqrt ( ( Math.pow ( _point.x - this.position.x , 2 ) ) + ( Math.pow ( _point.y - this.position.y, 2 ) ) );
 			}
-			else
-
-				console.log ( ` >> [ ERROR ]: Id ${id} is not a valid identifier !` );
 		}
 
 		/**
@@ -201,11 +189,35 @@ class Cursor
 	////    ( PRIVATE )    /////////////////////////////////
 
 		/**
+		 * Returns a DOM's element based on its identifier
+		 * @param  			{string} id 								CSS Identifier or xpath
+		 * @return 			{object}    								HTML DOM element
+		 */
+		#_getElement = ( id ) => ( document.getElementById ( id ) != null )
+
+								     ? document.getElementById ( id )
+
+								     : ( this._getElementByXPath ( id ) != null )
+
+									       ? this._getElementByXPath ( id )
+
+									       : undefined;
+
+		/**
+		 * Gets the center point of an element
+		 * @param  			{object} element 							HTML DOM element
+		 * @return 			{Point}         							X & Y Coordinates
+		 */
+		#_getCenterPoint = ( element ) => ( { x: element.offsetLeft + ( element.clientWidth  / 2 ),
+
+												   y: element.offsetTop  + ( element.clientHeight / 2 ) } );
+
+		/**
 		 * Converts CSS string value to number/integer
 		 * @param 			{string} value 								CSS string value in pixels
 		 * @return 			{number} 									Number value of parsed value
 		 */
-		#_toNumber ( value )
+		#_pxToNumber ( value )
 		{
 			return Number ( value.replace ( /px$/, '' ) );
 		}
@@ -237,9 +249,9 @@ class Cursor
 
 			this.position =
 			{
-				x: this.#_toNumber ( _image.style.left ),
+				x: this.#_pxToNumber ( _image.style.left ),
 
-				y: this.#_toNumber ( _image.style.top  )
+				y: this.#_pxToNumber ( _image.style.top  )
 			}
 		}
 
@@ -331,19 +343,12 @@ class Cursor
 		 */
 		toNextElement ( id )
 		{
-			let _element = document.getElementById ( id );
+			let _element = this.#_getElement ( id );
 
 
-			if ( document.getElementById ( id ) != null )
+			if ( _element != null )
 			{
-				let _element = document.getElementById ( id );
-
-				this.position =
-				{
-					x: this.#_toNumber ( _element.style.left ) + ( this.#_toNumber ( _element.style.width  ) / 2 ),
-
-					y: this.#_toNumber ( _element.style.top  ) + ( this.#_toNumber ( _element.style.height ) / 2 )
-				}
+				this.position = this.#_getCenterPoint ( _element );
 
 
 				this.#_mouseActions ( _element );

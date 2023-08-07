@@ -1,9 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.2] - 2023-08-07
+### Added
+- `Cursor` class
+  - private `#_getElement ( )` returns an HTML DOM element based off of its identifier or xpath
+  - private `#_getCenterPoint ( )` returns a `Point` containing the X & Y coordinates of the passed element
+
+### Changed
+- `Cursor` class
+  - private `#_toNumber ( )` to `#_pxToNumber ( )`
+
 ## [0.1.0] - 2023-08-04
 ### Added
--
 - `Point` class for x & y coordinate systems
 - `List` class, a List container ( `Array` ) with special developer functions
 - `Pattern` class, a Pattern container ( `Array.<object>` ) with special developer functions
@@ -15,7 +24,8 @@ All notable changes to this project will be documented in this file.
 ---
 | Version | Date       | Commit                                                                   | Comments 														  |
 | :-----: | :--------: | :----------------------------------------------------------------------: | :---------------------------------------------------------------- |
-| 0.1.0   | 2023-08-04 | CURRENT REVISION                                                         | Initial upload
+| 0.1.2   | 2023-08-07 | CURRENT REVISION                                                         | Minor revisions to Cursor class
+| 0.1.0   | 2023-08-04 | [6de06c4](https://github.com/Justin-Byrne/MouseMove/commit/6de06c4) 	  | Initial upload
 
 ---
 
