@@ -133,9 +133,7 @@ function compile_output()
 
 function compile_readme()
 {
-
-
-    if command -v readme.sh .
+    if [ -e "readme.sh" ]
     then
         $(sh readme.sh)
 

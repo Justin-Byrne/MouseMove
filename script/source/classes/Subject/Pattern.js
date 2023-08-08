@@ -115,9 +115,9 @@ class Pattern extends Array
 	                {
 	                    let _keys   = ( Object.keys ( _object ).length == 2 );
 
-	                    let _id     = ( _object.hasOwnProperty ( 'id'     ) ) ? ( typeof _object.id     === 'string' ) : false;
+	                    let _id     = ( _object.hasOwnProperty ( 'id'     ) ) ? ( typeof _object.id     === 'string' ) : false
 
-	                    let _action = ( _object.hasOwnProperty ( 'action' ) ) ? ( typeof _object.action === 'string' ) : false;
+	                    let _action = ( _object.hasOwnProperty ( 'action' ) ) ? ( typeof _object.action === 'string' || typeof _object.action === 'function' ) : false;
 
 
 	                    _results = ( _keys && _id && _action );

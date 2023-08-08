@@ -21,7 +21,8 @@ class Cursor
 		actions:
 		{
 			avoid: [ '', 'ui-cursor', 'canvas', 'ui-overlay', 'canvas-underlay' ],
-			over:  [ ]
+			types: [ 'mousedown', 'mouseup', 'mouseover', 'mouseout', 'mousemove', 'click', 'dblclick' ],
+			over:  [ ] 	// <= For mouseover & mouseout events !
 		},
 		presentation:
 		{
@@ -97,8 +98,6 @@ class Cursor
 		}
 
 	//// 	[ POSITION ]    ////////////////////////////////
-
-		_getElementByXPath = ( path ) => document.evaluate ( path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;
 
 		/**
 		 * Set position property
@@ -189,38 +188,77 @@ class Cursor
 	////    ( PRIVATE )    /////////////////////////////////
 
 		/**
-		 * Returns a DOM's element based on its identifier
-		 * @param  			{string} id 								CSS Identifier or xpath
-		 * @return 			{object}    								HTML DOM element
+		 * Checks whether the passed id is an XPath
+		 * @param  			{string} id 								XPath
+		 * @return 			{boolean}    								True | False
 		 */
-		#_getElement = ( id ) => ( document.getElementById ( id ) != null )
-
-								     ? document.getElementById ( id )
-
-								     : ( this._getElementByXPath ( id ) != null )
-
-									       ? this._getElementByXPath ( id )
-
-									       : undefined;
+		#_isXpath = ( id ) => id.substring ( 0, 2 ).includes ( '/' );
 
 		/**
-		 * Gets the center point of an element
-		 * @param  			{object} element 							HTML DOM element
-		 * @return 			{Point}         							X & Y Coordinates
+		 * Checks whether the passed id is a CSS query selector
+		 * @param 			{string} id 								CSS query selector
+		 * @return 			{boolean} 									True | False
 		 */
-		#_getCenterPoint = ( element ) => ( { x: element.offsetLeft + ( element.clientWidth  / 2 ),
+		#_isCssSelector ( id )
+		{
+	        for ( let _character of [ '>', ':', '#', '~', '+', '|', '.', ' ' ] )
 
-												   y: element.offsetTop  + ( element.clientHeight / 2 ) } );
+	            if ( id.includes ( _character ) && ! this.#_isXpath ( id ) )
+
+	                return true;
+
+
+	        return false;
+		}
+
+		/**
+		 * Checks whether the passed id is an element identifier
+		 * @param 			{string} id 								Element identifier
+		 * @return 			{boolean} 									True | False
+		 */
+		#_isId ( id )
+		{
+			for ( let _character of [ '>', ':', '#', '~', '+', '|', '.', ' ' ] )
+
+		        if ( id.includes ( _character ) || this.#_isXpath ( id ) )
+
+		            return false;
+
+
+		    return true;
+		}
 
 		/**
 		 * Converts CSS string value to number/integer
 		 * @param 			{string} value 								CSS string value in pixels
 		 * @return 			{number} 									Number value of parsed value
 		 */
-		#_pxToNumber ( value )
-		{
-			return Number ( value.replace ( /px$/, '' ) );
-		}
+		#_pxToNumber = ( value ) => Number ( value.replace ( /px$/, '' ) );
+
+		/**
+		 * Gets the center point of an element
+		 * @param  			{object} element 							HTML DOM element
+		 * @return 			{Point}         							X & Y Coordinates
+		 */
+		#_getCenterPoint = ( element ) => ( {
+											    x: element.offsetLeft + ( element.clientWidth  / 2 ),
+
+											    y: element.offsetTop  + ( element.clientHeight / 2 )
+										  } );
+
+		/**
+		 * Returns an element based on its XPath
+		 * @param  			{string} xpath 								XPath
+		 * @return 			{object}      								HTML DOM element
+		 */
+		#_getElementByXPath = ( xpath ) => document.evaluate ( xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;
+
+		/**
+		 * Returns a DOM's element based on its identifier
+		 * @param  			{string} id 								CSS query, identifier, or XPath
+		 * @return 			{object}    								HTML DOM element
+		 */
+		#_getElement = ( id ) => ( this.#_isXpath ( id ) ) ? this.#_getElementByXPath ( id ) : ( this.#_isCssSelector ( id ) ) ? document.querySelector ( id ) : ( this.#_isId ( id ) ) ? document.getElementById ( id ) : undefined;
 
 		/**
 		 * Create and embeds cursor within DOM
@@ -256,10 +294,10 @@ class Cursor
 		}
 
 		/**
-		 * Actions executed after a rollover event
+		 * Actions executed after a mouseover event
 		 * @param 			{HTMLElement} element 						HTML DOM element
 		 */
-		#_rollover ( element )
+		#_mouseover ( element )
 		{
 			element.onmouseover ( );
 
@@ -267,10 +305,10 @@ class Cursor
 		}
 
 		/**
-		 * Actions executed after a rollout event
+		 * Actions executed after a mouseout event
 		 * @param 			{HTMLElement} element 						HTML DOM element
 		 */
-		#_rollout ( element )
+		#_mouseout ( element )
 		{
 			element.onmouseout ( );
 
@@ -281,27 +319,16 @@ class Cursor
 		 * Initiates any mouse actions associated with the passed 'element'
 		 * @param 			{HTMLElement} element 						HTML DOM element
 		 */
-		#_mouseActions ( element )
+		#_mouseAction ( element )
 		{
 			if ( mouseMove.sequence.constructor.name === 'Pattern' )
 			{
 				let _currentData = mouseMove.sequence.current;
 
 
-				switch ( _currentData.action )
-				{
-					case 'none': 	/*     DO NOTHING     */ 	break;
+				if ( element.getAttribute ( `on${_currentData.action}` ) != null )
 
-					case 'click': 	element.onclick     ( ); 	break;
-
-					case 'hold': 	element.onmousedown ( ); 	break;
-
-					case 'release': element.onmouseup   ( ); 	break;
-
-					default:
-
-						console.log ( ` >> [ ERROR ]: Action ${_currentData.action} is not a valid action !` );
-				}
+					eval ( `element.on${_currentData.action} ( );` );
 			}
 		}
 
@@ -351,7 +378,7 @@ class Cursor
 				this.position = this.#_getCenterPoint ( _element );
 
 
-				this.#_mouseActions ( _element );
+				this.#_mouseAction ( _element );
 			}
 		}
 
@@ -373,7 +400,7 @@ class Cursor
 
 					if ( ! _wasOver.includes ( _element ) )
 
-						this.#_rollover ( _element );
+						this.#_mouseover ( _element );
 
 					else
 
@@ -381,6 +408,6 @@ class Cursor
 
 							for ( let _over of _wasOver )
 
-								this.#_rollout ( _over );
+								this.#_mouseout ( _over );
 		}
 }
