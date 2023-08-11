@@ -4,6 +4,7 @@
  * @property 		{Cursor}       cursor 						Cursor object
  * @property 		{string}       animation 					Cursor linear animation
  * @property 		{Object}       config 						General configuration
+ * @property 		{Object} 	   tools 						Internal private utility methods
  */
 class MouseMove
 {
@@ -11,7 +12,7 @@ class MouseMove
 	_cursor    = undefined;
 	_animation = 'quad';
 
-	#_config =
+	#config =
 	{
 		domWindow:
 		{
@@ -34,23 +35,232 @@ class MouseMove
 			increment: 0.00034,
 			constant:  undefined
 		},
-		input:
+		identifiers:
 		{
-			hotkeys: [ 'ctrl+g', 'command+g' ] 					// For mousetrap
+			qualifier: 'mousemove',
+			words:
+			[
+				'zero',    'one',         'two',         'three',         'four',         'five',         'six',         'seven',         'eight',         'nine',
+				'ten',     'eleven',      'twelve',      'thirteen',      'fourteen',     'fifteen',      'sixteen',     'seventeen',     'eighteen',      'nineteen',
+				'twenty',  'twenty_one',  'twenty_two',  'twenty_three',  'twenty_four',  'twenty_five',  'twenty_six',  'twenty_seven',  'twenty_eight',  'twenty_nine',
+				'thirty',  'thirty_one',  'thirty_two',  'thirty_three',  'thirty_four',  'thirty_five',  'thirty_six',  'thirty_seven',  'thirty_eight',  'thirty_nine',
+				'forty',   'forty_one',   'forty_two',   'forty_three',   'forty_four',   'forty_five',   'forty_six',   'forty_seven',   'forty_eight',   'forty_nine',
+				'fifty',   'fifty_one',   'fifty_two',   'fifty_three',   'fifty_four',   'fifty_five',   'fifty_six',   'fifty_seven',   'fifty_eight',   'fifty_nine',
+				'sixty',   'sixty_one',   'sixty_two',   'sixty_three',   'sixty_four',   'sixty_five',   'sixty_six',   'sixty_seven',   'sixty_eight',   'sixty_nine',
+				'seventy', 'seventy_one', 'seventy_two', 'seventy_three', 'seventy_four', 'seventy_five', 'seventy_six', 'seventy_seven', 'seventy_eight', 'seventy_nine',
+				'eighty',  'eighty_one',  'eighty_two',  'eighty_three',  'eighty_four',  'eighty_five',  'eighty_six',  'eighty_seven',  'eighty_eight',  'eighty_nine',
+				'ninety',  'ninety_one',  'ninety_two',  'ninety_three',  'ninety_four',  'ninety_five',  'ninety_six',  'ninety_seven',  'ninety_eight',  'ninety_nine'
+			],
+			actions: [ 'onmousedown', 'onmouseup', 'onmouseover', 'onmouseout', 'onmousemove', 'onclick', 'ondblclick' ]
 		},
 		mousetrap:
 		{
-			cdn: '//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.6.0/mousetrap.min.js'
+			cdn: '//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.6.0/mousetrap.min.js',
+			hotkeys: [ 'ctrl+g', 'command+g' ] 					// For mousetrap
 		},
 		about:
 	    {
 	        Author:    'Justin Don Byrne',
 	        Created:   'Aug, 04 2023',
 	        Library:   'Mouse Move: Automated mouse cursor for web presentation',
-	        Updated:   'Aug, 08 2023',
-	        Version:   '0.1.2',
+	        Updated:   'Aug, 11 2023',
+	        Version:   '0.1.3',
 	        Copyright: 'Copyright (c) 2023 Justin Don Byrne'
 	    }
+	}
+
+	#tools =
+	{
+		////    VALIDATION    //////////////////////////////////
+
+			/**
+			 * Checks whether the passed id is an XPath
+			 * @param  			{string} id 								XPath
+			 * @return 			{boolean}    								True | False
+			 */
+			isXpath: 		( id ) 	=> id.substring ( 0, 2 ).includes ( '/' ),
+
+			/**
+			 * Checks whether the passed id is a CSS query selector
+			 * @param 			{string} id 								CSS query selector
+			 * @return 			{boolean} 									True | False
+			 */
+			isCssSelector: 	( id ) 	=>
+			{
+		        for ( let _character of [ '>', ':', '#', '~', '+', '|', '.', ' ' ] )
+
+		            if ( id.includes ( _character ) && ! this.#tools.isXpath ( id ) )
+
+		                return true;
+
+
+		        return false;
+			},
+
+			/**
+			 * Checks whether the passed id is an element identifier
+			 * @param 			{string} id 								Element identifier
+			 * @return 			{boolean} 									True | False
+			 */
+			isId: 			( id ) 	=>
+			{
+				for ( let _character of [ '>', ':', '#', '~', '+', '|', '.', ' ' ] )
+
+			        if ( id.includes ( _character ) || this.#tools.isXpath ( id ) )
+
+			            return false;
+
+
+			    return true;
+			},
+
+		////    GETTERS    /////////////////////////////////////
+
+			/**
+			 * Returns an element based on its XPath
+			 * @param  			{string} xpath 								XPath
+			 * @return 			{Object}      								HTML DOM element
+			 */
+			getElementByXPath: 	( xpath ) 	=> document.evaluate ( xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue,
+
+			/**
+			 * Returns a DOM's element based on its identifier
+			 * @param  			{string} id 								CSS query, identifier, or XPath
+			 * @return 			{Object}    								HTML DOM element
+			 */
+			getElement: 		( id ) 		=>
+			{
+				if ( this.#tools.isXpath       ( id ) ) return this.#tools.addGeneratedId   ( this.#tools.getElementByXPath ( id ) );
+
+				if ( this.#tools.isCssSelector ( id ) ) return this.#tools.addGeneratedId   ( document.querySelector   ( id ) );
+
+				if ( this.#tools.isId          ( id ) ) return document.getElementById ( id );
+
+
+				return undefined;
+			},
+
+			/**
+			 * Returns an xpath for the passed element
+			 * @param  			{Object} element 							HTML DOM element
+			 * @return 			{string}         							XPath
+			 */
+			getXPath: 			( element ) =>
+			{
+			    if ( element.tagName == 'HTML' ) return '/HTML[1]';
+
+			    if ( element === document.body ) return '/HTML[1]/BODY[1]';
+
+
+			    let ix = 0;
+
+			    let siblings = element.parentNode.childNodes;
+
+
+			    for ( let i = 0; i < siblings.length; i++ )
+			    {
+			        let sibling = siblings[i];
+
+
+			        if ( sibling === element ) return getPathTo(element.parentNode)+'/'+element.tagName+'['+(ix+1)+']';
+
+			        if ( sibling.nodeType === 1 && sibling.tagName === element.tagName ) ix++;
+			    }
+			},
+
+		////    ADDITIVE    ////////////////////////////////////
+
+			/**
+			 * Adds a generated id to the passed element
+			 * @param  			{Object} element 							HTML DOM element
+			 * @return 			{Object} element 							HTML DOM element
+			 */
+			addGeneratedId: 	( element ) =>
+			{
+				element.id = this.sequence [ this.sequence.index ].id = `${this.#config.identifiers.qualifier}_${this.#config.identifiers.words [ this.sequence.index ]}`;
+
+				return element;
+			},
+
+		//// 	STERILIZATION    ///////////////////////////////
+
+			/**
+			 * Cleans script of it's function wrapper
+			 * @param  			{function} script 					JavaScript function
+			 * @return 			{string}        					Function as a string
+			 */
+			cleanScriptCode: 	( script ) 	=>
+			{
+			    script = script.toString ( ).replace ( /\([^{]+{/, '' );
+
+			    return   script.substring ( 0, script.length - 1 );
+			},
+
+		////    CREATION    ////////////////////////////////////
+
+			/**
+			 * Embed mousetrap script into DOM
+			 */
+			embedMousetrap:  ( ) =>
+			{
+				let _hotkeyListener = ( ) =>
+				{
+					Mousetrap.bind ( [ 'ctrl+g', 'command+g' ], function ( event )
+					{
+						mouseMove.go ( );
+					});
+				}
+
+
+				let _script      = document.createElement ( 'script' );
+
+		    		_script.type = 'text/javascript';
+
+		        	_script.text = this.#tools.cleanScriptCode ( _hotkeyListener );
+
+
+		    		_script.onerror = ( ) => console.log ( ' >> [ ERROR ]: Script could not be loaded !'   );
+
+		    		_script.onload  = ( ) => console.log ( ' >> [ SUCCESS ]: Script loaded successfully !' );
+
+
+		    		document.body.appendChild ( _script );
+		    },
+
+			seedMouseEvents: ( ) =>
+			{
+				let _seedEvents = ( ) =>
+				{
+					for ( let _step of this.sequence )
+
+						if ( this.#tools.isCssSelector ( _step.id ) || this.#tools.isXpath ( _step.id ) )
+						{
+							let _element = this.#tools.getElement ( _step.id );
+
+							let _actions = _step.action;
+
+
+							if ( typeof _actions === 'object' )
+
+								for ( let _action in _actions )
+
+									if ( typeof _actions [ _action ] === 'function' )
+
+										( this.#config.identifiers.actions.includes ( _action ) )
+
+											? ( ! _element.hasAttribute ( _action ) )
+
+											      ? _element.setAttribute ( _action, this.#tools.cleanScriptCode ( _actions [ _action ] ) )
+
+											      : console.log ( ` >> [ ERROR ]: Element ${_element} already has action: ${_action} !` )
+
+											: console.log ( ` >> [ ERROR ]: Action ${_action} is not a valid mouse action !` );
+						}
+				}
+
+
+				setTimeout ( _seedEvents, 500);
+			}
 	}
 
 	/**
@@ -65,12 +275,12 @@ class MouseMove
 		this.cursor   = cursor;
 
 
-		this.#_config.animation.constant = this.#_config.animations [ this._animation ];
+		this.#config.animation.constant = this.#config.animations [ this._animation ];
 
-		this.config   = this.#_config;
+		this.config   = this.#config;
 
 
-		this.#_embedMousetrap ( );
+		this.#tools.embedMousetrap ( );
 	}
 
 	//// 	[ CURSOR ]     /////////////////////////////////
@@ -112,6 +322,9 @@ class MouseMove
 							           ? new List ( array )
 
 							           : this._sequence;
+
+
+			this.#tools.seedMouseEvents ( );
 		}
 
 		/**
@@ -127,11 +340,11 @@ class MouseMove
 
 		/**
 		 * Set animation property
-		 * @param 			{string} value 								Animation type within #_config.animations
+		 * @param 			{string} value 								Animation type within #config.animations
 		 */
 		set animation ( value )
 		{
-			this._animation = ( value in Object.keys ( this.#_config.animations ) ) ? value : this._animation
+			this._animation = ( value in Object.keys ( this.#config.animations ) ) ? value : this._animation
 		}
 
 		/**
@@ -143,54 +356,13 @@ class MouseMove
 			return this._animation;
 		}
 
-	//// 	( PRIVATE )    /////////////////////////////////
-
-		/**
-		 * Embed mousetrap script into DOM
-		 */
-		#_embedMousetrap ( )
-		{
-			//// 	FUNCTIONS    ///////////////////////////
-
-			function _cleanScriptCode ( script )
-			{
-			    script = script.toString ( ).replace ( /\([^{]+{/, '' );
-
-			    return   script.substring ( 0, script.length - 1 );
-			}
-
-			let _hotkeyListener = ( ) =>
-			{
-				Mousetrap.bind ( [ 'ctrl+g', 'command+g' ], function ( event )
-				{
-					mouseMove.go ( );
-				});
-			}
-
-			//// 	LOGIC    ///////////////////////////////
-
-    		let _script      = document.createElement ( 'script' );
-
-        		_script.type = 'text/javascript';
-
-            	_script.text = _cleanScriptCode ( _hotkeyListener );
-
-
-        		_script.onerror = ( ) => console.log ( ' >> [ ERROR ]: Script could not be loaded !'   );
-
-        		_script.onload  = ( ) => console.log ( ' >> [ SUCCESS ]: Script loaded successfully !' );
-
-
-        		document.body.appendChild ( _script );
-        }
-
-	//// 	ANIMATE    /////////////////////////////////////
+	//// 	ANIMATION    ///////////////////////////////////
 
 		/**
 		 * Animate cursor
-		 * @param 			{number}   duration 						Duration of the animation
+		 * @param 			{number} duration 							Duration of the animation
 		 */
-		go ( duration = this.#_config.animation.duration )
+		go ( duration = this.#config.animation.duration )
 		{
 			////    FUNCTIONS    ///////////////////////////
 
@@ -205,6 +377,7 @@ class MouseMove
 					y: _cursor.position.y + ( _cursor.distance * Math.sin ( _cursor.angle ) ) * progress / _power
 				}
 
+				// <== Check code here for mouseover & mouseout
 				_cursor.setInteraction ( );
 
 
@@ -252,7 +425,7 @@ class MouseMove
 
 			let _sequence  = this.sequence;
 
-			let _animation = this.#_config.animation;
+			let _animation = this.#config.animation;
 
 
 			_animate ( );
@@ -265,5 +438,5 @@ let initMouseMove = ( pattern, cursor ) =>
 {
     if ( typeof MouseMove === 'function' && typeof window.mouseMove  === 'undefined' )
 
-        window.mouseMove = new MouseMove ( pattern, cursor );
+  			window.mouseMove = new MouseMove ( pattern, cursor );
 }

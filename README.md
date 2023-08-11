@@ -5,7 +5,7 @@
 ![stars](https://img.shields.io/github/stars/Justin-Byrne/MouseMove)
 ![license](https://img.shields.io/github/license/Justin-Byrne/MouseMove)
 <img src=https://img.shields.io/badge/Mousetrap-1.6.0-yellow />
-<img src=https://img.shields.io/badge/Version-0.1.2-green />
+<img src=https://img.shields.io/badge/Version-0.1.3-green />
 
 JavaScript automated mouse cursor for web presentation
 
@@ -14,6 +14,8 @@ JavaScript automated mouse cursor for web presentation
   - [Mousetrap](#mousetrap)
   - [MouseMove](#mousemove)
 - [Usage](#usage)
+  - [Basic](#basic)
+  - [Advanced](#advanced)
 - [Support](#support)
 - [Structure](#structure)
 
@@ -38,7 +40,12 @@ git clone https://github.com/Justin-Byrne/MouseMove.git
 :link: Link `mousetrap-<version>.js` library to your project
 
 ```html
-<script src="script/libs/mousetrap-<version>.js"></script>
+    <meta ... >
+    <link ... >
+
+    <script src="script/libs/mousetrap-<version>.js"></script>
+
+</head>
 ```
 
 ### MouseMove
@@ -48,24 +55,100 @@ git clone https://github.com/Justin-Byrne/MouseMove.git
 :link: Link `mousemove-<version>.js` library to your project, to load after *mousetrap* library; see above !
 
 ```html
-<script src="script/mousemove-<version>.js"></script>
+    <meta ... >
+    <link ... >
+
+    <script src="script/libs/mousetrap-<version>.js"></script>
+    <script src="script/mousemove-<version>.js"></script>
+
+</head>
 ```
 
 ## Usage
 
-After `mousetrap-<version>.js` and `mousemove-<version>.js` are available in your project, create an `<array>` of DOM identifiers to push into ***MouseMove***.
+### Basic
+
+Create an `<array>` of DOM identifiers to push into ***MouseMove***.
 
 ```javascript
-let pattern = [ 'node-0', 'node-1', 'node-2' ... ]
+let _list =
+[
+	'node',                              // Elemental id
+	'//input[@id = "fakebox-input"]',    // XPath
+	'body > ul > li:nth-child(1)'        // CSS Selector
+]
+
+initMouseMove ( _list );                 // Initiate the MouseMove class
 ```
 
-Then initiate ***MouseMove*** by passing your array into the `initMouseMove ( array )` function.
+***MouseMove*** defaults to navigating towards each identifier ( i.e., in the sequence provided ) and initiates a default `click` event on each element id
+
+### Advanced
+
+#### Implicit
+
+Create an `<array>` of `<objects>`, with the following structure:
 
 ```javascript
-let pattern = [ 'node-0', 'node-1', 'node-2' ... ]
-
-initMouseMove ( pattern );
+let _object =
+{
+    id:     'ui-node',    // <string>
+    action: 'click'       // <string> ( ) => actions: [ 'mousedown', 'mouseup', 'mouseover', 'mouseout', 'mousemove', 'click', 'dblclick' ]
+}
 ```
+
+...then and push into ***MouseMove***.
+
+```javascript
+let _pattern =
+[
+    {  id: 'node-0',  action: 'click'      }, 	// Initiates a single 'onclick' event
+    {  id: 'node-1',  action: 'mouseover'  }, 	// Initiates a single 'onmouseover' event
+    {  id: 'node-2',  action: 'mouseout'   } 	// Initiates a single 'onmouseout' event
+]
+
+initMouseMove ( _pattern );    // Initiate the MouseMove class
+```
+
+#### Explicit
+
+Create an `<array>` of `<objects>`, with the following structure:
+
+```javascript
+let _object =
+{
+    id: 'ui-node',    // <string>
+    action:           // Object.<string, function>, <string [ 'onmousedown', 'onmouseup', 'onmouseover', 'onmouseout', 'onmousemove', 'onclick', 'ondblclick' ]>;
+    {
+        onmouseover: ( ) =>
+        {
+            this.style.color           = 'rgb(0, 1, 1)';
+            this.style.backgroundColor = 'rgb(2, 3, 5)';
+
+            this.parentElement.nextElementSibling.style.display = 'block';
+        },
+        onmouseout: ( ) =>
+        {
+            // code ...
+        }
+    }
+}
+```
+
+...then and push into ***MouseMove***.
+
+```javascript
+let _pattern =
+[
+    {  id: 'node-0',  action: ( ) => {  /* code ... */  }  },
+    {  id: 'node-1',  action: ( ) => {  /* code ... */  }  },
+    {  id: 'node-2',  action: ( ) => {  /* code ... */  }  }
+]
+
+initMouseMove ( _pattern );         // Initiate the MouseMove class
+```
+
+> Note: for more information see the `Pattern` class
 
 
 ## Support
@@ -95,7 +178,7 @@ Please [open an issue](https://github.com/Justin-Byrne/MouseMove/issues/new) for
 │   │       │   ├── Pattern.js
 │   │       │   └── Point.js
 │   │       └── MouseMove.js
-│   └── mousemove-v0.1.2.js
+│   └── mousemove-v0.1.3.js
 ├── LICENSE
 └── README.md
 ```

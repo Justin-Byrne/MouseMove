@@ -9,7 +9,7 @@ class Pattern extends Array
 	_index   = 0;
 	_current = undefined;
 
-	#_length = undefined;
+	#length = undefined;
 
 	/**
 	 * Creates a list
@@ -26,7 +26,7 @@ class Pattern extends Array
 			for ( let element of array ) this.push ( element );
 
 
-			this.#_length = this.length - 1;
+			this.#length = this.length - 1;
 		}
 
 		this.current = this [ this.index ];
@@ -65,7 +65,7 @@ class Pattern extends Array
 
 		/**
 		 * Get current value
-		 * @return 			{object} 									Current data value
+		 * @return 			{Object} 									Current data value
 		 */
 		get current ( )
 		{
@@ -117,7 +117,7 @@ class Pattern extends Array
 
 	                    let _id     = ( _object.hasOwnProperty ( 'id'     ) ) ? ( typeof _object.id     === 'string' ) : false
 
-	                    let _action = ( _object.hasOwnProperty ( 'action' ) ) ? ( typeof _object.action === 'string' || typeof _object.action === 'function' ) : false;
+	                    let _action = ( _object.hasOwnProperty ( 'action' ) ) ? ( typeof _object.action === 'string' || typeof _object.action === 'object' || typeof _object.action === 'function' ) : false;
 
 
 	                    _results = ( _keys && _id && _action );
@@ -141,9 +141,9 @@ class Pattern extends Array
 		 */
 		next ( )
 		{
-			if ( this._index > this.#_length )
+			if ( this._index > this.#length )
 			{
-				this._index = this.#_length;
+				this._index = this.#length;
 
 				return false;
 			}

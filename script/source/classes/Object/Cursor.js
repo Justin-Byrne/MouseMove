@@ -2,8 +2,9 @@
  * @class 			{Object} Cursor 							Cursor object
  * @property 		{Point}  position 							X & Y axis coordinates
  * @property 		{string} id 								Cursor's DOM identifier
- * @property 		{string} type 								Type of cursor, within #_cursors
+ * @property 		{string} type 								Type of cursor
  * @property        {Object} config 							Cursor configuration
+ * @property 		{Object} tools 								Internal private utility methods
  */
 class Cursor
 {
@@ -11,7 +12,7 @@ class Cursor
 	_type     = 'default';
 	_position = new Point;
 
-	#_config =
+	#config =
 	{
 		calculations:
 		{
@@ -21,7 +22,7 @@ class Cursor
 		actions:
 		{
 			avoid: [ '', 'ui-cursor', 'canvas', 'ui-overlay', 'canvas-underlay' ],
-			types: [ 'mousedown', 'mouseup', 'mouseover', 'mouseout', 'mousemove', 'click', 'dblclick' ],
+			// types: [ 'mousedown', 'mouseup', 'mouseover', 'mouseout', 'mousemove', 'click', 'dblclick' ],
 			over:  [ ] 	// <= For mouseover & mouseout events !
 		},
 		presentation:
@@ -39,6 +40,114 @@ class Cursor
 		}
 	}
 
+	#tools =
+	{
+		//// 	CONVERSION    //////////////////////////////////
+
+			/**
+			 * Converts CSS string value to number/integer
+			 * @param 			{string} value 								CSS string value in pixels
+			 * @return 			{number} 									Number value of parsed value
+			 */
+			pxToNumber: 	( value ) 	=> Number ( value.replace ( /px$/, '' ) ),
+
+		//// 	GETTERS    /////////////////////////////////////
+
+			/**
+			 * Gets the center point of an element
+			 * @param  			{Object} element 							HTML DOM element
+			 * @return 			{Point}         							X & Y Coordinates
+			 */
+			getCenterPoint: 	( element ) =>
+			( {
+			      x: element.offsetLeft + ( element.clientWidth  / 2 ),
+
+				  y: element.offsetTop  + ( element.clientHeight / 2 )
+			} ),
+
+		//// 	MOUSE EVENTS    ////////////////////////////////
+
+			/**
+			 * Actions executed after a mouseover event
+			 * @param 			{HTMLElement} element 						HTML DOM element
+			 */
+			mouseover: 		( element ) 	=>
+			{
+				if ( element.getAttribute ( `onmouseover` ) != null )
+				{
+					element.onmouseover ( );
+
+					this.#config.actions.over.push ( element );
+				}
+			},
+
+			/**
+			 * Actions executed after a mouseout event
+			 * @param 			{HTMLElement} element 						HTML DOM element
+			 */
+			mouseout: 		( element ) 	=>
+			{
+				if ( element.getAttribute ( `onmouseout` ) != null )
+				{
+					element.onmouseout ( );
+
+					this.#config.actions.over.shift ( );
+				}
+			},
+
+			/**
+			 * Initiates any mouse actions associated with the passed 'element'
+			 * @param 			{HTMLElement} element 						HTML DOM element
+			 */
+			mouseAction: 	( element ) 	=>
+			{
+				if ( mouseMove.sequence.constructor.name === 'Pattern' )
+				{
+					let _currentData = mouseMove.sequence.current;
+
+
+					if ( element.getAttribute ( `on${_currentData.action}` ) != null )
+
+						eval ( `element.on${_currentData.action} ( );` );
+				}
+			},
+
+		//// 	CREATION    ////////////////////////////////////
+
+			/**
+			 * Create and embeds cursor within DOM
+			 * @param 			{string} id 								Identifier of cursor
+			 * @param 			{string} type 								Cursor type within #config.presentation
+			 */
+			createCursor: 	( id, type ) 	=>
+			{
+				let _image = document.createElement ( 'img' );
+
+					_image.id            = id;
+
+					_image.src   		 = type.data
+
+					_image.style.cssText = type.css
+
+
+					_image.onerror 		 = ( ) => console.log ( ' >> [ ERROR ]: Image could not be loaded !'   );
+
+					_image.onload  		 = ( ) => console.log ( ' >> [ SUCCESS ]: Image loaded successfully !' );
+
+
+				document.body.insertBefore ( _image, document.body.firstChild );
+
+				////////////////////////////////////////////////////
+
+				this.position =
+				{
+					x: this.#tools.pxToNumber ( _image.style.left ),
+
+					y: this.#tools.pxToNumber ( _image.style.top  )
+				}
+			}
+	}
+
 	/**
 	 * Create a single instance of a Cursor
 	 * @param 			{string} position 							X & Y axis coordinates
@@ -54,7 +163,7 @@ class Cursor
 		this.type     = ( type === undefined ) ? this._type : type;
 
 
-		this.#_createCursor ( this._id, this._type );
+		this.#tools.createCursor ( this._id, this._type );
 	}
 
 	//// 	[ ID ]    //////////////////////////////////////
@@ -85,7 +194,7 @@ class Cursor
 		 */
 		set type ( value )
 		{
-			this._type = ( value in this.#_config.presentation ) ? this.#_config.presentation [ value ] : this._type;
+			this._type = ( value in this.#config.presentation ) ? this.#config.presentation [ value ] : this._type;
 		}
 
 		/**
@@ -135,15 +244,15 @@ class Cursor
 		 */
 		set angle ( id )
 		{
-			let _element = this.#_getElement ( id );
+			let _element = document.getElementById ( id );
 
 
 			if ( _element != undefined )
 			{
-				let _destination = this.#_getCenterPoint ( _element );
+				let _point = this.#tools.getCenterPoint ( _element );
 
 
-		  		this.#_config.calculations.angle = Math.atan2 ( _destination.y - this.position.y, _destination.x - this.position.x );
+		  		this.#config.calculations.angle = Math.atan2 ( _point.y - this.position.y, _point.x - this.position.x );
 			}
 		}
 
@@ -153,7 +262,7 @@ class Cursor
 		 */
 		get angle ( )
 		{
-			return this.#_config.calculations.angle;
+			return this.#config.calculations.angle;
 		}
 
 	////    [ DISTANCE ]    ////////////////////////////////
@@ -164,15 +273,15 @@ class Cursor
 		 */
 		set distance ( id )
 		{
-			let _element = this.#_getElement ( id );
+			let _element = document.getElementById ( id );
 
 
 			if ( _element != undefined )
 			{
-				let _point = this.#_getCenterPoint ( _element );
+				let _point = this.#tools.getCenterPoint ( _element );
 
 
-				this.#_config.calculations.distance = Math.sqrt ( ( Math.pow ( _point.x - this.position.x , 2 ) ) + ( Math.pow ( _point.y - this.position.y, 2 ) ) );
+				this.#config.calculations.distance = Math.sqrt ( ( Math.pow ( _point.x - this.position.x , 2 ) ) + ( Math.pow ( _point.y - this.position.y, 2 ) ) );
 			}
 		}
 
@@ -182,154 +291,7 @@ class Cursor
 		 */
 		get distance ( )
 		{
-			return this.#_config.calculations.distance;
-		}
-
-	////    ( PRIVATE )    /////////////////////////////////
-
-		/**
-		 * Checks whether the passed id is an XPath
-		 * @param  			{string} id 								XPath
-		 * @return 			{boolean}    								True | False
-		 */
-		#_isXpath = ( id ) => id.substring ( 0, 2 ).includes ( '/' );
-
-		/**
-		 * Checks whether the passed id is a CSS query selector
-		 * @param 			{string} id 								CSS query selector
-		 * @return 			{boolean} 									True | False
-		 */
-		#_isCssSelector ( id )
-		{
-	        for ( let _character of [ '>', ':', '#', '~', '+', '|', '.', ' ' ] )
-
-	            if ( id.includes ( _character ) && ! this.#_isXpath ( id ) )
-
-	                return true;
-
-
-	        return false;
-		}
-
-		/**
-		 * Checks whether the passed id is an element identifier
-		 * @param 			{string} id 								Element identifier
-		 * @return 			{boolean} 									True | False
-		 */
-		#_isId ( id )
-		{
-			for ( let _character of [ '>', ':', '#', '~', '+', '|', '.', ' ' ] )
-
-		        if ( id.includes ( _character ) || this.#_isXpath ( id ) )
-
-		            return false;
-
-
-		    return true;
-		}
-
-		/**
-		 * Converts CSS string value to number/integer
-		 * @param 			{string} value 								CSS string value in pixels
-		 * @return 			{number} 									Number value of parsed value
-		 */
-		#_pxToNumber = ( value ) => Number ( value.replace ( /px$/, '' ) );
-
-		/**
-		 * Gets the center point of an element
-		 * @param  			{object} element 							HTML DOM element
-		 * @return 			{Point}         							X & Y Coordinates
-		 */
-		#_getCenterPoint = ( element ) => ( {
-											    x: element.offsetLeft + ( element.clientWidth  / 2 ),
-
-											    y: element.offsetTop  + ( element.clientHeight / 2 )
-										  } );
-
-		/**
-		 * Returns an element based on its XPath
-		 * @param  			{string} xpath 								XPath
-		 * @return 			{object}      								HTML DOM element
-		 */
-		#_getElementByXPath = ( xpath ) => document.evaluate ( xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;
-
-		/**
-		 * Returns a DOM's element based on its identifier
-		 * @param  			{string} id 								CSS query, identifier, or XPath
-		 * @return 			{object}    								HTML DOM element
-		 */
-		#_getElement = ( id ) => ( this.#_isXpath ( id ) ) ? this.#_getElementByXPath ( id ) : ( this.#_isCssSelector ( id ) ) ? document.querySelector ( id ) : ( this.#_isId ( id ) ) ? document.getElementById ( id ) : undefined;
-
-		/**
-		 * Create and embeds cursor within DOM
-		 * @param 			{string} id 								Identifier of cursor
-		 * @param 			{string} type 								Cursor type within #_config.presentation
-		 */
-		#_createCursor ( id, type )
-		{
-			let _image = document.createElement ( 'img' );
-
-				_image.id            = id;
-
-				_image.src   		 = type.data
-
-				_image.style.cssText = type.css
-
-
-				_image.onerror 		 = ( ) => console.log ( ' >> [ ERROR ]: Image could not be loaded !'   );
-
-				_image.onload  		 = ( ) => console.log ( ' >> [ SUCCESS ]: Image loaded successfully !' );
-
-
-			document.body.insertBefore ( _image, document.body.firstChild );
-
-			////////////////////////////////////////////////////
-
-			this.position =
-			{
-				x: this.#_pxToNumber ( _image.style.left ),
-
-				y: this.#_pxToNumber ( _image.style.top  )
-			}
-		}
-
-		/**
-		 * Actions executed after a mouseover event
-		 * @param 			{HTMLElement} element 						HTML DOM element
-		 */
-		#_mouseover ( element )
-		{
-			element.onmouseover ( );
-
-			this.#_config.actions.over.push ( element );
-		}
-
-		/**
-		 * Actions executed after a mouseout event
-		 * @param 			{HTMLElement} element 						HTML DOM element
-		 */
-		#_mouseout ( element )
-		{
-			element.onmouseout ( );
-
-			this.#_config.actions.over.shift ( );
-		}
-
-		/**
-		 * Initiates any mouse actions associated with the passed 'element'
-		 * @param 			{HTMLElement} element 						HTML DOM element
-		 */
-		#_mouseAction ( element )
-		{
-			if ( mouseMove.sequence.constructor.name === 'Pattern' )
-			{
-				let _currentData = mouseMove.sequence.current;
-
-
-				if ( element.getAttribute ( `on${_currentData.action}` ) != null )
-
-					eval ( `element.on${_currentData.action} ( );` );
-			}
+			return this.#config.calculations.distance;
 		}
 
 	//// 	UTILITIES    ///////////////////////////////////
@@ -370,15 +332,15 @@ class Cursor
 		 */
 		toNextElement ( id )
 		{
-			let _element = this.#_getElement ( id );
+			let _element = document.getElementById ( id );
 
 
 			if ( _element != null )
 			{
-				this.position = this.#_getCenterPoint ( _element );
+				this.position = this.#tools.getCenterPoint ( _element );
 
 
-				this.#_mouseAction ( _element );
+				this.#tools.mouseAction ( _element );
 			}
 		}
 
@@ -389,9 +351,9 @@ class Cursor
 		{
 			let _elements = document.elementsFromPoint ( this.position.x, this.position.y );
 
-			let _avoid    = this.#_config.actions.avoid;
+			let _avoid    = this.#config.actions.avoid;
 
-			let _wasOver  = this.#_config.actions.over;
+			let _wasOver  = this.#config.actions.over;
 
 
 			for ( let _element of _elements )
@@ -400,14 +362,14 @@ class Cursor
 
 					if ( ! _wasOver.includes ( _element ) )
 
-						this.#_mouseover ( _element );
+						this.#tools.mouseover ( _element );
 
-					else
+				else
 
-						if ( _wasOver.length > 1 )
+					if ( _wasOver.length > 1 )
 
-							for ( let _over of _wasOver )
+						for ( let _over of _wasOver )
 
-								this.#_mouseout ( _over );
+							this.#tools.mouseout ( _over );
 		}
 }

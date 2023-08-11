@@ -88,12 +88,15 @@ function insert_file()
 
 function render_header()
 {
+    # USE="use strict;";
+
     HEADER="// @program: \t\tMouse Move \\n"
     HEADER+="// @brief: \t\t\tAutomated mouse cursor for web presentation \\n"
     HEADER+="// @author: \t\tJustin D. Byrne \\n"
     HEADER+="// @email: \t\t\tjustin@byrne-systems.com \\n"
     HEADER+="// @version: \t\t${VERSION} \\n"
-    HEADER+="// @license: \t\tGPL-2.0"
+    HEADER+="// @license: \t\tGPL-2.0\\n\\n"
+    HEADER+="\"use strict\";"
 
     echo $HEADER > $OUTPUT
 }

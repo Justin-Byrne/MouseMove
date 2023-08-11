@@ -9,7 +9,7 @@ class List extends Array
 	_index   = 0;
 	_current = undefined;
 
-	#_length = undefined;
+	#length = undefined;
 
 	/**
 	 * Creates a list
@@ -26,7 +26,7 @@ class List extends Array
 			for ( let element of array ) this.push ( element );
 
 
-			this.#_length = this.length - 1;
+			this.#length = this.length - 1;
 		}
 
 		this.current = this [ this.index ];
@@ -129,9 +129,9 @@ class List extends Array
 		 */
 		next ( )
 		{
-			if ( this._index > this.#_length )
+			if ( this._index > this.#length )
 			{
-				this._index = this.#_length;
+				this._index = this.#length;
 
 				return false;
 			}

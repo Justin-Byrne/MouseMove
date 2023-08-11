@@ -18,6 +18,56 @@
 </dd>
 </dl>
 
+## Functions
+
+<dl>
+<dt><a href="#pxToNumber">pxToNumber(value)</a> ⇒ <code>number</code></dt>
+<dd><p>Converts CSS string value to number/integer</p>
+</dd>
+<dt><a href="#getCenterPoint">getCenterPoint(element)</a> ⇒ <code><a href="#Point">Point</a></code></dt>
+<dd><p>Gets the center point of an element</p>
+</dd>
+<dt><a href="#mouseover">mouseover(element)</a></dt>
+<dd><p>Actions executed after a mouseover event</p>
+</dd>
+<dt><a href="#mouseout">mouseout(element)</a></dt>
+<dd><p>Actions executed after a mouseout event</p>
+</dd>
+<dt><a href="#mouseAction">mouseAction(element)</a></dt>
+<dd><p>Initiates any mouse actions associated with the passed &#39;element&#39;</p>
+</dd>
+<dt><a href="#createCursor">createCursor(id, type)</a></dt>
+<dd><p>Create and embeds cursor within DOM</p>
+</dd>
+<dt><a href="#isXpath">isXpath(id)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Checks whether the passed id is an XPath</p>
+</dd>
+<dt><a href="#isCssSelector">isCssSelector(id)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Checks whether the passed id is a CSS query selector</p>
+</dd>
+<dt><a href="#isId">isId(id)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Checks whether the passed id is an element identifier</p>
+</dd>
+<dt><a href="#getElementByXPath">getElementByXPath(xpath)</a> ⇒ <code>Object</code></dt>
+<dd><p>Returns an element based on its XPath</p>
+</dd>
+<dt><a href="#getElement">getElement(id)</a> ⇒ <code>Object</code></dt>
+<dd><p>Returns a DOM&#39;s element based on its identifier</p>
+</dd>
+<dt><a href="#getXPath">getXPath(element)</a> ⇒ <code>string</code></dt>
+<dd><p>Returns an xpath for the passed element</p>
+</dd>
+<dt><a href="#addGeneratedId">addGeneratedId(element)</a> ⇒ <code>Object</code></dt>
+<dd><p>Adds a generated id to the passed element</p>
+</dd>
+<dt><a href="#cleanScriptCode">cleanScriptCode(script)</a> ⇒ <code>string</code></dt>
+<dd><p>Cleans script of it&#39;s function wrapper</p>
+</dd>
+<dt><a href="#embedMousetrap">embedMousetrap()</a></dt>
+<dd><p>Embed mousetrap script into DOM</p>
+</dd>
+</dl>
+
 <a name="List"></a>
 
 ## List
@@ -148,7 +198,7 @@ Checks whether the passed value is an instance of List
         * [.index](#Pattern+index)
         * [.index](#Pattern+index) ⇒ <code>number</code>
         * [.current](#Pattern+current)
-        * [.current](#Pattern+current) ⇒ <code>object</code>
+        * [.current](#Pattern+current) ⇒ <code>Object</code>
         * [.currentId](#Pattern+currentId) ⇒ <code>string</code>
         * [.currentAction](#Pattern+currentAction) ⇒ <code>string</code>
         * [.next()](#Pattern+next) ⇒ <code>string</code>
@@ -197,11 +247,11 @@ Set current value
 
 <a name="Pattern+current"></a>
 
-### pattern.current ⇒ <code>object</code>
+### pattern.current ⇒ <code>Object</code>
 Get current value
 
 **Kind**: instance property of [<code>Pattern</code>](#Pattern)  
-**Returns**: <code>object</code> - Current data value  
+**Returns**: <code>Object</code> - Current data value  
 <a name="Pattern+currentId"></a>
 
 ### pattern.currentId ⇒ <code>string</code>
@@ -339,8 +389,9 @@ Checks whether the passed object is an instance of Point
 | --- | --- | --- |
 | position | [<code>Point</code>](#Point) | X & Y axis coordinates |
 | id | <code>string</code> | Cursor's DOM identifier |
-| type | <code>string</code> | Type of cursor, within #_cursors |
+| type | <code>string</code> | Type of cursor |
 | config | <code>Object</code> | Cursor configuration |
+| tools | <code>Object</code> | Internal private utility methods |
 
 
 * [Cursor](#Cursor)
@@ -522,6 +573,7 @@ Checks whether the passed value is an instance of Cursor
 | cursor | [<code>Cursor</code>](#Cursor) | Cursor object |
 | animation | <code>string</code> | Cursor linear animation |
 | config | <code>Object</code> | General configuration |
+| tools | <code>Object</code> | Internal private utility methods |
 
 
 * [MouseMove](#MouseMove)
@@ -590,7 +642,7 @@ Set animation property
 
 | Param | Type | Description |
 | --- | --- | --- |
-| value | <code>string</code> | Animation type within #_config.animations |
+| value | <code>string</code> | Animation type within #config.animations |
 
 <a name="MouseMove+animation"></a>
 
@@ -610,3 +662,174 @@ Animate cursor
 | --- | --- | --- |
 | duration | <code>number</code> | Duration of the animation |
 
+<a name="pxToNumber"></a>
+
+## pxToNumber(value) ⇒ <code>number</code>
+Converts CSS string value to number/integer
+
+**Kind**: global function  
+**Returns**: <code>number</code> - Number value of parsed value  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | CSS string value in pixels |
+
+<a name="getCenterPoint"></a>
+
+## getCenterPoint(element) ⇒ [<code>Point</code>](#Point)
+Gets the center point of an element
+
+**Kind**: global function  
+**Returns**: [<code>Point</code>](#Point) - X & Y Coordinates  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| element | <code>Object</code> | HTML DOM element |
+
+<a name="mouseover"></a>
+
+## mouseover(element)
+Actions executed after a mouseover event
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| element | <code>HTMLElement</code> | HTML DOM element |
+
+<a name="mouseout"></a>
+
+## mouseout(element)
+Actions executed after a mouseout event
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| element | <code>HTMLElement</code> | HTML DOM element |
+
+<a name="mouseAction"></a>
+
+## mouseAction(element)
+Initiates any mouse actions associated with the passed 'element'
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| element | <code>HTMLElement</code> | HTML DOM element |
+
+<a name="createCursor"></a>
+
+## createCursor(id, type)
+Create and embeds cursor within DOM
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>string</code> | Identifier of cursor |
+| type | <code>string</code> | Cursor type within #config.presentation |
+
+<a name="isXpath"></a>
+
+## isXpath(id) ⇒ <code>boolean</code>
+Checks whether the passed id is an XPath
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True | False  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>string</code> | XPath |
+
+<a name="isCssSelector"></a>
+
+## isCssSelector(id) ⇒ <code>boolean</code>
+Checks whether the passed id is a CSS query selector
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True | False  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>string</code> | CSS query selector |
+
+<a name="isId"></a>
+
+## isId(id) ⇒ <code>boolean</code>
+Checks whether the passed id is an element identifier
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True | False  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>string</code> | Element identifier |
+
+<a name="getElementByXPath"></a>
+
+## getElementByXPath(xpath) ⇒ <code>Object</code>
+Returns an element based on its XPath
+
+**Kind**: global function  
+**Returns**: <code>Object</code> - HTML DOM element  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| xpath | <code>string</code> | XPath |
+
+<a name="getElement"></a>
+
+## getElement(id) ⇒ <code>Object</code>
+Returns a DOM's element based on its identifier
+
+**Kind**: global function  
+**Returns**: <code>Object</code> - HTML DOM element  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>string</code> | CSS query, identifier, or XPath |
+
+<a name="getXPath"></a>
+
+## getXPath(element) ⇒ <code>string</code>
+Returns an xpath for the passed element
+
+**Kind**: global function  
+**Returns**: <code>string</code> - XPath  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| element | <code>Object</code> | HTML DOM element |
+
+<a name="addGeneratedId"></a>
+
+## addGeneratedId(element) ⇒ <code>Object</code>
+Adds a generated id to the passed element
+
+**Kind**: global function  
+**Returns**: <code>Object</code> - element 							HTML DOM element  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| element | <code>Object</code> | HTML DOM element |
+
+<a name="cleanScriptCode"></a>
+
+## cleanScriptCode(script) ⇒ <code>string</code>
+Cleans script of it's function wrapper
+
+**Kind**: global function  
+**Returns**: <code>string</code> - Function as a string  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| script | <code>function</code> | JavaScript function |
+
+<a name="embedMousetrap"></a>
+
+## embedMousetrap()
+Embed mousetrap script into DOM
+
+**Kind**: global function  
