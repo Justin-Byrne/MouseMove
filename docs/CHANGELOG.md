@@ -33,7 +33,7 @@ All notable changes to this project will be documented in this file.
   - types `<array>` within `#_config.actions` for mouse action types
   - private `#_isXpath ( )` method to detect whether the passed `<string>` is an XPath
   - private `#_isCssSelector ( )` method to detect whether the passed `<string>` is a CSS query selector
-  	private `#_isId ( )` method to detect whether the passed `<string>` is a element identifier
+  - private `#_isId ( )` method to detect whether the passed `<string>` is a element identifier
 
 ### Changed
 - `Cursor` class

@@ -73,9 +73,9 @@ Create an `<array>` of DOM identifiers to push into ***MouseMove***.
 ```javascript
 let _list =
 [
-	'node',                              // Elemental id
-	'//input[@id = "fakebox-input"]',    // XPath
-	'body > ul > li:nth-child(1)'        // CSS Selector
+    'node',                              // Elemental id
+    '//input[@id = "fakebox-input"]',    // XPath
+    'body > ul > li:nth-child(1)'        // CSS Selector
 ]
 
 initMouseMove ( _list );                 // Initiate the MouseMove class
