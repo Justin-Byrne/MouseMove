@@ -5,7 +5,7 @@
 ![stars](https://img.shields.io/github/stars/Justin-Byrne/MouseMove)
 ![license](https://img.shields.io/github/license/Justin-Byrne/MouseMove)
 <img src=https://img.shields.io/badge/Mousetrap-1.6.0-yellow />
-<img src=https://img.shields.io/badge/Version-0.1.3-green />
+<img src=https://img.shields.io/badge/Version-0.1.4-green />
 
 JavaScript automated mouse cursor for web presentation
 
@@ -117,8 +117,8 @@ Create an `<array>` of `<objects>`, with the following structure:
 ```javascript
 let _object =
 {
-    id: 'ui-node',    // <string>
-    action:           // Object.<string, function>, <string [ 'onmousedown', 'onmouseup', 'onmouseover', 'onmouseout', 'onmousemove', 'onclick', 'ondblclick' ]>;
+    id: 'ui-node',    // [REQUIRED] ... type: <string>
+    bind:             // [OPTIONAL] ... type: Object.<string, function>
     {
         onmouseover: ( ) =>
         {
@@ -131,18 +131,49 @@ let _object =
         {
             // code ...
         }
-    }
+    },
+    action: 'click'   // [OPTIONAL] ... type: <string>
 }
 ```
+
+<details>
+
+<summary><b>Note:</b> attribute declarations for <code>bind</code> and <code>action</code></summary>
+
+> - `bind` : `Object.<string, function>`
+>  - `<string>`
+>    - `onmousedown`
+>    - `onmouseup`
+>    - `onmouseover`
+>    - `onmouseout`
+>    - `onmousemove`
+>    - `onclick`
+>    - `ondblclick`
+>  - `<function>`
+>    - anonymous function
+>
+>- `action` : `<string>`
+>  - `<string>`
+>    - `mousedown`
+>    - `mouseup`
+>    - `mouseover`
+>    - `mouseout`
+>    - `mousemove`
+>    - `click`
+>    - `dblclick`
+
+</details>
+
+<br>
 
 ...then and push into ***MouseMove***.
 
 ```javascript
 let _pattern =
 [
-    {  id: 'node-0',  action: ( ) => {  /* code ... */  }  },
-    {  id: 'node-1',  action: ( ) => {  /* code ... */  }  },
-    {  id: 'node-2',  action: ( ) => {  /* code ... */  }  }
+    {  id: 'node-0',  action: 'click'                                    },  // Each pattern is valid !
+    {  id: 'node-1',  bind: ( ) => {  /* code ... */  },                 },
+    {  id: 'node-2',  bind: ( ) => {  /* code ... */  }, action: 'click' }
 ]
 
 initMouseMove ( _pattern );         // Initiate the MouseMove class
@@ -178,7 +209,7 @@ Please [open an issue](https://github.com/Justin-Byrne/MouseMove/issues/new) for
 │   │       │   ├── Pattern.js
 │   │       │   └── Point.js
 │   │       └── MouseMove.js
-│   └── mousemove-v0.1.3.js
+│   └── mousemove-v0.1.4.js
 ├── LICENSE
 └── README.md
 ```

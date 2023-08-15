@@ -113,14 +113,16 @@ class Pattern extends Array
 
 	                if ( typeof _object == 'object')
 	                {
-	                    let _keys   = ( Object.keys ( _object ).length == 2 );
+	                    let _keys   = ( Object.keys ( _object ).length <= 3 );
 
 	                    let _id     = ( _object.hasOwnProperty ( 'id'     ) ) ? ( typeof _object.id     === 'string' ) : false
 
-	                    let _action = ( _object.hasOwnProperty ( 'action' ) ) ? ( typeof _object.action === 'string' || typeof _object.action === 'object' || typeof _object.action === 'function' ) : false;
+	                    let _action = ( _object.hasOwnProperty ( 'action' ) ) ? ( typeof _object.action === 'string' ) : false;
+
+	                    let _bind   = ( _object.hasOwnProperty ( 'bind'   ) ) ? ( typeof _object.bind   === 'object' || typeof _object.bind === 'function' ) : false;
 
 
-	                    _results = ( _keys && _id && _action );
+	                    _results = ( _keys && _id && ( _action || _bind ) );
 	                }
 	                else
 

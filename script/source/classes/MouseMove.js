@@ -33,7 +33,7 @@ class MouseMove
 			duration:  2000,
 			framerate: 60,
 			increment: 0.00034,
-			constant:  undefined
+			constant:  undefined 	// Note: defined at creation
 		},
 		identifiers:
 		{
@@ -51,7 +51,9 @@ class MouseMove
 				'eighty',  'eighty_one',  'eighty_two',  'eighty_three',  'eighty_four',  'eighty_five',  'eighty_six',  'eighty_seven',  'eighty_eight',  'eighty_nine',
 				'ninety',  'ninety_one',  'ninety_two',  'ninety_three',  'ninety_four',  'ninety_five',  'ninety_six',  'ninety_seven',  'ninety_eight',  'ninety_nine'
 			],
-			actions: [ 'onmousedown', 'onmouseup', 'onmouseover', 'onmouseout', 'onmousemove', 'onclick', 'ondblclick' ]
+			actions: [ 'onmousedown', 'onmouseup', 'onmouseover', 'onmouseout', 'onmousemove', 'onclick', 'ondblclick' ],
+			symbols: [ '>', ':', '#', '~', '+', '|', '.', ' ' ],
+			generativeIndex: 0
 		},
 		mousetrap:
 		{
@@ -63,8 +65,8 @@ class MouseMove
 	        Author:    'Justin Don Byrne',
 	        Created:   'Aug, 04 2023',
 	        Library:   'Mouse Move: Automated mouse cursor for web presentation',
-	        Updated:   'Aug, 11 2023',
-	        Version:   '0.1.3',
+	        Updated:   'Aug, 15 2023',
+	        Version:   '0.1.4',
 	        Copyright: 'Copyright (c) 2023 Justin Don Byrne'
 	    }
 	}
@@ -87,9 +89,12 @@ class MouseMove
 			 */
 			isCssSelector: 	( id ) 	=>
 			{
-		        for ( let _character of [ '>', ':', '#', '~', '+', '|', '.', ' ' ] )
+				let _symbols = this.#config.identifiers.symbols
 
-		            if ( id.includes ( _character ) && ! this.#tools.isXpath ( id ) )
+
+		        for ( let _symbol of _symbols )
+
+		            if ( id.includes ( _symbol ) && ! this.#tools.isXpath ( id ) )
 
 		                return true;
 
@@ -104,9 +109,12 @@ class MouseMove
 			 */
 			isId: 			( id ) 	=>
 			{
-				for ( let _character of [ '>', ':', '#', '~', '+', '|', '.', ' ' ] )
+				let _symbols = this.#config.identifiers.symbols
 
-			        if ( id.includes ( _character ) || this.#tools.isXpath ( id ) )
+
+				for ( let _symbol of _symbols )
+
+			        if ( id.includes ( _symbol ) || this.#tools.isXpath ( id ) )
 
 			            return false;
 
@@ -140,34 +148,6 @@ class MouseMove
 				return undefined;
 			},
 
-			/**
-			 * Returns an xpath for the passed element
-			 * @param  			{Object} element 							HTML DOM element
-			 * @return 			{string}         							XPath
-			 */
-			getXPath: 			( element ) =>
-			{
-			    if ( element.tagName == 'HTML' ) return '/HTML[1]';
-
-			    if ( element === document.body ) return '/HTML[1]/BODY[1]';
-
-
-			    let ix = 0;
-
-			    let siblings = element.parentNode.childNodes;
-
-
-			    for ( let i = 0; i < siblings.length; i++ )
-			    {
-			        let sibling = siblings[i];
-
-
-			        if ( sibling === element ) return getPathTo(element.parentNode)+'/'+element.tagName+'['+(ix+1)+']';
-
-			        if ( sibling.nodeType === 1 && sibling.tagName === element.tagName ) ix++;
-			    }
-			},
-
 		////    ADDITIVE    ////////////////////////////////////
 
 			/**
@@ -177,7 +157,18 @@ class MouseMove
 			 */
 			addGeneratedId: 	( element ) =>
 			{
-				element.id = this.sequence [ this.sequence.index ].id = `${this.#config.identifiers.qualifier}_${this.#config.identifiers.words [ this.sequence.index ]}`;
+				let _index      = this.#config.identifiers.generativeIndex;
+
+				let _qualifier  = this.#config.identifiers.qualifier;
+
+				let _numberWord = this.#config.identifiers.words [ _index ];
+
+
+				element.id = this.sequence [ _index ].id = _qualifier + '_' + _numberWord;
+
+
+				this.#config.identifiers.generativeIndex++;
+
 
 				return element;
 			},
@@ -235,26 +226,28 @@ class MouseMove
 
 						if ( this.#tools.isCssSelector ( _step.id ) || this.#tools.isXpath ( _step.id ) )
 						{
-							let _element = this.#tools.getElement ( _step.id );
+							let _element    = this.#tools.getElement ( _step.id );
 
-							let _actions = _step.action;
+							let _binds      = _step.bind;
+
+							// let _actions    = _step.action;
+
+							let _setActions = this.#config.identifiers.actions;
 
 
-							if ( typeof _actions === 'object' )
+							if ( _binds != undefined && ( typeof _binds === 'object' || typeof _binds === 'function' ) )
 
-								for ( let _action in _actions )
+								for ( let _bind in _binds )
 
-									if ( typeof _actions [ _action ] === 'function' )
+									( _setActions.includes ( _bind ) )
 
-										( this.#config.identifiers.actions.includes ( _action ) )
+										? ( ! _element.hasAttribute ( _bind ) )
 
-											? ( ! _element.hasAttribute ( _action ) )
+											? _element.setAttribute ( _bind, this.#tools.cleanScriptCode ( _binds [ _bind ] ) )
 
-											      ? _element.setAttribute ( _action, this.#tools.cleanScriptCode ( _actions [ _action ] ) )
+											: console.log ( ` >> [ ERROR ]: Element ${_element} already has bind: ${_bind} !` )
 
-											      : console.log ( ` >> [ ERROR ]: Element ${_element} already has action: ${_action} !` )
-
-											: console.log ( ` >> [ ERROR ]: Action ${_action} is not a valid mouse action !` );
+										: console.log ( ` >> [ ERROR ]: Bind "${_bind}" is not a valid mouse action !` );
 						}
 				}
 
@@ -377,7 +370,7 @@ class MouseMove
 					y: _cursor.position.y + ( _cursor.distance * Math.sin ( _cursor.angle ) ) * progress / _power
 				}
 
-				// <== Check code here for mouseover & mouseout
+
 				_cursor.setInteraction ( );
 
 

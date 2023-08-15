@@ -36,6 +36,9 @@
 <dt><a href="#mouseAction">mouseAction(element)</a></dt>
 <dd><p>Initiates any mouse actions associated with the passed &#39;element&#39;</p>
 </dd>
+<dt><a href="#toggleType">toggleType(type, callback)</a></dt>
+<dd><p>Toggle cursor&#39;s visual type</p>
+</dd>
 <dt><a href="#createCursor">createCursor(id, type)</a></dt>
 <dd><p>Create and embeds cursor within DOM</p>
 </dd>
@@ -53,9 +56,6 @@
 </dd>
 <dt><a href="#getElement">getElement(id)</a> ⇒ <code>Object</code></dt>
 <dd><p>Returns a DOM&#39;s element based on its identifier</p>
-</dd>
-<dt><a href="#getXPath">getXPath(element)</a> ⇒ <code>string</code></dt>
-<dd><p>Returns an xpath for the passed element</p>
 </dd>
 <dt><a href="#addGeneratedId">addGeneratedId(element)</a> ⇒ <code>Object</code></dt>
 <dd><p>Adds a generated id to the passed element</p>
@@ -719,6 +719,18 @@ Initiates any mouse actions associated with the passed 'element'
 | --- | --- | --- |
 | element | <code>HTMLElement</code> | HTML DOM element |
 
+<a name="toggleType"></a>
+
+## toggleType(type, callback)
+Toggle cursor's visual type
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| type | <code>string</code> | Cursor type within #config.presentation |
+| callback | <code>function</code> | Callback mouse event |
+
 <a name="createCursor"></a>
 
 ## createCursor(id, type)
@@ -790,18 +802,6 @@ Returns a DOM's element based on its identifier
 | Param | Type | Description |
 | --- | --- | --- |
 | id | <code>string</code> | CSS query, identifier, or XPath |
-
-<a name="getXPath"></a>
-
-## getXPath(element) ⇒ <code>string</code>
-Returns an xpath for the passed element
-
-**Kind**: global function  
-**Returns**: <code>string</code> - XPath  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| element | <code>Object</code> | HTML DOM element |
 
 <a name="addGeneratedId"></a>
 

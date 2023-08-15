@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: mousemove-v0.1.3.js</title>
+    <title>JSDoc: Source: mousemove-v0.1.4.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: mousemove-v0.1.3.js</h1>
+    <h1 class="page-title">Source: mousemove-v0.1.4.js</h1>
 
     
 
@@ -30,7 +30,7 @@
 // @brief: 			Automated mouse cursor for web presentation 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.1.3 
+// @version: 		0.1.4 
 // @license: 		GPL-2.0
 
 "use strict";
@@ -131,7 +131,7 @@ class List extends Array
 		{
 			//// 	FUNCTIONS    ///////////////////////////
 
-			function _isStringArray ( array )
+			function _isArrayOfStrings ( array )
 			{
 			    for ( let _element of array )
 
@@ -151,9 +151,7 @@ class List extends Array
 
 			let _1_Dim       = ( array.every ( entry => ! Array.isArray ( entry ) ) ) ? true : false;
 
-			let _stringArray = _isStringArray ( array );
-
-			// @TODO: Validate formatting for ids, classes, or xpath entries
+			let _stringArray = _isArrayOfStrings ( array );
 
 
 			return ( _List || _Array &amp;&amp; _1_Dim &amp;&amp; _stringArray );
@@ -303,14 +301,16 @@ class Pattern extends Array
 
 	                if ( typeof _object == 'object')
 	                {
-	                    let _keys   = ( Object.keys ( _object ).length == 2 );
+	                    let _keys   = ( Object.keys ( _object ).length &lt;= 3 );
 
 	                    let _id     = ( _object.hasOwnProperty ( 'id'     ) ) ? ( typeof _object.id     === 'string' ) : false
 
-	                    let _action = ( _object.hasOwnProperty ( 'action' ) ) ? ( typeof _object.action === 'string' || typeof _object.action === 'object' || typeof _object.action === 'function' ) : false;
+	                    let _action = ( _object.hasOwnProperty ( 'action' ) ) ? ( typeof _object.action === 'string' ) : false;
+
+	                    let _bind   = ( _object.hasOwnProperty ( 'bind'   ) ) ? ( typeof _object.bind   === 'object' || typeof _object.bind === 'function' ) : false;
 
 
-	                    _results = ( _keys &amp;&amp; _id &amp;&amp; _action );
+	                    _results = ( _keys &amp;&amp; _id &amp;&amp; ( _action || _bind ) );
 	                }
 	                else
 
@@ -457,17 +457,21 @@ class Cursor
 			angle:    undefined,
 			distance: undefined
 		},
-		actions:
+		cache:
 		{
 			avoid: [ '', 'ui-cursor', 'canvas', 'ui-overlay', 'canvas-underlay' ],
-			// types: [ 'mousedown', 'mouseup', 'mouseover', 'mouseout', 'mousemove', 'click', 'dblclick' ],
-			over:  [ ] 	// &lt;= For mouseover &amp; mouseout events !
+			over:  [ ]
 		},
 		presentation:
 		{
 			default:
 			{
 				data: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD4AAABcCAMAAAABI/YnAAACXlBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD19fUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD7+/sAAAAAAAAAAAD9/f0AAAAAAAAAAAAAAAAAAAAAAAABAQEAAAAAAAD6+vrU1NQBAQEAAAD39/cAAAABAQH9/f35+fkAAAD39/fo6OiEhIR1dXUCAgIAAADg4OD6+vr6+vp+fn55eXlsbGxlZWUAAAADAwMAAADr6+vY2NiDg4NoaGgBAQECAgIAAAD39/fKysrw8PDt7e3Pz8/d3d3h4eHq6uq/v7+rq6sAAAB4eHiKioqBgYGPj48AAACamppxcXFvb28AAABNTU2hoaFqamoJCQkxMTERERHCwsLk5OTb29v5+fmHh4fFxcW8vLysrKx7e3vl5eXV1dW7u7upqanS0tLf399dXV2UlJQ2NjYAAAC1tbXd3d2enp6IiIgdHR2WlpaLi4tCQkKJiYlaWlpoaGh/f38oKCgZGRlJSUmWlpbPz8+0tLRVVVUjIyN/f39DQ0MnJyd3d3cdHR2GhoYREREFBQWbm5uUlJSkpKQAAAD///8fHx9HR0f+/v7y8vLd3d0UFBT4+PiWlpZ2dnZOTk4qKioHBwcEBATt7e3p6enm5ubBwcG4uLiJiYk7OzsZGRn6+vrj4+PX19fR0dHNzc2mpqajo6Oenp6Pj4+Dg4N8fHxpaWlmZmZiYmJeXl5ZWVlTU1M/Pz83NzczMzMtLS0lJSUhISELCwvIyMixsbGrq6t6enpwcHBWVlZLS0tKSkoODg6yWay2AAAAknRSTlMABAkmFRE9GV31NwdLDA9jHmATISQqL/1SOhz+VUVCNEkxWE4t++Z2W/pxbP36QPTvqaB9aP728aWjm5eQgTLz47iZenhD/vHw7uvg2c/Nt66qqKakoJ6enZeVk4uIcFDz6+vh4d7e3t3c2tHOzMfFxMPCwb+/u7aysq2rp6WbmpiMi4mHh4J+fnx6c2tpXlpTQAXFCucAAATpSURBVFjD7dhlt9MwGAdwunZCd9uVytjGlA02GO7u7u7u7u7umuLu7u6u34onXdrBCQwCvOEc/i9223v227rkSZO03L8fjuQ3td/lkiSXn3h2LbtV1S3DB/yOltzCXkWJeN2Si2PnLtmrjd8dNHhFkNk9J6mK0bjRDo+Y0X7D+2UvLzY2G20rq9VK97J6zuVWgvHaptloRDSW4Fk9cC1RBhx8LsnqgauaGCpvQqo1r8DsgevhKHDiRTYPnPdUBk58WcFzv8wF3pPDvGHRu8EzcB/mz67BS812jmfk+w5fpTwLR5coz8TRpUPYN3M8I0f7GlKehaOXV+CoStEzcvTiLOVZODpxBvshjmfjtGfk6Plp7Ac7npGjZwcpz8LRU8vXczwjRxexr1j0jBw96UR5Fo72H7F8wPaMHH2iPBNHxy9j39TxjBw9rkR5Fo4eUZ6Jo4cHKM/C0X3LN3E8I0f3TMqzcPSe8kwcHcO+RtEzcnTX8v0dz8jRHcozcXTB8nUdz8jRbcozcXQU+0pFz8jRLcrTnMUzcnTD8v3I+oGZn3pb8L5kQhdkP/cL/MT+r3L8EPYHBlSOBxVV+hX+waRzYBC5/J/zU2e/54d7jIi7FP/8db3SfkNGKcWfnL1EjvZVghVX587dulUtpE2b7j169Oy5pxS/d9m8ax+/Mc0x8/oMbDGyfvsO2Wz16vlALh2HpecP+SlcoFdO2bMFnMwd2KJ9vkKucjQaCqXLYp5WhiJIP+CHz5k4xxEJ9NbkofUbRJO1wmFRFBOtgoYeEcjGheIn4O0457+62VRbk/UlxQyvaxDYtAhuoil+/KDdui8IPwxz1ZxsLh7UvILqhsiy5LI0zd8dsCyeXW8jkpum2bq9L55RVGAAIdx3R9zJGxauNGUCvJ5+ZU/1cNI3kExBX33laH7xuqWrze6zuCL8fYBIYKVctXpI1Emd/4gXfnbrZS1aDJ0EB9edmQZOhlWIG17ZX4pbGbe6ZYds/RX48Cnhr+Bzp+fTCY2UCs1zNp84snrA5wtkx8Lxza9udDU35TyGIHGlNyMzWuYrl8Vi6cASODlymPDncLKwQRluPK7EVqjiovoNQvFEsJUntL0anB9DJOegSbLRMG99Pb2PE9N4H1d7ZTaQDmd0RQ929PXCmxubP7L6LpaJwD2K5koqBrzr2nwuKcJoUL26mN5oQj4SfhJWuW2g7zTVRXG/HDE8jc2po3yhjngkSpI7kolV6E4K35mlhvmg7ySq7/ySoKcaLxhdFgsHdS+UFv5HODoA19/Lr+4avUjj0Vcf4dfDWEwZijUQrU1xciduzQuI5Dwscbf+4Ool1avxvK54VcmaPjhJgL6cjwv/ZGHUHcVLrN6VPd9pe/g2yS14YTjKkp+zWzOR3oJH30PccMcK5dyFcNq7JGsUc5zdHF4j7psG5DUsDg+ZJOvCFqc9VxjF327KV2Hy4JyNuw4anaB+uw0g33ZmMBboYhZTZ2k+WivjzA6lgxsvHO1dxG3hZtkxpQmkdejQpZgcVcPGLatXCNVK/fqDET/++tBMGwdCMdHQrKpgeJ6yGfDyDvkKUVyQEbWEpmtJ0FK1Zg3f5aucBsxHBFwVHMujKD0o1orHPTBBKILbKshfDq58QeENw+C1iIOZvAy1bBUzwYzej2v5D54DcvaM9D9/PV8Al+TvAO+eQ9MAAAAASUVORK5CYII=',
+				css:  `position: absolute; top: ${( window.innerHeight / 2 )}px; left: ${( window.innerWidth / 2 )}px; z-index: 10; width: 15px; height: 23px; aspect-ratio: auto 15 / 23;`
+			},
+			inversion:
+			{
+				data: 'data:image/png;base64,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',
 				css:  `position: absolute; top: ${( window.innerHeight / 2 )}px; left: ${( window.innerWidth / 2 )}px; z-index: 10; width: 15px; height: 23px; aspect-ratio: auto 15 / 23;`
 			},
 			hand:
@@ -496,11 +500,11 @@ class Cursor
 			 * @param  			{Object} element 							HTML DOM element
 			 * @return 			{Point}         							X &amp; Y Coordinates
 			 */
-			getCenterPoint: 	( element ) =>
+			getCenterPoint: ( element ) =>
 			( {
-			      x: element.offsetLeft + ( element.clientWidth  / 2 ),
+			      x: element.getBoundingClientRect ( ).left + ( element.getBoundingClientRect ( ).width  / 2 ),
 
-				  y: element.offsetTop  + ( element.clientHeight / 2 )
+			      y: element.getBoundingClientRect ( ).top  + ( element.getBoundingClientRect ( ).height / 2 )
 			} ),
 
 		//// 	MOUSE EVENTS    ////////////////////////////////
@@ -509,13 +513,13 @@ class Cursor
 			 * Actions executed after a mouseover event
 			 * @param 			{HTMLElement} element 						HTML DOM element
 			 */
-			mouseover: 		( element ) 	=>
+			mouseover: 		( element ) 		=>
 			{
 				if ( element.getAttribute ( `onmouseover` ) != null )
 				{
 					element.onmouseover ( );
 
-					this.#config.actions.over.push ( element );
+					this.#config.cache.over.push ( element );
 				}
 			},
 
@@ -523,13 +527,13 @@ class Cursor
 			 * Actions executed after a mouseout event
 			 * @param 			{HTMLElement} element 						HTML DOM element
 			 */
-			mouseout: 		( element ) 	=>
+			mouseout: 		( element ) 		=>
 			{
 				if ( element.getAttribute ( `onmouseout` ) != null )
 				{
 					element.onmouseout ( );
 
-					this.#config.actions.over.shift ( );
+					this.#config.cache.over.shift ( );
 				}
 			},
 
@@ -537,17 +541,49 @@ class Cursor
 			 * Initiates any mouse actions associated with the passed 'element'
 			 * @param 			{HTMLElement} element 						HTML DOM element
 			 */
-			mouseAction: 	( element ) 	=>
+			mouseAction: 	( element ) 		=>
 			{
 				if ( mouseMove.sequence.constructor.name === 'Pattern' )
 				{
 					let _currentData = mouseMove.sequence.current;
 
 
-					if ( element.getAttribute ( `on${_currentData.action}` ) != null )
+					if ( _currentData.action === 'click' )
 
-						eval ( `element.on${_currentData.action} ( );` );
+						this.#tools.toggleType ( 'inversion', ( ) => element.click ( ) );
+
+					else
+
+						if ( element.getAttribute ( `on${_currentData.action}` ) != null )
+
+							eval ( `element.on${_currentData.action} ( );` );
 				}
+			},
+
+			/**
+			 * Toggle cursor's visual type
+			 * @param  			{string}   type     						Cursor type within #config.presentation
+			 * @param  			{Function} callback 						Callback mouse event
+			 */
+			toggleType: 	( type, callback ) 	=>
+			{
+				let _cursor = document.getElementById ( this.id );
+
+				////    FUNCTIONS    ///////////////////////////
+
+					let _swapData = ( ) => [ _cursor.src, _cursor.style ] = [ this.type.data, this.type.css ];
+
+					let _toggle   = ( ) => {  this.type = type;       _swapData ( );  }
+
+					let _default  = ( ) => {  this.type = 'default';  _swapData ( );  }
+
+				////    LOGIC    ///////////////////////////////
+
+					_toggle ( );
+
+					callback ( );
+
+					setTimeout ( _default, 200 );
 			},
 
 		//// 	CREATION    ////////////////////////////////////
@@ -789,9 +825,9 @@ class Cursor
 		{
 			let _elements = document.elementsFromPoint ( this.position.x, this.position.y );
 
-			let _avoid    = this.#config.actions.avoid;
+			let _avoid    = this.#config.cache.avoid;
 
-			let _wasOver  = this.#config.actions.over;
+			let _wasOver  = this.#config.cache.over;
 
 
 			for ( let _element of _elements )
@@ -847,7 +883,7 @@ class MouseMove
 			duration:  2000,
 			framerate: 60,
 			increment: 0.00034,
-			constant:  undefined
+			constant:  undefined 	// Note: defined at creation
 		},
 		identifiers:
 		{
@@ -865,7 +901,9 @@ class MouseMove
 				'eighty',  'eighty_one',  'eighty_two',  'eighty_three',  'eighty_four',  'eighty_five',  'eighty_six',  'eighty_seven',  'eighty_eight',  'eighty_nine',
 				'ninety',  'ninety_one',  'ninety_two',  'ninety_three',  'ninety_four',  'ninety_five',  'ninety_six',  'ninety_seven',  'ninety_eight',  'ninety_nine'
 			],
-			actions: [ 'onmousedown', 'onmouseup', 'onmouseover', 'onmouseout', 'onmousemove', 'onclick', 'ondblclick' ]
+			actions: [ 'onmousedown', 'onmouseup', 'onmouseover', 'onmouseout', 'onmousemove', 'onclick', 'ondblclick' ],
+			symbols: [ '>', ':', '#', '~', '+', '|', '.', ' ' ],
+			generativeIndex: 0
 		},
 		mousetrap:
 		{
@@ -877,8 +915,8 @@ class MouseMove
 	        Author:    'Justin Don Byrne',
 	        Created:   'Aug, 04 2023',
 	        Library:   'Mouse Move: Automated mouse cursor for web presentation',
-	        Updated:   'Aug, 11 2023',
-	        Version:   '0.1.3',
+	        Updated:   'Aug, 15 2023',
+	        Version:   '0.1.4',
 	        Copyright: 'Copyright (c) 2023 Justin Don Byrne'
 	    }
 	}
@@ -901,9 +939,12 @@ class MouseMove
 			 */
 			isCssSelector: 	( id ) 	=>
 			{
-		        for ( let _character of [ '>', ':', '#', '~', '+', '|', '.', ' ' ] )
+				let _symbols = this.#config.identifiers.symbols
 
-		            if ( id.includes ( _character ) &amp;&amp; ! this.#tools.isXpath ( id ) )
+
+		        for ( let _symbol of _symbols )
+
+		            if ( id.includes ( _symbol ) &amp;&amp; ! this.#tools.isXpath ( id ) )
 
 		                return true;
 
@@ -918,9 +959,12 @@ class MouseMove
 			 */
 			isId: 			( id ) 	=>
 			{
-				for ( let _character of [ '>', ':', '#', '~', '+', '|', '.', ' ' ] )
+				let _symbols = this.#config.identifiers.symbols
 
-			        if ( id.includes ( _character ) || this.#tools.isXpath ( id ) )
+
+				for ( let _symbol of _symbols )
+
+			        if ( id.includes ( _symbol ) || this.#tools.isXpath ( id ) )
 
 			            return false;
 
@@ -954,34 +998,6 @@ class MouseMove
 				return undefined;
 			},
 
-			/**
-			 * Returns an xpath for the passed element
-			 * @param  			{Object} element 							HTML DOM element
-			 * @return 			{string}         							XPath
-			 */
-			getXPath: 			( element ) =>
-			{
-			    if ( element.tagName == 'HTML' ) return '/HTML[1]';
-
-			    if ( element === document.body ) return '/HTML[1]/BODY[1]';
-
-
-			    let ix = 0;
-
-			    let siblings = element.parentNode.childNodes;
-
-
-			    for ( let i = 0; i &lt; siblings.length; i++ )
-			    {
-			        let sibling = siblings[i];
-
-
-			        if ( sibling === element ) return getPathTo(element.parentNode)+'/'+element.tagName+'['+(ix+1)+']';
-
-			        if ( sibling.nodeType === 1 &amp;&amp; sibling.tagName === element.tagName ) ix++;
-			    }
-			},
-
 		////    ADDITIVE    ////////////////////////////////////
 
 			/**
@@ -991,7 +1007,18 @@ class MouseMove
 			 */
 			addGeneratedId: 	( element ) =>
 			{
-				element.id = this.sequence [ this.sequence.index ].id = `${this.#config.identifiers.qualifier}_${this.#config.identifiers.words [ this.sequence.index ]}`;
+				let _index      = this.#config.identifiers.generativeIndex;
+
+				let _qualifier  = this.#config.identifiers.qualifier;
+
+				let _numberWord = this.#config.identifiers.words [ _index ];
+
+
+				element.id = this.sequence [ _index ].id = _qualifier + '_' + _numberWord;
+
+
+				this.#config.identifiers.generativeIndex++;
+
 
 				return element;
 			},
@@ -1049,26 +1076,28 @@ class MouseMove
 
 						if ( this.#tools.isCssSelector ( _step.id ) || this.#tools.isXpath ( _step.id ) )
 						{
-							let _element = this.#tools.getElement ( _step.id );
+							let _element    = this.#tools.getElement ( _step.id );
 
-							let _actions = _step.action;
+							let _binds      = _step.bind;
+
+							// let _actions    = _step.action;
+
+							let _setActions = this.#config.identifiers.actions;
 
 
-							if ( typeof _actions === 'object' )
+							if ( _binds != undefined &amp;&amp; ( typeof _binds === 'object' || typeof _binds === 'function' ) )
 
-								for ( let _action in _actions )
+								for ( let _bind in _binds )
 
-									if ( typeof _actions [ _action ] === 'function' )
+									( _setActions.includes ( _bind ) )
 
-										( this.#config.identifiers.actions.includes ( _action ) )
+										? ( ! _element.hasAttribute ( _bind ) )
 
-											? ( ! _element.hasAttribute ( _action ) )
+											? _element.setAttribute ( _bind, this.#tools.cleanScriptCode ( _binds [ _bind ] ) )
 
-											      ? _element.setAttribute ( _action, this.#tools.cleanScriptCode ( _actions [ _action ] ) )
+											: console.log ( ` >> [ ERROR ]: Element ${_element} already has bind: ${_bind} !` )
 
-											      : console.log ( ` >> [ ERROR ]: Element ${_element} already has action: ${_action} !` )
-
-											: console.log ( ` >> [ ERROR ]: Action ${_action} is not a valid mouse action !` );
+										: console.log ( ` >> [ ERROR ]: Bind "${_bind}" is not a valid mouse action !` );
 						}
 				}
 
@@ -1191,7 +1220,7 @@ class MouseMove
 					y: _cursor.position.y + ( _cursor.distance * Math.sin ( _cursor.angle ) ) * progress / _power
 				}
 
-				// &lt;== Check code here for mouseover &amp; mouseout
+
 				_cursor.setInteraction ( );
 
 
@@ -1264,13 +1293,13 @@ let initMouseMove = ( pattern, cursor ) =>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Cursor.html">Cursor</a></li><li><a href="List.html">List</a></li><li><a href="MouseMove.html">MouseMove</a></li><li><a href="Pattern.html">Pattern</a></li><li><a href="Point.html">Point</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addGeneratedId">addGeneratedId</a></li><li><a href="global.html#cleanScriptCode">cleanScriptCode</a></li><li><a href="global.html#createCursor">createCursor</a></li><li><a href="global.html#embedMousetrap">embedMousetrap</a></li><li><a href="global.html#getCenterPoint">getCenterPoint</a></li><li><a href="global.html#getElement">getElement</a></li><li><a href="global.html#getElementByXPath">getElementByXPath</a></li><li><a href="global.html#getXPath">getXPath</a></li><li><a href="global.html#isCssSelector">isCssSelector</a></li><li><a href="global.html#isId">isId</a></li><li><a href="global.html#isXpath">isXpath</a></li><li><a href="global.html#mouseAction">mouseAction</a></li><li><a href="global.html#mouseout">mouseout</a></li><li><a href="global.html#mouseover">mouseover</a></li><li><a href="global.html#pxToNumber">pxToNumber</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Cursor.html">Cursor</a></li><li><a href="List.html">List</a></li><li><a href="MouseMove.html">MouseMove</a></li><li><a href="Pattern.html">Pattern</a></li><li><a href="Point.html">Point</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addGeneratedId">addGeneratedId</a></li><li><a href="global.html#cleanScriptCode">cleanScriptCode</a></li><li><a href="global.html#createCursor">createCursor</a></li><li><a href="global.html#embedMousetrap">embedMousetrap</a></li><li><a href="global.html#getCenterPoint">getCenterPoint</a></li><li><a href="global.html#getElement">getElement</a></li><li><a href="global.html#getElementByXPath">getElementByXPath</a></li><li><a href="global.html#isCssSelector">isCssSelector</a></li><li><a href="global.html#isId">isId</a></li><li><a href="global.html#isXpath">isXpath</a></li><li><a href="global.html#mouseAction">mouseAction</a></li><li><a href="global.html#mouseout">mouseout</a></li><li><a href="global.html#mouseover">mouseover</a></li><li><a href="global.html#pxToNumber">pxToNumber</a></li><li><a href="global.html#toggleType">toggleType</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Aug 11 2023 14:11:51 GMT-0700 (Pacific Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Aug 15 2023 10:11:45 GMT-0700 (Pacific Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

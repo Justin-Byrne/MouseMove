@@ -94,7 +94,7 @@ class List extends Array
 		{
 			//// 	FUNCTIONS    ///////////////////////////
 
-			function _isStringArray ( array )
+			function _isArrayOfStrings ( array )
 			{
 			    for ( let _element of array )
 
@@ -114,9 +114,7 @@ class List extends Array
 
 			let _1_Dim       = ( array.every ( entry => ! Array.isArray ( entry ) ) ) ? true : false;
 
-			let _stringArray = _isStringArray ( array );
-
-			// @TODO: Validate formatting for ids, classes, or xpath entries
+			let _stringArray = _isArrayOfStrings ( array );
 
 
 			return ( _List || _Array && _1_Dim && _stringArray );

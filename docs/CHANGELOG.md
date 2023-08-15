@@ -1,6 +1,22 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.4] - 2023-08-15
+### Added
+- `Cursor` class
+  - `inversion` type, to `#config.presentation`
+  - private `toggleType ( )` method to toggle the cursor's visual type
+- `MouseMove` class, added `symbols` object, in `#config.identifiers`
+
+### Changed
+- `List` class, minor refactoring
+- `Pattern` class, modified `Pattern` object to contain a third attribute: 'bind'
+- `MouseMove` class, modified private `addGeneratedId ( )` method was refactored
+- `Cursor` class
+  - `#config.actions` to `#config.cache`
+  - private `getCenterPoint ( )` method to use `getBoundingClientRect ( )` instead of primitive `client...` attributes
+  - private `mouseAction ( )` method was refactored
+
 ## [0.1.3] - 2023-08-11
 ### Added
 - `MouseMove` class
@@ -65,7 +81,8 @@ All notable changes to this project will be documented in this file.
 ---
 | Version | Date       | Commit                                                                   | Comments                                                          |
 | :-----: | :--------: | :----------------------------------------------------------------------: | :---------------------------------------------------------------- |
-| 0.1.3   | 2023-08-11 | CURRENT REVISION                                                         | Major refactoring to MoveMouse class, and some general cleanup
+| 0.1.4   | 2023-08-15 | CURRENT REVISION                                                         | Minor revisions to Cursor, Pattern, and MoveMouse class
+| 0.1.3   | 2023-08-11 | [d29ab19](https://github.com/Justin-Byrne/MouseMove/commit/d29ab19)      | Major refactoring to MoveMouse class, and some general cleanup
 | 0.1.2   | 2023-08-08 | [20a213f](https://github.com/Justin-Byrne/MouseMove/commit/20a213f)      | Minor revisions to Cursor class, and general refactoring
 | 0.1.1   | 2023-08-07 | [529b2f1](https://github.com/Justin-Byrne/MouseMove/commit/529b2f1) 	    | Minor revisions to Cursor class
 | 0.1.0   | 2023-08-04 | [6de06c4](https://github.com/Justin-Byrne/MouseMove/commit/6de06c4) 	    | Initial upload
