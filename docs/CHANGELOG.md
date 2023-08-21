@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.5] - 2023-08-21
+### Added
+- public `switchType ( )` method, within the `Cursor` class, to switch the cursor's visual type
+- `MouseMove` class
+  - `ease` object, within `#config.animation` which contains all easing functions
+  - private `getEasing` method which returns an easing function based on the input type
+
+### Changed
+- Refactored `_go ( )`, within the `MouseMove` class, to properly utilize easing functions, and mouse events
+
+### Removed
+- private `toggleType ( )` method within `#tools` inside of the `Cursor` class
+
 ## [0.1.4] - 2023-08-15
 ### Added
 - `Cursor` class
@@ -81,7 +94,8 @@ All notable changes to this project will be documented in this file.
 ---
 | Version | Date       | Commit                                                                   | Comments                                                          |
 | :-----: | :--------: | :----------------------------------------------------------------------: | :---------------------------------------------------------------- |
-| 0.1.4   | 2023-08-15 | CURRENT REVISION                                                         | Minor revisions to Cursor, Pattern, and MoveMouse class
+| 0.1.5   | 2023-08-15 | CURRENT REVISION                                                         | Minor refactoring to MouseMove class for the inclusion of easing functions and mouse events
+| 0.1.4   | 2023-08-15 | [7f31f7f](https://github.com/Justin-Byrne/MouseMove/commit/7f31f7f)      | Minor revisions to Cursor, Pattern, and MoveMouse class
 | 0.1.3   | 2023-08-11 | [d29ab19](https://github.com/Justin-Byrne/MouseMove/commit/d29ab19)      | Major refactoring to MoveMouse class, and some general cleanup
 | 0.1.2   | 2023-08-08 | [20a213f](https://github.com/Justin-Byrne/MouseMove/commit/20a213f)      | Minor revisions to Cursor class, and general refactoring
 | 0.1.1   | 2023-08-07 | [529b2f1](https://github.com/Justin-Byrne/MouseMove/commit/529b2f1) 	    | Minor revisions to Cursor class

@@ -3,7 +3,7 @@
  * @property 		{Point}  position 							X & Y axis coordinates
  * @property 		{string} id 								Cursor's DOM identifier
  * @property 		{string} type 								Type of cursor
- * @property        {Object} config 							Cursor configuration
+ * @property        {Object} config 							Internal private configuration
  * @property 		{Object} tools 								Internal private utility methods
  */
 class Cursor
@@ -112,7 +112,7 @@ class Cursor
 
 					if ( _currentData.action === 'click' )
 
-						this.#tools.toggleType ( 'inversion', ( ) => element.click ( ) );
+						element.click ( );
 
 					else
 
@@ -120,32 +120,6 @@ class Cursor
 
 							eval ( `element.on${_currentData.action} ( );` );
 				}
-			},
-
-			/**
-			 * Toggle cursor's visual type
-			 * @param  			{string}   type     						Cursor type within #config.presentation
-			 * @param  			{Function} callback 						Callback mouse event
-			 */
-			toggleType: 	( type, callback ) 	=>
-			{
-				let _cursor = document.getElementById ( this.id );
-
-				////    FUNCTIONS    ///////////////////////////
-
-					let _swapData = ( ) => [ _cursor.src, _cursor.style ] = [ this.type.data, this.type.css ];
-
-					let _toggle   = ( ) => {  this.type = type;       _swapData ( );  }
-
-					let _default  = ( ) => {  this.type = 'default';  _swapData ( );  }
-
-				////    LOGIC    ///////////////////////////////
-
-					_toggle ( );
-
-					callback ( );
-
-					setTimeout ( _default, 200 );
 			},
 
 		//// 	CREATION    ////////////////////////////////////
@@ -278,7 +252,7 @@ class Cursor
 		 * Set angle property
 		 * @param 			{string} id 								Identifier of element
 		 */
-		set angle ( id )
+		set angle ( id ) 	// @note: calculation is good
 		{
 			let _element = document.getElementById ( id );
 
@@ -294,7 +268,7 @@ class Cursor
 
 		/**
 		 * Get angle property
-		 * @return 			{number} 									Angle property
+		 * @return 			{number} 									Angle property; in radians
 		 */
 		get angle ( )
 		{
@@ -307,7 +281,7 @@ class Cursor
 		 * Set distance property
 		 * @param 			{string} id 								Identifier of element
 		 */
-		set distance ( id )
+		set distance ( id ) 	// @note: calculation is good
 		{
 			let _element = document.getElementById ( id );
 
@@ -375,9 +349,26 @@ class Cursor
 			{
 				this.position = this.#tools.getCenterPoint ( _element );
 
-
 				this.#tools.mouseAction ( _element );
 			}
+		}
+
+		/**
+		 * Switch cursor's visual type
+		 * @param  			{string} type     						    Cursor type within #config.presentation
+		 */
+		switchType ( type = 'default' )
+		{
+			let _delay = 200;
+
+			let _cursor = document.getElementById ( this.id );
+
+				this.type   = type;
+
+				_cursor.src = this.type.data;
+
+
+			return new Promise ( ( resolve, reject ) => { setTimeout ( ( ) => { resolve ( ); }, _delay ); });
 		}
 
 		/**

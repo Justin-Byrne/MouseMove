@@ -31,9 +31,10 @@ function get_version()
 
 get_version
 
+declare NO_ERRORS=true
+
 declare DATE=$(date +"%m-%d-%y")
 declare TIME=$(date +"%r")
-
 
 declare OUTPUT_DIRECTORY=../script
 
@@ -132,6 +133,8 @@ function compile_output()
     done
 
     echo "${PROMPT} ${FG_PINK}MouseMove Compiling Complete \t${FG_BLUE}[${OUTPUT}]${NOCOLOR}\n"
+
+    afplay audio/complete.mp3
 }
 
 function compile_readme()
@@ -148,21 +151,39 @@ function compile_api()
 {
     if command -v jsdoc2md
     then
-        $(jsdoc2md ${OUTPUT} > $OUTPUT_API)
-
-        echo "${PROMPT} ${FG_PINK}API Complete \t\t\t${FG_BLUE}[${OUTPUT_API}]${NOCOLOR}\n"
+        if $(jsdoc2md ${OUTPUT} > $OUTPUT_API)
+            then echo "\n${PROMPT} ${FG_PINK}API Complete \t\t\t${FG_BLUE}[${OUTPUT_API}]${NOCOLOR}\n"
+        else
+            NO_ERRORS=false
+        fi
     fi
 }
 
 function compile_jsdoc()
 {
+    $(rm -r $OUTPUT_JSDOC)
+
     if command -v jsdoc
     then
-        $(rm -r $OUTPUT_JSDOC)
+        if (jsdoc --private $OUTPUT -d $OUTPUT_JSDOC)
+            then echo "\n${PROMPT} ${FG_PINK}JSDoc Complete \t\t\t${FG_BLUE}[${OUTPUT_JSDOC}]${NOCOLOR}\n"
+        else
+            NO_ERRORS=false
+        fi
+    fi
+}
 
-        $(jsdoc --private $OUTPUT -d $OUTPUT_JSDOC)
+function complete()
+{
+    echo "${FG_YELLOW}ᕕ( ᐛ )ᕗ${NOCOLOR}\t\t\t\t\t${PROMPT} Complete - ${FG_WHITE}${DATE} ${NOCOLOR}@ ${FG_WHITE}${TIME}${NOCOLOR}\n"
 
-        echo "${PROMPT} ${FG_PINK}JSDoc Complete \t\t\t${FG_BLUE}[${OUTPUT_JSDOC}]${NOCOLOR}\n"
+    if $NO_ERRORS
+    then
+        afplay audio/success.mp3
+    else
+        afplay audio/failure.mp3
+
+        flash_screen
     fi
 }
 
@@ -175,6 +196,8 @@ done
 
 # COMPILE ##########################
 
+clear
+
 compile_output
 
 compile_readme
@@ -183,6 +206,4 @@ compile_api
 
 compile_jsdoc
 
-echo "${PROMPT} Complete - ${FG_WHITE}${DATE} ${NOCOLOR}@ ${FG_WHITE}${TIME}${NOCOLOR}\t${FG_YELLOW}ᕕ( ᐛ )ᕗ${NOCOLOR}\n"
-
-flash_screen
+complete

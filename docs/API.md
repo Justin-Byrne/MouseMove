@@ -36,9 +36,6 @@
 <dt><a href="#mouseAction">mouseAction(element)</a></dt>
 <dd><p>Initiates any mouse actions associated with the passed &#39;element&#39;</p>
 </dd>
-<dt><a href="#toggleType">toggleType(type, callback)</a></dt>
-<dd><p>Toggle cursor&#39;s visual type</p>
-</dd>
 <dt><a href="#createCursor">createCursor(id, type)</a></dt>
 <dd><p>Create and embeds cursor within DOM</p>
 </dd>
@@ -51,11 +48,17 @@
 <dt><a href="#isId">isId(id)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Checks whether the passed id is an element identifier</p>
 </dd>
+<dt><a href="#isCamelCase">isCamelCase(string)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Checks whether a string is camel case</p>
+</dd>
 <dt><a href="#getElementByXPath">getElementByXPath(xpath)</a> ⇒ <code>Object</code></dt>
 <dd><p>Returns an element based on its XPath</p>
 </dd>
 <dt><a href="#getElement">getElement(id)</a> ⇒ <code>Object</code></dt>
 <dd><p>Returns a DOM&#39;s element based on its identifier</p>
+</dd>
+<dt><a href="#getEasing">getEasing(type)</a> ⇒ <code>function</code></dt>
+<dd><p>Returns an easing function based on the input type</p>
 </dd>
 <dt><a href="#addGeneratedId">addGeneratedId(element)</a> ⇒ <code>Object</code></dt>
 <dd><p>Adds a generated id to the passed element</p>
@@ -65,6 +68,9 @@
 </dd>
 <dt><a href="#embedMousetrap">embedMousetrap()</a></dt>
 <dd><p>Embed mousetrap script into DOM</p>
+</dd>
+<dt><a href="#seedMouseEvents">seedMouseEvents()</a></dt>
+<dd><p>Seeds mouse binding mouse events along with unique identifiers</p>
 </dd>
 </dl>
 
@@ -390,7 +396,7 @@ Checks whether the passed object is an instance of Point
 | position | [<code>Point</code>](#Point) | X & Y axis coordinates |
 | id | <code>string</code> | Cursor's DOM identifier |
 | type | <code>string</code> | Type of cursor |
-| config | <code>Object</code> | Cursor configuration |
+| config | <code>Object</code> | Internal private configuration |
 | tools | <code>Object</code> | Internal private utility methods |
 
 
@@ -409,6 +415,7 @@ Checks whether the passed object is an instance of Point
         * [.distance](#Cursor+distance) ⇒ <code>number</code>
         * [.nextElement(id)](#Cursor+nextElement)
         * [.toNextElement(id)](#Cursor+toNextElement)
+        * [.switchType(type)](#Cursor+switchType)
         * [.setInteraction()](#Cursor+setInteraction)
     * _static_
         * [.isCursor(value)](#Cursor.isCursor) ⇒ <code>boolean</code>
@@ -500,7 +507,7 @@ Set angle property
 Get angle property
 
 **Kind**: instance property of [<code>Cursor</code>](#Cursor)  
-**Returns**: <code>number</code> - Angle property  
+**Returns**: <code>number</code> - Angle property; in radians  
 <a name="Cursor+distance"></a>
 
 ### cursor.distance
@@ -541,6 +548,17 @@ Sends cursor to the location of the next element
 | --- | --- | --- |
 | id | <code>string</code> | Identifier of element within DOM |
 
+<a name="Cursor+switchType"></a>
+
+### cursor.switchType(type)
+Switch cursor's visual type
+
+**Kind**: instance method of [<code>Cursor</code>](#Cursor)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| type | <code>string</code> | <code>&quot;default&quot;</code> | Cursor type within #config.presentation |
+
 <a name="Cursor+setInteraction"></a>
 
 ### cursor.setInteraction()
@@ -572,7 +590,7 @@ Checks whether the passed value is an instance of Cursor
 | sequence | [<code>Pattern</code>](#Pattern) \| [<code>List</code>](#List) | Pattern or List object |
 | cursor | [<code>Cursor</code>](#Cursor) | Cursor object |
 | animation | <code>string</code> | Cursor linear animation |
-| config | <code>Object</code> | General configuration |
+| config | <code>Object</code> | Internal private configuration |
 | tools | <code>Object</code> | Internal private utility methods |
 
 
@@ -719,18 +737,6 @@ Initiates any mouse actions associated with the passed 'element'
 | --- | --- | --- |
 | element | <code>HTMLElement</code> | HTML DOM element |
 
-<a name="toggleType"></a>
-
-## toggleType(type, callback)
-Toggle cursor's visual type
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| type | <code>string</code> | Cursor type within #config.presentation |
-| callback | <code>function</code> | Callback mouse event |
-
 <a name="createCursor"></a>
 
 ## createCursor(id, type)
@@ -779,6 +785,18 @@ Checks whether the passed id is an element identifier
 | --- | --- | --- |
 | id | <code>string</code> | Element identifier |
 
+<a name="isCamelCase"></a>
+
+## isCamelCase(string) ⇒ <code>boolean</code>
+Checks whether a string is camel case
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True | False  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| string | <code>string</code> | Camel case string |
+
 <a name="getElementByXPath"></a>
 
 ## getElementByXPath(xpath) ⇒ <code>Object</code>
@@ -802,6 +820,30 @@ Returns a DOM's element based on its identifier
 | Param | Type | Description |
 | --- | --- | --- |
 | id | <code>string</code> | CSS query, identifier, or XPath |
+
+<a name="getEasing"></a>
+
+## getEasing(type) ⇒ <code>function</code>
+Returns an easing function based on the input type
+
+**Kind**: global function  
+**Returns**: <code>function</code> - Easing function from #config.animation.ease  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| type | <code>string</code> | Type of easing animation, in camel case: i.e.: 'easeInSine' |
+
+<a name="getEasing..stringToBracketNotation"></a>
+
+### getEasing~stringToBracketNotation(string) ⇒ <code>Array</code>
+Converts camel case string into an <Array>.<String> for bracket notation
+
+**Kind**: inner method of [<code>getEasing</code>](#getEasing)  
+**Returns**: <code>Array</code> - Array of strings  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| string | <code>string</code> | Camel case string to split |
 
 <a name="addGeneratedId"></a>
 
@@ -831,5 +873,11 @@ Cleans script of it's function wrapper
 
 ## embedMousetrap()
 Embed mousetrap script into DOM
+
+**Kind**: global function  
+<a name="seedMouseEvents"></a>
+
+## seedMouseEvents()
+Seeds mouse binding mouse events along with unique identifiers
 
 **Kind**: global function  

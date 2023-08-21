@@ -1,36 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>JSDoc: Source: mousemove-v0.1.4.js</title>
-
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
-
-<body>
-
-<div id="main">
-
-    <h1 class="page-title">Source: mousemove-v0.1.4.js</h1>
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>// @program: 		Mouse Move 
+// @program: 		Mouse Move 
 // @brief: 			Automated mouse cursor for web presentation 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.1.4 
+// @version: 		0.1.5 
 // @license: 		GPL-2.0
 
 "use strict";
@@ -109,7 +81,7 @@ class List extends Array
 			return this._current;
 		}
 
-	//// 	&amp; EXTEND &amp;    //////////////////////////////////
+	//// 	& EXTEND &    //////////////////////////////////
 
 		/**
 		 * Get current DOM identifier
@@ -154,7 +126,7 @@ class List extends Array
 			let _stringArray = _isArrayOfStrings ( array );
 
 
-			return ( _List || _Array &amp;&amp; _1_Dim &amp;&amp; _stringArray );
+			return ( _List || _Array && _1_Dim && _stringArray );
 		}
 
 		/**
@@ -260,7 +232,7 @@ class Pattern extends Array
 			return this._current;
 		}
 
-	////    &amp; EXTEND &amp;    //////////////////////////////////
+	////    & EXTEND &    //////////////////////////////////
 
 		/**
 		 * Get current DOM identifier
@@ -301,7 +273,7 @@ class Pattern extends Array
 
 	                if ( typeof _object == 'object')
 	                {
-	                    let _keys   = ( Object.keys ( _object ).length &lt;= 3 );
+	                    let _keys   = ( Object.keys ( _object ).length <= 3 );
 
 	                    let _id     = ( _object.hasOwnProperty ( 'id'     ) ) ? ( typeof _object.id     === 'string' ) : false
 
@@ -310,7 +282,7 @@ class Pattern extends Array
 	                    let _bind   = ( _object.hasOwnProperty ( 'bind'   ) ) ? ( typeof _object.bind   === 'object' || typeof _object.bind === 'function' ) : false;
 
 
-	                    _results = ( _keys &amp;&amp; _id &amp;&amp; ( _action || _bind ) );
+	                    _results = ( _keys && _id && ( _action || _bind ) );
 	                }
 	                else
 
@@ -354,7 +326,7 @@ class Pattern extends Array
 }
  
 /**
- * @class           {Object}  Point                             X &amp; Y coordinates for an object
+ * @class           {Object}  Point                             X & Y coordinates for an object
  * @property        {number}  [x=0]                             X - x-axis coordinate
  * @property        {number}  [y=0]                             Y - y-axis coordinate
  */
@@ -382,7 +354,7 @@ class Point
          */
         set x ( value )
         {
-            this._x = (  ( typeof value === 'number' )  &amp;&amp;  !isNaN ( value )  ) ? value : this._x;
+            this._x = (  ( typeof value === 'number' )  &&  !isNaN ( value )  ) ? value : this._x;
         }
 
         /**
@@ -402,7 +374,7 @@ class Point
          */
         set y ( value )
         {
-            this._y = (  ( typeof value === 'number' )  &amp;&amp;  !isNaN ( value )  ) ? value : this._y;
+            this._y = (  ( typeof value === 'number' )  &&  !isNaN ( value )  ) ? value : this._y;
         }
 
         /**
@@ -432,16 +404,16 @@ class Point
             let _y      = ( object.hasOwnProperty ( 'y' ) ) ? ( typeof object.y === 'number' ) : false;
 
 
-            return ( _Point || _length &amp;&amp; _x &amp;&amp; _y );
+            return ( _Point || _length && _x && _y );
         }
 }
  
 /**
  * @class 			{Object} Cursor 							Cursor object
- * @property 		{Point}  position 							X &amp; Y axis coordinates
+ * @property 		{Point}  position 							X & Y axis coordinates
  * @property 		{string} id 								Cursor's DOM identifier
  * @property 		{string} type 								Type of cursor
- * @property        {Object} config 							Cursor configuration
+ * @property        {Object} config 							Internal private configuration
  * @property 		{Object} tools 								Internal private utility methods
  */
 class Cursor
@@ -498,7 +470,7 @@ class Cursor
 			/**
 			 * Gets the center point of an element
 			 * @param  			{Object} element 							HTML DOM element
-			 * @return 			{Point}         							X &amp; Y Coordinates
+			 * @return 			{Point}         							X & Y Coordinates
 			 */
 			getCenterPoint: ( element ) =>
 			( {
@@ -550,7 +522,7 @@ class Cursor
 
 					if ( _currentData.action === 'click' )
 
-						this.#tools.toggleType ( 'inversion', ( ) => element.click ( ) );
+						element.click ( );
 
 					else
 
@@ -558,32 +530,6 @@ class Cursor
 
 							eval ( `element.on${_currentData.action} ( );` );
 				}
-			},
-
-			/**
-			 * Toggle cursor's visual type
-			 * @param  			{string}   type     						Cursor type within #config.presentation
-			 * @param  			{Function} callback 						Callback mouse event
-			 */
-			toggleType: 	( type, callback ) 	=>
-			{
-				let _cursor = document.getElementById ( this.id );
-
-				////    FUNCTIONS    ///////////////////////////
-
-					let _swapData = ( ) => [ _cursor.src, _cursor.style ] = [ this.type.data, this.type.css ];
-
-					let _toggle   = ( ) => {  this.type = type;       _swapData ( );  }
-
-					let _default  = ( ) => {  this.type = 'default';  _swapData ( );  }
-
-				////    LOGIC    ///////////////////////////////
-
-					_toggle ( );
-
-					callback ( );
-
-					setTimeout ( _default, 200 );
 			},
 
 		//// 	CREATION    ////////////////////////////////////
@@ -624,7 +570,7 @@ class Cursor
 
 	/**
 	 * Create a single instance of a Cursor
-	 * @param 			{string} position 							X &amp; Y axis coordinates
+	 * @param 			{string} position 							X & Y axis coordinates
 	 * @param 			{string} id 								Cursor's DOM identifier
 	 * @param 			{string} type 								Type of cursor, within #_cursors
 	 */
@@ -684,7 +630,7 @@ class Cursor
 
 		/**
 		 * Set position property
-		 * @param 			{Point} point 								X &amp; Y coordinates
+		 * @param 			{Point} point 								X & Y coordinates
 		 */
 		set position ( point )
 		{
@@ -703,7 +649,7 @@ class Cursor
 
 		/**
 		 * Get position property
-		 * @return 			{Point} 									X &amp; Y coordinates
+		 * @return 			{Point} 									X & Y coordinates
 		 */
 		get position ( )
 		{
@@ -716,7 +662,7 @@ class Cursor
 		 * Set angle property
 		 * @param 			{string} id 								Identifier of element
 		 */
-		set angle ( id )
+		set angle ( id ) 	// @note: calculation is good
 		{
 			let _element = document.getElementById ( id );
 
@@ -732,7 +678,7 @@ class Cursor
 
 		/**
 		 * Get angle property
-		 * @return 			{number} 									Angle property
+		 * @return 			{number} 									Angle property; in radians
 		 */
 		get angle ( )
 		{
@@ -745,7 +691,7 @@ class Cursor
 		 * Set distance property
 		 * @param 			{string} id 								Identifier of element
 		 */
-		set distance ( id )
+		set distance ( id ) 	// @note: calculation is good
 		{
 			let _element = document.getElementById ( id );
 
@@ -786,7 +732,7 @@ class Cursor
 	        let _type   = ( value.hasOwnProperty ( 'type' ) ) ? ( typeof value.type === 'string' ) : false;
 
 
-	        return ( _cursor || _length &amp;&amp; _id &amp;&amp; _type );
+	        return ( _cursor || _length && _id && _type );
 	    }
 
 		/**
@@ -813,9 +759,26 @@ class Cursor
 			{
 				this.position = this.#tools.getCenterPoint ( _element );
 
-
 				this.#tools.mouseAction ( _element );
 			}
+		}
+
+		/**
+		 * Switch cursor's visual type
+		 * @param  			{string} type     						    Cursor type within #config.presentation
+		 */
+		switchType ( type = 'default' )
+		{
+			let _delay = 200;
+
+			let _cursor = document.getElementById ( this.id );
+
+				this.type   = type;
+
+				_cursor.src = this.type.data;
+
+
+			return new Promise ( ( resolve, reject ) => { setTimeout ( ( ) => { resolve ( ); }, _delay ); });
 		}
 
 		/**
@@ -853,14 +816,14 @@ class Cursor
  * @property 		{Pattern|List} sequence 					Pattern or List object
  * @property 		{Cursor}       cursor 						Cursor object
  * @property 		{string}       animation 					Cursor linear animation
- * @property 		{Object}       config 						General configuration
+ * @property 		{Object}       config 						Internal private configuration
  * @property 		{Object} 	   tools 						Internal private utility methods
  */
 class MouseMove
 {
 	_sequence  = undefined;
 	_cursor    = undefined;
-	_animation = 'quad';
+	_animation = 'easeOutExpo';
 
 	#config =
 	{
@@ -871,19 +834,73 @@ class MouseMove
 	        xCenter: ( window.innerWidth  / 2 ),
 	        yCenter: ( window.innerHeight / 2 ),
 		},
-		animations:
-		{
-			quad:    ( timeFraction ) 			=> Math.pow ( timeFraction, 2 ),
-			arc:     ( timeFraction ) 			=> 1 - Math.sin ( Math.acos ( timeFraction ) ),
-			back:    ( timeFraction, x = 1.5 ) 	=> Math.pow ( timeFraction, 2 ) * ( ( x + 1 ) * timeFraction - x ),
-			elastic: ( timeFraction, x = 1.5 )	=> Math.pow ( 2, 10 * ( timeFraction - 1 ) ) * Math.cos ( 20 * Math.PI * x / 3 * timeFraction )
-		},
 		animation:
 		{
-			duration:  2000,
-			framerate: 60,
-			increment: 0.00034,
-			constant:  undefined 	// Note: defined at creation
+			duration: 3000,
+			timing:   undefined,	// Note: defined at creation
+			ease:
+			{
+			    in:
+			    {
+			        sine:    ( timeFraction ) => 1 - Math.cos ( ( timeFraction * Math.PI ) / 2),
+
+			        cubic:   ( timeFraction ) => timeFraction * timeFraction * timeFraction,
+
+			        quint:   ( timeFraction ) => timeFraction * timeFraction * timeFraction * timeFraction * timeFraction,
+
+			        circ:    ( timeFraction ) => 1 - Math.sqrt ( 1 - Math.pow ( timeFraction, 2 ) ),
+
+			        elastic: ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : - Math.pow ( 2, 10 * timeFraction - 10 ) * Math.sin ( ( timeFraction * 10 - 10.75 ) * ( ( 2 * Math.PI ) / 3 ) ),
+
+			        quad:    ( timeFraction ) => timeFraction * timeFraction,
+
+			        quart:   ( timeFraction ) => timeFraction * timeFraction * timeFraction * timeFraction,
+
+			        expo:    ( timeFraction ) => ( timeFraction === 0 ) ? 0 : Math.pow ( 2, 10 * timeFraction - 10 ),
+
+			        back:    ( timeFraction ) => ( 1.70158 + 1 ) * timeFraction * timeFraction * timeFraction - 1.70158 * timeFraction * timeFraction
+			    },
+			    out:
+			    {
+			        sine:    ( timeFraction ) => Math.sin ( ( timeFraction * Math.PI ) / 2 ),
+
+			        cubic:   ( timeFraction ) => 1 - Math.pow ( 1 - timeFraction, 3 ),
+
+			        quint:   ( timeFraction ) => 1 - Math.pow ( 1 - timeFraction, 5 ),
+
+			        circ:    ( timeFraction ) => Math.sqrt ( 1 - Math.pow ( timeFraction - 1, 2 ) ),
+
+			        elastic: ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : Math.pow ( 2, -10 * timeFraction ) * Math.sin ( ( timeFraction * 10 - 0.75 ) * ( ( 2 * Math.PI ) / 3 ) ) + 1,
+
+			        quad:    ( timeFraction ) => 1 - ( 1 - timeFraction ) * ( 1 - timeFraction ),
+
+			        quart:   ( timeFraction ) => 1 - Math.pow ( 1 - timeFraction, 4 ),
+
+			        expo:    ( timeFraction ) => ( timeFraction === 1 ) ? 1 : 1 - Math.pow ( 2, -10 * timeFraction ),
+
+			        back:    ( timeFraction ) => 1 + ( 1.70158 + 1 ) * Math.pow ( timeFraction - 1, 3 ) + 1.70158 * Math.pow ( timeFraction - 1, 2 )
+			    },
+			    inout:
+			    {
+			        sine:    ( timeFraction ) => - ( Math.cos ( Math.PI * timeFraction ) - 1 ) / 2,
+
+			        cubic:   ( timeFraction ) => ( timeFraction < 0.5 ) ? 4 * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 3 ) / 2,
+
+			        quint:   ( timeFraction ) => ( timeFraction < 0.5 ) ? 16 * timeFraction * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 5 ) / 2,
+
+			        circ:    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( 1 - Math.sqrt ( 1 - Math.pow ( 2 * timeFraction, 2 ) ) ) / 2 : ( Math.sqrt ( 1 - Math.pow ( -2 * timeFraction + 2, 2 ) ) + 1 ) / 2,
+
+			        elastic: ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction < 0.5 ) ? - ( Math.pow ( 2, 20 * timeFraction - 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( ( 2 * Math.PI ) / 4.5 ) ) ) / 2 : ( Math.pow ( 2, -20 * timeFraction + 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( 2 * Math.PI ) / 4.5 ) ) / 2 + 1,
+
+			        quad:    ( timeFraction ) => ( timeFraction < 0.5 ) ? 2 * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 2 ) / 2,
+
+			        quart:   ( timeFraction ) => ( timeFraction < 0.5 ) ? 8 * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 4 ) / 2,
+
+			        expo:    ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction < 0.5 ) ? Math.pow ( 2, 20 * timeFraction - 10 ) / 2 : ( 2 - Math.pow ( 2, -20 * timeFraction + 10 ) ) / 2,
+
+			        back:    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( Math.pow ( 2 * timeFraction, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * 2 * timeFraction - ( 1.70158 * 1.525 ) ) ) / 2 : ( Math.pow ( 2 * timeFraction - 2, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * ( timeFraction * 2 - 2 ) + ( 1.70158 * 1.525 ) ) + 2 ) / 2
+			    }
+			},
 		},
 		identifiers:
 		{
@@ -915,8 +932,8 @@ class MouseMove
 	        Author:    'Justin Don Byrne',
 	        Created:   'Aug, 04 2023',
 	        Library:   'Mouse Move: Automated mouse cursor for web presentation',
-	        Updated:   'Aug, 15 2023',
-	        Version:   '0.1.4',
+	        Updated:   'Aug, 21 2023',
+	        Version:   '0.1.5',
 	        Copyright: 'Copyright (c) 2023 Justin Don Byrne'
 	    }
 	}
@@ -944,7 +961,7 @@ class MouseMove
 
 		        for ( let _symbol of _symbols )
 
-		            if ( id.includes ( _symbol ) &amp;&amp; ! this.#tools.isXpath ( id ) )
+		            if ( id.includes ( _symbol ) && ! this.#tools.isXpath ( id ) )
 
 		                return true;
 
@@ -972,6 +989,23 @@ class MouseMove
 			    return true;
 			},
 
+			/**
+			 * Checks whether a string is camel case
+			 * @param 			{string} string 							Camel case string
+			 * @return 			{boolean} 									True | False
+			 */
+			isCamelCase ( string )
+			{
+			    let _camel = /[A-Z]+[^A-Z]+/.test ( string );
+
+			    let _char  = string.charAt ( 0 );
+
+			    let _lower = ( isNaN ( _char ) ) ? ( _char == _char.toLowerCase ( ) ) : false;
+
+
+			    return ( _camel && _lower );
+			},
+
 		////    GETTERS    /////////////////////////////////////
 
 			/**
@@ -996,6 +1030,39 @@ class MouseMove
 
 
 				return undefined;
+			},
+
+			/**
+			 * Returns an easing function based on the input type
+			 * @param  			{string} type 								Type of easing animation, in camel case: i.e.: 'easeInSine'
+			 * @return 			{function}        							Easing function from #config.animation.ease
+			 */
+			getEasing: 			( type )  =>
+			{
+				/**
+				 * Converts camel case string into an <Array>.<String> for bracket notation
+				 * @param 		{string} string 						Camel case string to split
+				 * @return 		{Array} 								Array of strings
+				 */
+				function stringToBracketNotation ( string )
+				{
+				    let _bracketEntries = string.split ( /(?=[A-Z])/ );
+
+				        _bracketEntries.shift ( );
+
+
+				    for ( let _i = 0; _i < _bracketEntries.length; _i++ )
+
+				        _bracketEntries [ _i ] = _bracketEntries [ _i ].toLowerCase ( );
+
+
+				    return _bracketEntries;
+				}
+
+				let _result = ( type != undefined ) ? stringToBracketNotation ( type ) : stringToBracketNotation ( this.animation );
+
+
+				return this.#config.animation.ease [ _result [ 0 ] ] [ _result [ 1 ] ];
 			},
 
 		////    ADDITIVE    ////////////////////////////////////
@@ -1068,6 +1135,10 @@ class MouseMove
 		    		document.body.appendChild ( _script );
 		    },
 
+
+		    /**
+		     * Seeds mouse binding mouse events along with unique identifiers
+		     */
 			seedMouseEvents: ( ) =>
 			{
 				let _seedEvents = ( ) =>
@@ -1080,12 +1151,10 @@ class MouseMove
 
 							let _binds      = _step.bind;
 
-							// let _actions    = _step.action;
-
 							let _setActions = this.#config.identifiers.actions;
 
 
-							if ( _binds != undefined &amp;&amp; ( typeof _binds === 'object' || typeof _binds === 'function' ) )
+							if ( _binds != undefined && ( typeof _binds === 'object' || typeof _binds === 'function' ) )
 
 								for ( let _bind in _binds )
 
@@ -1117,8 +1186,7 @@ class MouseMove
 
 		this.cursor   = cursor;
 
-
-		this.#config.animation.constant = this.#config.animations [ this._animation ];
+		this.#config.animation.timing = this.#tools.getEasing ( );
 
 		this.config   = this.#config;
 
@@ -1156,15 +1224,7 @@ class MouseMove
 		 */
 		set sequence ( array )
 		{
-			this._sequence = ( Pattern.isPattern ( array ) )
-
-							     ? new Pattern ( array )
-
-							     : ( List.isList ( array ) )
-
-							           ? new List ( array )
-
-							           : this._sequence;
+			this._sequence = ( Pattern.isPattern ( array ) ) ? new Pattern ( array ) : ( List.isList ( array ) ) ? new List ( array ) : this._sequence;
 
 
 			this.#tools.seedMouseEvents ( );
@@ -1187,7 +1247,15 @@ class MouseMove
 		 */
 		set animation ( value )
 		{
-			this._animation = ( value in Object.keys ( this.#config.animations ) ) ? value : this._animation
+			// this._animation = ( value in Object.keys ( this.#config.animations ) ) ? value : this._animation
+
+			this._animation = this.#tools.isCamelCase ( value ) ? value : this._animation;
+
+
+
+			// stringToBracketNotation ( );
+
+			// this._animation = ( value in Object.keys ( this.#config.animations ) ) ? value : this._animation
 		}
 
 		/**
@@ -1209,69 +1277,101 @@ class MouseMove
 		{
 			////    FUNCTIONS    ///////////////////////////
 
-			function _draw ( progress )
-			{
-				let _power = _animation.framerate * ( _animation.increment * duration );
-
-				_cursor.position =
+				async function _action ( object )
 				{
-					x: _cursor.position.x + ( _cursor.distance * Math.cos ( _cursor.angle ) ) * progress / _power,
+					if ( 'action' in object )
+					{
+						switch ( object.action )
+						{                       /*       Action Expression 1      */        /*   Action Expression 2   */
 
-					y: _cursor.position.y + ( _cursor.distance * Math.sin ( _cursor.angle ) ) * progress / _power
+							case 'mousedown': 	await _cursor.switchType ( 'hand' ); 		/*        Nothing ...      */ 	break;
+
+							case 'mouseup': 	await _cursor.switchType (        );        /*        Nothing ...      */   break;
+
+							case 'mouseover':  	/*            Nothing ...          */  		/*        Nothing ...      */   break;
+
+							case 'mouseout':    /*            Nothing ...          */  		/*        Nothing ...      */   break;
+
+							case 'mousemove':   /*            Nothing ...          */  		/*        Nothing ...      */   break;
+
+							case 'click': 		await _cursor.switchType ( 'inversion' );	await _cursor.switchType ( ); 	break;
+
+							case 'dblclick':    /*            Nothing ...          */  		/*        Nothing ...      */   break;
+						}
+					}
 				}
 
-
-				_cursor.setInteraction ( );
-
-
-				if ( progress == 1 )
+				function _animate ( )
 				{
-					_cursor.toNextElement ( _sequence.currentId );
+					////    CHECK NEXT ELEMENT    //////////////
 
-					_animate ( );
+					if ( _sequence.next ( ) ) _cursor.nextElement ( _sequence.currentId );
+
+					else return;
+
+					//// 	LOGIC    ///////////////////////////
+
+					let _start = performance.now ( );
+
+
+					_cursorStart = _cursor.position;			// Set: cursor's initial start position
+
+
+					requestAnimationFrame ( function animate ( time )
+				    {
+				        let _timeFraction = ( time - _start ) / duration; 			// _timeFraction goes from 0 to 1
+
+				        	_timeFraction = ( _timeFraction > 1 ) ? 1 : _timeFraction;
+
+				        let _progress 	  = _timing ( _timeFraction );   			// calculate the current animation state
+
+
+				        _draw ( _progress );
+
+
+				        if ( _timeFraction < 1 ) requestAnimationFrame ( animate );
+				  	} );
 				}
-			}
 
-			function _animate ( )
-			{
-				////    CHECK NEXT ELEMENT    //////////////
+				async function _draw ( progress )
+				{
+					let _distance = _cursor.distance * progress;
 
-				if ( _sequence.next ( ) ) _cursor.nextElement ( _sequence.currentId );
+						_cursor.position =
+						{
+							x: _cursorStart.x + _distance * Math.cos ( _cursor.angle ),
 
-				else return;
-
-				//// 	LOGIC    ///////////////////////////
-
-				let _start = performance.now ( );
+							y: _cursorStart.y + _distance * Math.sin ( _cursor.angle )
+						}
 
 
-			    requestAnimationFrame ( function animate ( time )
-			    {
-			        let _timeFraction = ( time - _start ) / duration; 			// _timeFraction goes from 0 to 1
-
-			        	_timeFraction = ( _timeFraction > 1 ) ? 1 : _timeFraction;
+						_cursor.setInteraction ( );
 
 
-			        let _progress 	  = _animation.constant ( _timeFraction );  // calculate the current animation state
+					if ( progress == 1 )
+					{
+						await _action ( _sequence.current );
+
+						await _cursor.toNextElement ( _sequence.currentId );
 
 
-			        _draw ( _progress );
 
-
-			        if ( _timeFraction &lt; 1 ) requestAnimationFrame ( animate );
-			  	} );
-			}
+						_animate ( );
+					}
+				}
 
 			////    LOGIC    ///////////////////////////////
 
-			let _cursor    = this.cursor;
+				let _cursor      = this.cursor;
 
-			let _sequence  = this.sequence;
+				let _sequence    = this.sequence;
 
-			let _animation = this.#config.animation;
+				let _timing      = this.#config.animation.timing;
+
+				let _cursorStart = undefined;
 
 
-			_animate ( );
+				_animate ( );
 		}
 }
 
@@ -1279,30 +1379,7 @@ class MouseMove
 
 let initMouseMove = ( pattern, cursor ) =>
 {
-    if ( typeof MouseMove === 'function' &amp;&amp; typeof window.mouseMove  === 'undefined' )
+    if ( typeof MouseMove === 'function' && typeof window.mouseMove  === 'undefined' )
 
   			window.mouseMove = new MouseMove ( pattern, cursor );
 }
-</code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Cursor.html">Cursor</a></li><li><a href="List.html">List</a></li><li><a href="MouseMove.html">MouseMove</a></li><li><a href="Pattern.html">Pattern</a></li><li><a href="Point.html">Point</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addGeneratedId">addGeneratedId</a></li><li><a href="global.html#cleanScriptCode">cleanScriptCode</a></li><li><a href="global.html#createCursor">createCursor</a></li><li><a href="global.html#embedMousetrap">embedMousetrap</a></li><li><a href="global.html#getCenterPoint">getCenterPoint</a></li><li><a href="global.html#getElement">getElement</a></li><li><a href="global.html#getElementByXPath">getElementByXPath</a></li><li><a href="global.html#isCssSelector">isCssSelector</a></li><li><a href="global.html#isId">isId</a></li><li><a href="global.html#isXpath">isXpath</a></li><li><a href="global.html#mouseAction">mouseAction</a></li><li><a href="global.html#mouseout">mouseout</a></li><li><a href="global.html#mouseover">mouseover</a></li><li><a href="global.html#pxToNumber">pxToNumber</a></li><li><a href="global.html#toggleType">toggleType</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Aug 15 2023 10:11:45 GMT-0700 (Pacific Daylight Time)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
-</body>
-</html>

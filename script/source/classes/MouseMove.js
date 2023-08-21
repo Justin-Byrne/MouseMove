@@ -3,14 +3,14 @@
  * @property 		{Pattern|List} sequence 					Pattern or List object
  * @property 		{Cursor}       cursor 						Cursor object
  * @property 		{string}       animation 					Cursor linear animation
- * @property 		{Object}       config 						General configuration
+ * @property 		{Object}       config 						Internal private configuration
  * @property 		{Object} 	   tools 						Internal private utility methods
  */
 class MouseMove
 {
 	_sequence  = undefined;
 	_cursor    = undefined;
-	_animation = 'quad';
+	_animation = 'easeOutExpo';
 
 	#config =
 	{
@@ -21,19 +21,73 @@ class MouseMove
 	        xCenter: ( window.innerWidth  / 2 ),
 	        yCenter: ( window.innerHeight / 2 ),
 		},
-		animations:
-		{
-			quad:    ( timeFraction ) 			=> Math.pow ( timeFraction, 2 ),
-			arc:     ( timeFraction ) 			=> 1 - Math.sin ( Math.acos ( timeFraction ) ),
-			back:    ( timeFraction, x = 1.5 ) 	=> Math.pow ( timeFraction, 2 ) * ( ( x + 1 ) * timeFraction - x ),
-			elastic: ( timeFraction, x = 1.5 )	=> Math.pow ( 2, 10 * ( timeFraction - 1 ) ) * Math.cos ( 20 * Math.PI * x / 3 * timeFraction )
-		},
 		animation:
 		{
-			duration:  2000,
-			framerate: 60,
-			increment: 0.00034,
-			constant:  undefined 	// Note: defined at creation
+			duration: 3000,
+			timing:   undefined,	// Note: defined at creation
+			ease:
+			{
+			    in:
+			    {
+			        sine:    ( timeFraction ) => 1 - Math.cos ( ( timeFraction * Math.PI ) / 2),
+
+			        cubic:   ( timeFraction ) => timeFraction * timeFraction * timeFraction,
+
+			        quint:   ( timeFraction ) => timeFraction * timeFraction * timeFraction * timeFraction * timeFraction,
+
+			        circ:    ( timeFraction ) => 1 - Math.sqrt ( 1 - Math.pow ( timeFraction, 2 ) ),
+
+			        elastic: ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : - Math.pow ( 2, 10 * timeFraction - 10 ) * Math.sin ( ( timeFraction * 10 - 10.75 ) * ( ( 2 * Math.PI ) / 3 ) ),
+
+			        quad:    ( timeFraction ) => timeFraction * timeFraction,
+
+			        quart:   ( timeFraction ) => timeFraction * timeFraction * timeFraction * timeFraction,
+
+			        expo:    ( timeFraction ) => ( timeFraction === 0 ) ? 0 : Math.pow ( 2, 10 * timeFraction - 10 ),
+
+			        back:    ( timeFraction ) => ( 1.70158 + 1 ) * timeFraction * timeFraction * timeFraction - 1.70158 * timeFraction * timeFraction
+			    },
+			    out:
+			    {
+			        sine:    ( timeFraction ) => Math.sin ( ( timeFraction * Math.PI ) / 2 ),
+
+			        cubic:   ( timeFraction ) => 1 - Math.pow ( 1 - timeFraction, 3 ),
+
+			        quint:   ( timeFraction ) => 1 - Math.pow ( 1 - timeFraction, 5 ),
+
+			        circ:    ( timeFraction ) => Math.sqrt ( 1 - Math.pow ( timeFraction - 1, 2 ) ),
+
+			        elastic: ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : Math.pow ( 2, -10 * timeFraction ) * Math.sin ( ( timeFraction * 10 - 0.75 ) * ( ( 2 * Math.PI ) / 3 ) ) + 1,
+
+			        quad:    ( timeFraction ) => 1 - ( 1 - timeFraction ) * ( 1 - timeFraction ),
+
+			        quart:   ( timeFraction ) => 1 - Math.pow ( 1 - timeFraction, 4 ),
+
+			        expo:    ( timeFraction ) => ( timeFraction === 1 ) ? 1 : 1 - Math.pow ( 2, -10 * timeFraction ),
+
+			        back:    ( timeFraction ) => 1 + ( 1.70158 + 1 ) * Math.pow ( timeFraction - 1, 3 ) + 1.70158 * Math.pow ( timeFraction - 1, 2 )
+			    },
+			    inout:
+			    {
+			        sine:    ( timeFraction ) => - ( Math.cos ( Math.PI * timeFraction ) - 1 ) / 2,
+
+			        cubic:   ( timeFraction ) => ( timeFraction < 0.5 ) ? 4 * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 3 ) / 2,
+
+			        quint:   ( timeFraction ) => ( timeFraction < 0.5 ) ? 16 * timeFraction * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 5 ) / 2,
+
+			        circ:    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( 1 - Math.sqrt ( 1 - Math.pow ( 2 * timeFraction, 2 ) ) ) / 2 : ( Math.sqrt ( 1 - Math.pow ( -2 * timeFraction + 2, 2 ) ) + 1 ) / 2,
+
+			        elastic: ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction < 0.5 ) ? - ( Math.pow ( 2, 20 * timeFraction - 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( ( 2 * Math.PI ) / 4.5 ) ) ) / 2 : ( Math.pow ( 2, -20 * timeFraction + 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( 2 * Math.PI ) / 4.5 ) ) / 2 + 1,
+
+			        quad:    ( timeFraction ) => ( timeFraction < 0.5 ) ? 2 * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 2 ) / 2,
+
+			        quart:   ( timeFraction ) => ( timeFraction < 0.5 ) ? 8 * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 4 ) / 2,
+
+			        expo:    ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction < 0.5 ) ? Math.pow ( 2, 20 * timeFraction - 10 ) / 2 : ( 2 - Math.pow ( 2, -20 * timeFraction + 10 ) ) / 2,
+
+			        back:    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( Math.pow ( 2 * timeFraction, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * 2 * timeFraction - ( 1.70158 * 1.525 ) ) ) / 2 : ( Math.pow ( 2 * timeFraction - 2, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * ( timeFraction * 2 - 2 ) + ( 1.70158 * 1.525 ) ) + 2 ) / 2
+			    }
+			},
 		},
 		identifiers:
 		{
@@ -65,8 +119,8 @@ class MouseMove
 	        Author:    'Justin Don Byrne',
 	        Created:   'Aug, 04 2023',
 	        Library:   'Mouse Move: Automated mouse cursor for web presentation',
-	        Updated:   'Aug, 15 2023',
-	        Version:   '0.1.4',
+	        Updated:   'Aug, 21 2023',
+	        Version:   '0.1.5',
 	        Copyright: 'Copyright (c) 2023 Justin Don Byrne'
 	    }
 	}
@@ -122,6 +176,23 @@ class MouseMove
 			    return true;
 			},
 
+			/**
+			 * Checks whether a string is camel case
+			 * @param 			{string} string 							Camel case string
+			 * @return 			{boolean} 									True | False
+			 */
+			isCamelCase ( string )
+			{
+			    let _camel = /[A-Z]+[^A-Z]+/.test ( string );
+
+			    let _char  = string.charAt ( 0 );
+
+			    let _lower = ( isNaN ( _char ) ) ? ( _char == _char.toLowerCase ( ) ) : false;
+
+
+			    return ( _camel && _lower );
+			},
+
 		////    GETTERS    /////////////////////////////////////
 
 			/**
@@ -146,6 +217,39 @@ class MouseMove
 
 
 				return undefined;
+			},
+
+			/**
+			 * Returns an easing function based on the input type
+			 * @param  			{string} type 								Type of easing animation, in camel case: i.e.: 'easeInSine'
+			 * @return 			{function}        							Easing function from #config.animation.ease
+			 */
+			getEasing: 			( type )  =>
+			{
+				/**
+				 * Converts camel case string into an <Array>.<String> for bracket notation
+				 * @param 		{string} string 						Camel case string to split
+				 * @return 		{Array} 								Array of strings
+				 */
+				function stringToBracketNotation ( string )
+				{
+				    let _bracketEntries = string.split ( /(?=[A-Z])/ );
+
+				        _bracketEntries.shift ( );
+
+
+				    for ( let _i = 0; _i < _bracketEntries.length; _i++ )
+
+				        _bracketEntries [ _i ] = _bracketEntries [ _i ].toLowerCase ( );
+
+
+				    return _bracketEntries;
+				}
+
+				let _result = ( type != undefined ) ? stringToBracketNotation ( type ) : stringToBracketNotation ( this.animation );
+
+
+				return this.#config.animation.ease [ _result [ 0 ] ] [ _result [ 1 ] ];
 			},
 
 		////    ADDITIVE    ////////////////////////////////////
@@ -218,6 +322,10 @@ class MouseMove
 		    		document.body.appendChild ( _script );
 		    },
 
+
+		    /**
+		     * Seeds mouse binding mouse events along with unique identifiers
+		     */
 			seedMouseEvents: ( ) =>
 			{
 				let _seedEvents = ( ) =>
@@ -229,8 +337,6 @@ class MouseMove
 							let _element    = this.#tools.getElement ( _step.id );
 
 							let _binds      = _step.bind;
-
-							// let _actions    = _step.action;
 
 							let _setActions = this.#config.identifiers.actions;
 
@@ -267,8 +373,7 @@ class MouseMove
 
 		this.cursor   = cursor;
 
-
-		this.#config.animation.constant = this.#config.animations [ this._animation ];
+		this.#config.animation.timing = this.#tools.getEasing ( );
 
 		this.config   = this.#config;
 
@@ -306,15 +411,7 @@ class MouseMove
 		 */
 		set sequence ( array )
 		{
-			this._sequence = ( Pattern.isPattern ( array ) )
-
-							     ? new Pattern ( array )
-
-							     : ( List.isList ( array ) )
-
-							           ? new List ( array )
-
-							           : this._sequence;
+			this._sequence = ( Pattern.isPattern ( array ) ) ? new Pattern ( array ) : ( List.isList ( array ) ) ? new List ( array ) : this._sequence;
 
 
 			this.#tools.seedMouseEvents ( );
@@ -337,7 +434,15 @@ class MouseMove
 		 */
 		set animation ( value )
 		{
-			this._animation = ( value in Object.keys ( this.#config.animations ) ) ? value : this._animation
+			// this._animation = ( value in Object.keys ( this.#config.animations ) ) ? value : this._animation
+
+			this._animation = this.#tools.isCamelCase ( value ) ? value : this._animation;
+
+
+
+			// stringToBracketNotation ( );
+
+			// this._animation = ( value in Object.keys ( this.#config.animations ) ) ? value : this._animation
 		}
 
 		/**
@@ -359,69 +464,101 @@ class MouseMove
 		{
 			////    FUNCTIONS    ///////////////////////////
 
-			function _draw ( progress )
-			{
-				let _power = _animation.framerate * ( _animation.increment * duration );
-
-				_cursor.position =
+				async function _action ( object )
 				{
-					x: _cursor.position.x + ( _cursor.distance * Math.cos ( _cursor.angle ) ) * progress / _power,
+					if ( 'action' in object )
+					{
+						switch ( object.action )
+						{                       /*       Action Expression 1      */        /*   Action Expression 2   */
 
-					y: _cursor.position.y + ( _cursor.distance * Math.sin ( _cursor.angle ) ) * progress / _power
+							case 'mousedown': 	await _cursor.switchType ( 'hand' ); 		/*        Nothing ...      */ 	break;
+
+							case 'mouseup': 	await _cursor.switchType (        );        /*        Nothing ...      */   break;
+
+							case 'mouseover':  	/*            Nothing ...          */  		/*        Nothing ...      */   break;
+
+							case 'mouseout':    /*            Nothing ...          */  		/*        Nothing ...      */   break;
+
+							case 'mousemove':   /*            Nothing ...          */  		/*        Nothing ...      */   break;
+
+							case 'click': 		await _cursor.switchType ( 'inversion' );	await _cursor.switchType ( ); 	break;
+
+							case 'dblclick':    /*            Nothing ...          */  		/*        Nothing ...      */   break;
+						}
+					}
 				}
 
-
-				_cursor.setInteraction ( );
-
-
-				if ( progress == 1 )
+				function _animate ( )
 				{
-					_cursor.toNextElement ( _sequence.currentId );
+					////    CHECK NEXT ELEMENT    //////////////
 
-					_animate ( );
+					if ( _sequence.next ( ) ) _cursor.nextElement ( _sequence.currentId );
+
+					else return;
+
+					//// 	LOGIC    ///////////////////////////
+
+					let _start = performance.now ( );
+
+
+					_cursorStart = _cursor.position;			// Set: cursor's initial start position
+
+
+					requestAnimationFrame ( function animate ( time )
+				    {
+				        let _timeFraction = ( time - _start ) / duration; 			// _timeFraction goes from 0 to 1
+
+				        	_timeFraction = ( _timeFraction > 1 ) ? 1 : _timeFraction;
+
+				        let _progress 	  = _timing ( _timeFraction );   			// calculate the current animation state
+
+
+				        _draw ( _progress );
+
+
+				        if ( _timeFraction < 1 ) requestAnimationFrame ( animate );
+				  	} );
 				}
-			}
 
-			function _animate ( )
-			{
-				////    CHECK NEXT ELEMENT    //////////////
+				async function _draw ( progress )
+				{
+					let _distance = _cursor.distance * progress;
 
-				if ( _sequence.next ( ) ) _cursor.nextElement ( _sequence.currentId );
+						_cursor.position =
+						{
+							x: _cursorStart.x + _distance * Math.cos ( _cursor.angle ),
 
-				else return;
-
-				//// 	LOGIC    ///////////////////////////
-
-				let _start = performance.now ( );
+							y: _cursorStart.y + _distance * Math.sin ( _cursor.angle )
+						}
 
 
-			    requestAnimationFrame ( function animate ( time )
-			    {
-			        let _timeFraction = ( time - _start ) / duration; 			// _timeFraction goes from 0 to 1
-
-			        	_timeFraction = ( _timeFraction > 1 ) ? 1 : _timeFraction;
+						_cursor.setInteraction ( );
 
 
-			        let _progress 	  = _animation.constant ( _timeFraction );  // calculate the current animation state
+					if ( progress == 1 )
+					{
+						await _action ( _sequence.current );
+
+						await _cursor.toNextElement ( _sequence.currentId );
 
 
-			        _draw ( _progress );
 
-
-			        if ( _timeFraction < 1 ) requestAnimationFrame ( animate );
-			  	} );
-			}
+						_animate ( );
+					}
+				}
 
 			////    LOGIC    ///////////////////////////////
 
-			let _cursor    = this.cursor;
+				let _cursor      = this.cursor;
 
-			let _sequence  = this.sequence;
+				let _sequence    = this.sequence;
 
-			let _animation = this.#config.animation;
+				let _timing      = this.#config.animation.timing;
+
+				let _cursorStart = undefined;
 
 
-			_animate ( );
+				_animate ( );
 		}
 }
 
