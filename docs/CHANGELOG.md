@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.6] - 2023-08-24
+### Added
+- `Cursor` class
+  - added os selector ( i.e: mac, win, linux ) to `#config.presentation.settings.os`
+  - added 20 different mac cursors, under `#config.presentation.mac`
+
+### Changed
+- `Cursor` class
+  - modified `#config.presentation` to include various different cursor types for different platforms
+  - moved all CSS settings, for cursor's, to `#config.presentation.settings.css`
+  - private `getCenterPoint ( )` and `createCursor ( )` method to include x & y offset; available in `#config.presentation.settings.css.offset`
+
 ## [0.1.5] - 2023-08-21
 ### Added
 - public `switchType ( )` method, within the `Cursor` class, to switch the cursor's visual type
@@ -94,7 +106,8 @@ All notable changes to this project will be documented in this file.
 ---
 | Version | Date       | Commit                                                                   | Comments                                                          |
 | :-----: | :--------: | :----------------------------------------------------------------------: | :---------------------------------------------------------------- |
-| 0.1.5   | 2023-08-15 | CURRENT REVISION                                                         | Minor refactoring to MouseMove class for the inclusion of easing functions and mouse events
+| 0.1.6   | 2023-08-24 | CURRENT REVISION                                                         | Refactored Cursor class's cursor type settings while including more cursor types
+| 0.1.5   | 2023-08-21 | [cc6d871](https://github.com/Justin-Byrne/MouseMove/commit/cc6d871)      | Minor refactoring to MouseMove class for the inclusion of easing functions and mouse events
 | 0.1.4   | 2023-08-15 | [7f31f7f](https://github.com/Justin-Byrne/MouseMove/commit/7f31f7f)      | Minor revisions to Cursor, Pattern, and MoveMouse class
 | 0.1.3   | 2023-08-11 | [d29ab19](https://github.com/Justin-Byrne/MouseMove/commit/d29ab19)      | Major refactoring to MoveMouse class, and some general cleanup
 | 0.1.2   | 2023-08-08 | [20a213f](https://github.com/Justin-Byrne/MouseMove/commit/20a213f)      | Minor revisions to Cursor class, and general refactoring

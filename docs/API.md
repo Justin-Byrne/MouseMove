@@ -2,19 +2,19 @@
 
 <dl>
 <dt><a href="#List">List</a></dt>
-<dd><p>{Object} List 								List object</p>
+<dd><p>{Object} List                               List object</p>
 </dd>
 <dt><a href="#Pattern">Pattern</a></dt>
-<dd><p>{Object} Pattern 							Pattern object</p>
+<dd><p>{Object} Pattern                            Pattern object</p>
 </dd>
 <dt><a href="#Point">Point</a></dt>
 <dd><p>{Object}  Point                             X &amp; Y coordinates for an object</p>
 </dd>
 <dt><a href="#Cursor">Cursor</a></dt>
-<dd><p>{Object} Cursor 							Cursor object</p>
+<dd><p>{Object} Cursor                             Cursor object</p>
 </dd>
 <dt><a href="#MouseMove">MouseMove</a></dt>
-<dd><p>{Object}       MouseMove 					MouseMove utilization class</p>
+<dd><p>{Object}       MouseMove                    MouseMove utilization class</p>
 </dd>
 </dl>
 
@@ -23,6 +23,9 @@
 <dl>
 <dt><a href="#pxToNumber">pxToNumber(value)</a> ⇒ <code>number</code></dt>
 <dd><p>Converts CSS string value to number/integer</p>
+</dd>
+<dt><a href="#jsonToCss">jsonToCss(json)</a> ⇒ <code>string</code></dt>
+<dd><p>Converts the &#39;css&#39; object into a CSS inline string</p>
 </dd>
 <dt><a href="#getCenterPoint">getCenterPoint(element)</a> ⇒ <code><a href="#Point">Point</a></code></dt>
 <dd><p>Gets the center point of an element</p>
@@ -77,7 +80,7 @@
 <a name="List"></a>
 
 ## List
-{Object} List 								List object
+{Object} List                               List object
 
 **Kind**: global class  
 **Properties**
@@ -186,7 +189,7 @@ Checks whether the passed value is an instance of List
 <a name="Pattern"></a>
 
 ## Pattern
-{Object} Pattern 							Pattern object
+{Object} Pattern                            Pattern object
 
 **Kind**: global class  
 **Properties**
@@ -386,7 +389,7 @@ Checks whether the passed object is an instance of Point
 <a name="Cursor"></a>
 
 ## Cursor
-{Object} Cursor 							Cursor object
+{Object} Cursor                             Cursor object
 
 **Kind**: global class  
 **Properties**
@@ -557,7 +560,7 @@ Switch cursor's visual type
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| type | <code>string</code> | <code>&quot;default&quot;</code> | Cursor type within #config.presentation |
+| type | <code>string</code> | <code>&quot;pointer&quot;</code> | Cursor type within #config.presentation [ type ] |
 
 <a name="Cursor+setInteraction"></a>
 
@@ -580,7 +583,7 @@ Checks whether the passed value is an instance of Cursor
 <a name="MouseMove"></a>
 
 ## MouseMove
-{Object}       MouseMove 					MouseMove utilization class
+{Object}       MouseMove                    MouseMove utilization class
 
 **Kind**: global class  
 **Properties**
@@ -691,6 +694,18 @@ Converts CSS string value to number/integer
 | Param | Type | Description |
 | --- | --- | --- |
 | value | <code>string</code> | CSS string value in pixels |
+
+<a name="jsonToCss"></a>
+
+## jsonToCss(json) ⇒ <code>string</code>
+Converts the 'css' object into a CSS inline string
+
+**Kind**: global function  
+**Returns**: <code>string</code> - CSS inline string  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| json | <code>object</code> | CSS object from #config.presentation.settings.css |
 
 <a name="getCenterPoint"></a>
 
@@ -851,7 +866,7 @@ Converts camel case string into an <Array>.<String> for bracket notation
 Adds a generated id to the passed element
 
 **Kind**: global function  
-**Returns**: <code>Object</code> - element 							HTML DOM element  
+**Returns**: <code>Object</code> - element                            HTML DOM element  
 
 | Param | Type | Description |
 | --- | --- | --- |
