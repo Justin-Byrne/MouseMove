@@ -5,7 +5,7 @@
 ![stars](https://img.shields.io/github/stars/Justin-Byrne/MouseMove)
 ![license](https://img.shields.io/github/license/Justin-Byrne/MouseMove)
 <img src=https://img.shields.io/badge/Mousetrap-1.6.0-yellow />
-<img src=https://img.shields.io/badge/Version-0.1.6-green />
+<img src=https://img.shields.io/badge/Version-0.1.7-green />
 
 JavaScript automated mouse cursor for web presentation
 
@@ -213,7 +213,7 @@ Please [open an issue](https://github.com/Justin-Byrne/MouseMove/issues/new) for
 │   │       │   ├── Pattern.js
 │   │       │   └── Point.js
 │   │       └── MouseMove.js
-│   └── mousemove-v0.1.6.js
+│   └── mousemove-v0.1.7.js
 ├── LICENSE
 └── README.md
 ```

@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.7] - 2023-08-25
+### Changed
+- minor refactoring and cleanup of `Cursor` and `MouseMove` classes
+
 ## [0.1.6] - 2023-08-24
 ### Added
 - `Cursor` class
@@ -106,7 +110,8 @@ All notable changes to this project will be documented in this file.
 ---
 | Version | Date       | Commit                                                                   | Comments                                                          |
 | :-----: | :--------: | :----------------------------------------------------------------------: | :---------------------------------------------------------------- |
-| 0.1.6   | 2023-08-24 | CURRENT REVISION                                                         | Refactored Cursor class's cursor type settings while including more cursor types
+| 0.1.7   | 2023-08-25 | CURRENT REVISION                                                         | Minor refactoring and cleanup of Cursor and MouseMove classes
+| 0.1.6   | 2023-08-24 | [59aa038](https://github.com/Justin-Byrne/MouseMove/commit/59aa038)      | Refactored Cursor class's cursor type settings while including more cursor types
 | 0.1.5   | 2023-08-21 | [cc6d871](https://github.com/Justin-Byrne/MouseMove/commit/cc6d871)      | Minor refactoring to MouseMove class for the inclusion of easing functions and mouse events
 | 0.1.4   | 2023-08-15 | [7f31f7f](https://github.com/Justin-Byrne/MouseMove/commit/7f31f7f)      | Minor revisions to Cursor, Pattern, and MoveMouse class
 | 0.1.3   | 2023-08-11 | [d29ab19](https://github.com/Justin-Byrne/MouseMove/commit/d29ab19)      | Major refactoring to MoveMouse class, and some general cleanup

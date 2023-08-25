@@ -36,9 +36,6 @@
 <dt><a href="#mouseout">mouseout(element)</a></dt>
 <dd><p>Actions executed after a mouseout event</p>
 </dd>
-<dt><a href="#mouseAction">mouseAction(element)</a></dt>
-<dd><p>Initiates any mouse actions associated with the passed &#39;element&#39;</p>
-</dd>
 <dt><a href="#createCursor">createCursor(id, type)</a></dt>
 <dd><p>Create and embeds cursor within DOM</p>
 </dd>
@@ -412,12 +409,13 @@ Checks whether the passed object is an instance of Point
         * [.type](#Cursor+type)
         * [.position](#Cursor+position)
         * [.position](#Cursor+position) ⇒ [<code>Point</code>](#Point)
-        * [.angle](#Cursor+angle)
-        * [.angle](#Cursor+angle) ⇒ <code>number</code>
         * [.distance](#Cursor+distance)
         * [.distance](#Cursor+distance) ⇒ <code>number</code>
+        * [.angle](#Cursor+angle)
+        * [.angle](#Cursor+angle) ⇒ <code>number</code>
         * [.nextElement(id)](#Cursor+nextElement)
         * [.toNextElement(id)](#Cursor+toNextElement)
+        * [.mouseAction(element)](#Cursor+mouseAction)
         * [.switchType(type)](#Cursor+switchType)
         * [.setInteraction()](#Cursor+setInteraction)
     * _static_
@@ -493,24 +491,6 @@ Get position property
 
 **Kind**: instance property of [<code>Cursor</code>](#Cursor)  
 **Returns**: [<code>Point</code>](#Point) - X & Y coordinates  
-<a name="Cursor+angle"></a>
-
-### cursor.angle
-Set angle property
-
-**Kind**: instance property of [<code>Cursor</code>](#Cursor)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| id | <code>string</code> | Identifier of element |
-
-<a name="Cursor+angle"></a>
-
-### cursor.angle ⇒ <code>number</code>
-Get angle property
-
-**Kind**: instance property of [<code>Cursor</code>](#Cursor)  
-**Returns**: <code>number</code> - Angle property; in radians  
 <a name="Cursor+distance"></a>
 
 ### cursor.distance
@@ -529,6 +509,24 @@ Get distance property
 
 **Kind**: instance property of [<code>Cursor</code>](#Cursor)  
 **Returns**: <code>number</code> - Distance from last distance check  
+<a name="Cursor+angle"></a>
+
+### cursor.angle
+Set angle property
+
+**Kind**: instance property of [<code>Cursor</code>](#Cursor)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>string</code> | Identifier of element |
+
+<a name="Cursor+angle"></a>
+
+### cursor.angle ⇒ <code>number</code>
+Get angle property
+
+**Kind**: instance property of [<code>Cursor</code>](#Cursor)  
+**Returns**: <code>number</code> - Angle property; in radians  
 <a name="Cursor+nextElement"></a>
 
 ### cursor.nextElement(id)
@@ -550,6 +548,17 @@ Sends cursor to the location of the next element
 | Param | Type | Description |
 | --- | --- | --- |
 | id | <code>string</code> | Identifier of element within DOM |
+
+<a name="Cursor+mouseAction"></a>
+
+### cursor.mouseAction(element)
+Initiates any mouse actions associated with the passed 'element'
+
+**Kind**: instance method of [<code>Cursor</code>](#Cursor)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| element | <code>HTMLElement</code> | HTML DOM element |
 
 <a name="Cursor+switchType"></a>
 
@@ -734,17 +743,6 @@ Actions executed after a mouseover event
 
 ## mouseout(element)
 Actions executed after a mouseout event
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| element | <code>HTMLElement</code> | HTML DOM element |
-
-<a name="mouseAction"></a>
-
-## mouseAction(element)
-Initiates any mouse actions associated with the passed 'element'
 
 **Kind**: global function  
 

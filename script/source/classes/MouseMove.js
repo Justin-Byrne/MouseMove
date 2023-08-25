@@ -14,13 +14,6 @@ class MouseMove
 
     #config =
     {
-        domWindow:
-        {
-            width:     window.innerWidth  - 18,
-            height:    window.innerHeight - 4,
-            xCenter: ( window.innerWidth  / 2 ),
-            yCenter: ( window.innerHeight / 2 ),
-        },
         animation:
         {
             duration: 1500,
@@ -119,8 +112,8 @@ class MouseMove
             Author:    'Justin Don Byrne',
             Created:   'Aug, 04 2023',
             Library:   'Mouse Move: Automated mouse cursor for web presentation',
-            Updated:   'Aug, 24 2023',
-            Version:   '0.1.6',
+            Updated:   'Aug, 25 2023',
+            Version:   '0.1.7',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -293,25 +286,24 @@ class MouseMove
 
         ////    CREATION    ////////////////////////////////////
 
+            hotkeyListener: ( ) =>
+            {
+                Mousetrap.bind ( [ 'ctrl+g', 'command+g' ], function ( event )
+                {
+                    mouseMove.go ( );
+                });
+            },
+
             /**
              * Embed mousetrap script into DOM
              */
             embedMousetrap:  ( ) =>
             {
-                let _hotkeyListener = ( ) =>
-                {
-                    Mousetrap.bind ( [ 'ctrl+g', 'command+g' ], function ( event )
-                    {
-                        mouseMove.go ( );
-                    });
-                }
-
-
                 let _script      = document.createElement ( 'script' );
 
                     _script.type = 'text/javascript';
 
-                    _script.text = this.#tools.cleanScriptCode ( _hotkeyListener );
+                    _script.text = this.#tools.cleanScriptCode ( this.#tools.hotkeyListener );
 
 
                     _script.onerror = ( ) => console.log ( ' >> [ ERROR ]: Script could not be loaded !'   );
@@ -319,7 +311,7 @@ class MouseMove
                     _script.onload  = ( ) => console.log ( ' >> [ SUCCESS ]: Script loaded successfully !' );
 
 
-                    document.body.appendChild ( _script );
+                document.body.appendChild ( _script );
             },
 
 
@@ -372,6 +364,7 @@ class MouseMove
         this.sequence = sequence;
 
         this.cursor   = cursor;
+
 
         this.#config.animation.timing = this.#tools.getEasing ( );
 
@@ -458,11 +451,13 @@ class MouseMove
 
                 async function _action ( object )
                 {
+                    _cursor.mouseAction ( document.getElementById ( object.id ) );              // Initiate mouse event action
+
+
                     if ( 'action' in object )
                     {
-                        switch ( object.action )
-                        {                       /*          Action Expression 1        */       /*   Action Expression 2   */
-
+                        switch ( object.action )/*          Action Expression 1        */       /*   Action Expression 2   */
+                        {
                             case 'mousedown':   await _cursor.switchType ( 'handPoint' );       /*        Nothing ...      */   break;
 
                             case 'mouseup':     await _cursor.switchType (             );       /*        Nothing ...      */   break;

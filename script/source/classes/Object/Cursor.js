@@ -16,8 +16,8 @@ class Cursor
     {
         calculations:
         {
-            angle:    undefined,
-            distance: undefined
+            distance: undefined,
+            angle:    undefined
         },
         cache:
         {
@@ -99,7 +99,8 @@ class Cursor
 
                 for ( let [ _key, _value ] of Object.entries ( json ) )
                 {
-                    _value = ( typeof _value === 'number' && _key != 'z-index') ? `${_value}px` : _value;
+                    _value   = ( typeof _value === 'number' && _key != 'z-index') ? `${_value}px` : _value;
+
 
                     _result += `${_key}: ${_value}; `
                 }
@@ -153,29 +154,6 @@ class Cursor
                 }
             },
 
-            /**
-             * Initiates any mouse actions associated with the passed 'element'
-             * @param           {HTMLElement} element                       HTML DOM element
-             */
-            mouseAction:    ( element )         =>
-            {
-                if ( mouseMove.sequence.constructor.name === 'Pattern' )
-                {
-                    let _currentData = mouseMove.sequence.current;
-
-
-                    if ( _currentData.action === 'click' )
-
-                        element.click ( );
-
-                    else
-
-                        if ( element.getAttribute ( `on${_currentData.action}` ) != null )
-
-                            eval ( `element.on${_currentData.action} ( );` );
-                }
-            },
-
         ////    CREATION    ////////////////////////////////////
 
             /**
@@ -191,6 +169,7 @@ class Cursor
 
                     _settings.css.left += _settings.css.offset.left;
 
+                ////////////////////////////////////////////////////
 
                 let _image    = document.createElement ( 'img' );
 
@@ -205,10 +184,10 @@ class Cursor
 
                     _image.onload        = ( ) => console.log ( ' >> [ SUCCESS ]: Image loaded successfully !' );
 
+                ////////////////////////////////////////////////////
 
                 document.body.insertBefore ( _image, document.body.firstChild );
 
-                ////////////////////////////////////////////////////
 
                 this.position =
                 {
@@ -265,8 +244,6 @@ class Cursor
          */
         set type ( value )
         {
-            // let _settings = this.#config.presentation.settings;
-
             let _presentation = this.#config.presentation;
 
 
@@ -312,42 +289,13 @@ class Cursor
             return this._position;
         }
 
-    ////    [ ANGLE ]    ///////////////////////////////////
-
-        /**
-         * Set angle property
-         * @param           {string} id                                 Identifier of element
-         */
-        set angle ( id )    // @note: calculation is good
-        {
-            let _element = document.getElementById ( id );
-
-
-            if ( _element != undefined )
-            {
-                let _point = this.#tools.getCenterPoint ( _element );
-
-
-                this.#config.calculations.angle = Math.atan2 ( _point.y - this.position.y, _point.x - this.position.x );
-            }
-        }
-
-        /**
-         * Get angle property
-         * @return          {number}                                    Angle property; in radians
-         */
-        get angle ( )
-        {
-            return this.#config.calculations.angle;
-        }
-
     ////    [ DISTANCE ]    ////////////////////////////////
 
         /**
          * Set distance property
          * @param           {string} id                                 Identifier of element
          */
-        set distance ( id )     // @note: calculation is good
+        set distance ( id )
         {
             let _element = document.getElementById ( id );
 
@@ -357,7 +305,13 @@ class Cursor
                 let _point = this.#tools.getCenterPoint ( _element );
 
 
-                this.#config.calculations.distance = Math.sqrt ( ( Math.pow ( _point.x - this.position.x , 2 ) ) + ( Math.pow ( _point.y - this.position.y, 2 ) ) );
+                this.#config.calculations.distance = Math.sqrt (
+
+                                                        ( Math.pow ( _point.x - this.position.x, 2 ) ) +
+
+                                                        ( Math.pow ( _point.y - this.position.y, 2 ) )
+
+                                                     );
             }
         }
 
@@ -368,6 +322,41 @@ class Cursor
         get distance ( )
         {
             return this.#config.calculations.distance;
+        }
+
+    ////    [ ANGLE ]    ///////////////////////////////////
+
+        /**
+         * Set angle property
+         * @param           {string} id                                 Identifier of element
+         */
+        set angle ( id )
+        {
+            let _element = document.getElementById ( id );
+
+
+            if ( _element != undefined )
+            {
+                let _point = this.#tools.getCenterPoint ( _element );
+
+
+                this.#config.calculations.angle = Math.atan2 (
+
+                                                      _point.y - this.position.y,
+
+                                                      _point.x - this.position.x
+
+                                                  );
+            }
+        }
+
+        /**
+         * Get angle property
+         * @return          {number}                                    Angle property; in radians
+         */
+        get angle ( )
+        {
+            return this.#config.calculations.angle;
         }
 
     ////    UTILITIES    ///////////////////////////////////
@@ -410,12 +399,32 @@ class Cursor
         {
             let _element = document.getElementById ( id );
 
+            let _point   = this.#tools.getCenterPoint ( _element );
 
-            if ( _element != null )
+
+            if ( _element != null ) this.position = _point;
+        }
+
+        /**
+         * Initiates any mouse actions associated with the passed 'element'
+         * @param           {HTMLElement} element                       HTML DOM element
+         */
+        mouseAction ( element )
+        {
+            if ( mouseMove.sequence.constructor.name === 'Pattern' )
             {
-                this.position = this.#tools.getCenterPoint ( _element );
+                let _currentData = mouseMove.sequence.current;
 
-                this.#tools.mouseAction ( _element );
+
+                if ( _currentData.action === 'click' )
+
+                    element.click ( );
+
+                else
+
+                    if ( element.getAttribute ( `on${_currentData.action}` ) != null )
+
+                        eval ( `element.on${_currentData.action} ( );` );
             }
         }
 
@@ -432,12 +441,12 @@ class Cursor
             let _cursor   = document.getElementById ( this.id );
 
 
+            this.type     = type;
+
+
             _settings.css [ 'top'  ] = this.#tools.pxToNumber ( _cursor.style.top  );
 
             _settings.css [ 'left' ] = this.#tools.pxToNumber ( _cursor.style.left );
-
-
-            this.type     = type;
 
 
             _cursor.src   = this.#config.presentation [ _settings.os ] [ type ];
