@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>MouseMove</title>
+
+	<!-- Favicon -->
+	<link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-57x57.png"   sizes="57x57" />
+	<link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-114x114.png" sizes="114x114" />
+	<link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-72x72.png"   sizes="72x72" />
+	<link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-144x144.png" sizes="144x144" />
+	<link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-60x60.png"   sizes="60x60" />
+	<link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-120x120.png" sizes="120x120" />
+	<link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-76x76.png"   sizes="76x76" />
+	<link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-152x152.png" sizes="152x152" />
+
+	<link rel="icon" type="image/png" href="images/favicon/favicon-196x196.png" sizes="196x196" />
+	<link rel="icon" type="image/png" href="images/favicon/favicon-96x96.png"   sizes="96x96" />
+	<link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png"   sizes="32x32" />
+	<link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png"   sizes="16x16" />
+	<link rel="icon" type="image/png" href="images/favicon/favicon-128.png"     sizes="128x128" />
+
+	<meta name="application-name"                content="&nbsp;"/>
+	<meta name="msapplication-TileColor"         content="#FFFFFF" />
+	<meta name="msapplication-TileImage"         content="images/favicon/mstile-144x144.png" />
+	<meta name="msapplication-square70x70logo"   content="images/favicon/mstile-70x70.png" />
+	<meta name="msapplication-square150x150logo" content="images/favicon/mstile-150x150.png" />
+	<meta name="msapplication-wide310x150logo"   content="images/favicon/mstile-310x150.png" />
+	<meta name="msapplication-square310x310logo" content="images/favicon/mstile-310x310.png" />
+
+	<!-- Bootstrap 5.2.3 -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Stylesheets: main -->
+	<link rel="stylesheet" href="style/main.css">
+
+	<!-- JS libraries -->
+	<script src="script/libs/mousetrap-v1.6.5.js"></script>
+	<script src="script/mousemove-v0.1.8.js"></script>
+
+	<!-- Stylesheets: main -->
+	<link rel="stylesheet" href="style/main.css">
+
+</head>
+<body>
+
+	<nav>
+
+		<div>
+
+      		<img src="images/MouseMove.png" alt="MouseMove" width="24">
+
+			<button type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span></span></button>
+
+			<div id="navbarSupportedContent">
+
+				<ul class="navbar-nav">
+
+					<li class="dropdown">
+
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+
+						<ul class="dropdown-menu">
+
+							<li><a class="dropdown-item" href="#">Action 1</a></li>
+
+							<li><a class="dropdown-item" href="#">Action 2</a></li>
+
+						</ul>
+
+					</li>
+
+				</ul>
+
+			</div>
+
+		</div>
+
+	</nav>
+
+	<main>
+
+		<div class="row">
+
+		    <div>
+
+				<div id="logo" class="container-fluid">
+
+					<h1 class="block-effect" style="--td: 1.2s">
+
+			  			<div class="block-reveal" style="--bc: #4040bf; --d: .1s">Mouse</div>
+
+			  			<div class="block-reveal" style="--bc: #bf4060; --d: .5s">Move</div>
+
+					</h1>
+
+					<div>
+
+						Stuff 1
+
+					</div>
+
+				</div>
+
+		    </div>
+
+			<div>
+
+				<form class="row g-3">
+
+					<div class="col-12">
+
+						<label for="inputText" class="form-label">Text 1</label>
+
+						<input type="text" class="form-control" id="inputText">
+
+					</div>
+
+					<div class="col-4">
+
+						<div class="form-check">
+
+							<input class="form-check-input" type="checkbox" id="checkboxOne">
+
+							<label class="form-check-label" for="checkboxOne">Check 1</label>
+
+						</div>
+
+						<div class="form-check">
+
+							<input class="form-check-input" type="checkbox" id="checkboxTwo">
+
+							<label class="form-check-label" for="checkboxTwo">Check 2</label>
+
+						</div>
+
+						<div class="form-check">
+
+							<input class="form-check-input" type="checkbox" id="checkboxThree">
+
+							<label class="form-check-label" for="checkboxThree">Check 3</label>
+
+						</div>
+
+					</div>
+
+					<div class="col-8">
+
+						<label for="inputSelect" class="form-label">Select</label>
+
+						<select id="inputSelect" class="form-select">
+
+							<option selected>Choose...</option>
+
+							<option>One</option>
+
+							<option>Two</option>
+
+							<option>Three</option>
+
+						</select>
+
+					</div>
+
+					<div class="col-4">
+
+						<div class="form-check">
+
+							<input class="form-check-input" type="radio" name="radioInput" id="radioInput" checked>
+
+							<label class="form-check-label" for="radioInput">Radio 1</label>
+
+						</div>
+
+						<div class="form-check">
+
+							<input class="form-check-input" type="radio" name="radioInput" id="radioInput">
+
+							<label class="form-check-label" for="radioInput">Radio 2</label>
+
+						</div>
+
+					</div>
+
+					<div class="col-8">
+
+						<label for="rangeInput" class="form-label">Range</label>
+
+						<input type="range" class="form-range" id="rangeInput">
+
+					</div>
+
+					<div class="col-4">
+
+						<button type="submit" class="btn btn-primary">Button</button>
+
+					</div>
+
+				</form>
+
+		    </div>
+
+		    <div>
+
+		    	<code>
+		    		shit in yo face
+		    	</code>
+
+		    </div>
+
+		</div>
+
+	</main>
+
+	<nav class="navbar sticky-bottom bg-light">
+
+  		<div class="container-fluid">
+
+    		<a class="navbar-brand" href="#">Footer</a>
+
+  		</div>
+
+	</nav>
+
+</body>
+</html>
+
+<script>
+
+	let _pattern =
+	[
+		{ 	// 0
+			id: 	'//*[@id="navbarSupportedContent"]/ul/li/a',
+			action: 'click'
+		},
+		{ 	// 1
+			id: 	'//*[@id="navbarSupportedContent"]/ul/li/ul/li[2]/a',
+			action: 'click'
+		},
+		{ 	// 2
+			id: 	'inputText',
+			action: 'type~Example text !',
+		},
+		{ 	// 3
+			id:     'checkboxOne',
+			action: 'click'
+		},
+		{ 	// 4
+			id:     'checkboxThree',
+			action: 'click'
+		},
+		// {
+		// 	id: 	'inputSelect',
+		// 	action: 'click'
+		// },
+		{
+			id: 	'//*[@id="inputSelect"]/option[3]',
+			action: 'click'
+		}
+		// {
+		// 	id: 	'//*[@id="inputState"]/option[3]',
+		// 	action: 'click'
+		// }
+		// {
+		// 	id:     'ui-node-07-04',
+		// 	action: 'click'
+		// },
+		// {
+		// 	id:     'ui-node-07-05',
+		// 	action: 'mousedown'
+		// },
+		// {
+		// 	id:     'ui-node-07-00',
+		// 	action: 'mouseup'
+		// }
+	]
+
+	initMouseMove ( _pattern );
+
+</script>

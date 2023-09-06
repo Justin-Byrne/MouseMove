@@ -13,6 +13,9 @@
 <dt><a href="#Cursor">Cursor</a></dt>
 <dd><p>{Object} Cursor                             Cursor object</p>
 </dd>
+<dt><a href="#Text">Text</a></dt>
+<dd><p>{Object} Text                               Text object</p>
+</dd>
 <dt><a href="#MouseMove">MouseMove</a></dt>
 <dd><p>{Object}       MouseMove                    MouseMove utilization class</p>
 </dd>
@@ -39,7 +42,7 @@
 <dt><a href="#createCursor">createCursor(id, type)</a></dt>
 <dd><p>Create and embeds cursor within DOM</p>
 </dd>
-<dt><a href="#isXpath">isXpath(id)</a> ⇒ <code>boolean</code></dt>
+<dt><a href="#isXPath">isXPath(id)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Checks whether the passed id is an XPath</p>
 </dd>
 <dt><a href="#isCssSelector">isCssSelector(id)</a> ⇒ <code>boolean</code></dt>
@@ -51,8 +54,14 @@
 <dt><a href="#isCamelCase">isCamelCase(string)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Checks whether a string is camel case</p>
 </dd>
+<dt><a href="#isXPathOrCssSelector">isXPathOrCssSelector(id)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Checks whether an id is an XPath or CSS Selector</p>
+</dd>
 <dt><a href="#getElementByXPath">getElementByXPath(xpath)</a> ⇒ <code>Object</code></dt>
 <dd><p>Returns an element based on its XPath</p>
+</dd>
+<dt><a href="#getXPath">getXPath(element)</a> ⇒ <code>string</code></dt>
+<dd><p>Returns an XPath for the passed element</p>
 </dd>
 <dt><a href="#getElement">getElement(id)</a> ⇒ <code>Object</code></dt>
 <dd><p>Returns a DOM&#39;s element based on its identifier</p>
@@ -60,11 +69,17 @@
 <dt><a href="#getEasing">getEasing(type)</a> ⇒ <code>function</code></dt>
 <dd><p>Returns an easing function based on the input type</p>
 </dd>
-<dt><a href="#addGeneratedId">addGeneratedId(element)</a> ⇒ <code>Object</code></dt>
+<dt><a href="#getElementByXPathOrSelector">getElementByXPathOrSelector(id)</a> ⇒ <code>Object</code></dt>
+<dd><p>Returns an element based on its XPath or CSS Selector</p>
+</dd>
+<dt><a href="#addGeneratedId">addGeneratedId(id)</a> ⇒ <code>Object</code></dt>
 <dd><p>Adds a generated id to the passed element</p>
 </dd>
 <dt><a href="#cleanScriptCode">cleanScriptCode(script)</a> ⇒ <code>string</code></dt>
 <dd><p>Cleans script of it&#39;s function wrapper</p>
+</dd>
+<dt><a href="#hotkeyListener">hotkeyListener()</a> ⇒ <code>function</code></dt>
+<dd><p>Mousetrap hotkey listener for activating MouseMove.go ( )</p>
 </dd>
 <dt><a href="#embedMousetrap">embedMousetrap()</a></dt>
 <dd><p>Embed mousetrap script into DOM</p>
@@ -209,6 +224,8 @@ Checks whether the passed value is an instance of List
         * [.currentAction](#Pattern+currentAction) ⇒ <code>string</code>
         * [.next()](#Pattern+next) ⇒ <code>string</code>
         * [.prev()](#Pattern+prev) ⇒ <code>string</code>
+        * [.indexOfId(id)](#Pattern+indexOfId)
+        * [.insert(index, object)](#Pattern+insert)
     * _static_
         * [.isPattern(arrayOfObjects)](#Pattern.isPattern) ⇒ <code>boolean</code>
 
@@ -288,6 +305,29 @@ Go to previous value in list
 **Kind**: instance method of [<code>Pattern</code>](#Pattern)  
 **Returns**: <code>string</code> - Identifier of DOM  
 **Note**: increment before completion  
+<a name="Pattern+indexOfId"></a>
+
+### pattern.indexOfId(id)
+Returns the index of the passed id; within the pattern array
+
+**Kind**: instance method of [<code>Pattern</code>](#Pattern)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>string</code> | Identifier of DOM; XPath, CSS Selector |
+
+<a name="Pattern+insert"></a>
+
+### pattern.insert(index, object)
+Inserts an object at the index provided
+
+**Kind**: instance method of [<code>Pattern</code>](#Pattern)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| index | <code>number</code> | Index number to insert into |
+| object | <code>Object</code> | Implicitly of explicitly declared object; see README.md |
+
 <a name="Pattern.isPattern"></a>
 
 ### Pattern.isPattern(arrayOfObjects) ⇒ <code>boolean</code>
@@ -417,6 +457,7 @@ Checks whether the passed object is an instance of Point
         * [.toNextElement(id)](#Cursor+toNextElement)
         * [.mouseAction(element)](#Cursor+mouseAction)
         * [.switchType(type)](#Cursor+switchType)
+        * [.createSelectOptions(id, id)](#Cursor+createSelectOptions)
         * [.setInteraction()](#Cursor+setInteraction)
     * _static_
         * [.isCursor(value)](#Cursor.isCursor) ⇒ <code>boolean</code>
@@ -569,7 +610,19 @@ Switch cursor's visual type
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| type | <code>string</code> | <code>&quot;pointer&quot;</code> | Cursor type within #config.presentation [ type ] |
+| type | <code>string</code> | <code>&quot;pointer&quot;</code> | Cursor type within #config.presentation [ os ].cursors [ type ] |
+
+<a name="Cursor+createSelectOptions"></a>
+
+### cursor.createSelectOptions(id, id)
+Creates and mirrors a select input element; from the DOM
+
+**Kind**: instance method of [<code>Cursor</code>](#Cursor)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>string</code> | Identifier of element within DOM |
+| id | <code>string</code> | Identifier of element within DOM |
 
 <a name="Cursor+setInteraction"></a>
 
@@ -588,6 +641,25 @@ Checks whether the passed value is an instance of Cursor
 | Param | Type | Description |
 | --- | --- | --- |
 | value | [<code>Cursor</code>](#Cursor) | Cursor instance |
+
+<a name="Text"></a>
+
+## Text
+{Object} Text                               Text object
+
+**Kind**: global class  
+<a name="Text.write"></a>
+
+### Text.write(text, id, [timing])
+Writes text within an input element
+
+**Kind**: static method of [<code>Text</code>](#Text)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| text | <code>string</code> |  | Text output |
+| id | <code>string</code> |  | Input Identifier |
+| [timing] | <code>number</code> | <code>120</code> | Timing interval for typing |
 
 <a name="MouseMove"></a>
 
@@ -608,10 +680,10 @@ Checks whether the passed value is an instance of Cursor
 
 * [MouseMove](#MouseMove)
     * [new MouseMove(sequence, cursor)](#new_MouseMove_new)
-    * [.cursor](#MouseMove+cursor)
-    * [.cursor](#MouseMove+cursor) ⇒ [<code>Cursor</code>](#Cursor)
     * [.sequence](#MouseMove+sequence)
     * [.sequence](#MouseMove+sequence) ⇒ <code>Array</code>
+    * [.cursor](#MouseMove+cursor)
+    * [.cursor](#MouseMove+cursor) ⇒ [<code>Cursor</code>](#Cursor)
     * [.animation](#MouseMove+animation)
     * [.animation](#MouseMove+animation) ⇒ <code>string</code>
     * [.go(duration)](#MouseMove+go)
@@ -627,24 +699,6 @@ Create a single instance of MouseMove
 | sequence | <code>Array</code> | Pattern or List of DOM identifiers |
 | cursor | [<code>Cursor</code>](#Cursor) | Cursor object |
 
-<a name="MouseMove+cursor"></a>
-
-### mouseMove.cursor
-Set cursor property
-
-**Kind**: instance property of [<code>MouseMove</code>](#MouseMove)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| cursor | [<code>Cursor</code>](#Cursor) | Cursor object |
-
-<a name="MouseMove+cursor"></a>
-
-### mouseMove.cursor ⇒ [<code>Cursor</code>](#Cursor)
-Get cursor property
-
-**Kind**: instance property of [<code>MouseMove</code>](#MouseMove)  
-**Returns**: [<code>Cursor</code>](#Cursor) - Cursor object  
 <a name="MouseMove+sequence"></a>
 
 ### mouseMove.sequence
@@ -663,6 +717,24 @@ Get sequence property
 
 **Kind**: instance property of [<code>MouseMove</code>](#MouseMove)  
 **Returns**: <code>Array</code> - List or Pattern instance  
+<a name="MouseMove+cursor"></a>
+
+### mouseMove.cursor
+Set cursor property
+
+**Kind**: instance property of [<code>MouseMove</code>](#MouseMove)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| cursor | [<code>Cursor</code>](#Cursor) | Cursor object |
+
+<a name="MouseMove+cursor"></a>
+
+### mouseMove.cursor ⇒ [<code>Cursor</code>](#Cursor)
+Get cursor property
+
+**Kind**: instance property of [<code>MouseMove</code>](#MouseMove)  
+**Returns**: [<code>Cursor</code>](#Cursor) - Cursor object  
 <a name="MouseMove+animation"></a>
 
 ### mouseMove.animation
@@ -714,7 +786,7 @@ Converts the 'css' object into a CSS inline string
 
 | Param | Type | Description |
 | --- | --- | --- |
-| json | <code>object</code> | CSS object from #config.presentation.settings.css |
+| json | <code>object</code> | CSS object from #config.presentation.settings.css [ type ] |
 
 <a name="getCenterPoint"></a>
 
@@ -760,11 +832,11 @@ Create and embeds cursor within DOM
 | Param | Type | Description |
 | --- | --- | --- |
 | id | <code>string</code> | Identifier of cursor |
-| type | <code>string</code> | Cursor type within #config.presentation |
+| type | <code>string</code> | Cursor type within #config.presentation [ os ].cursors [ type ] |
 
-<a name="isXpath"></a>
+<a name="isXPath"></a>
 
-## isXpath(id) ⇒ <code>boolean</code>
+## isXPath(id) ⇒ <code>boolean</code>
 Checks whether the passed id is an XPath
 
 **Kind**: global function  
@@ -810,6 +882,18 @@ Checks whether a string is camel case
 | --- | --- | --- |
 | string | <code>string</code> | Camel case string |
 
+<a name="isXPathOrCssSelector"></a>
+
+## isXPathOrCssSelector(id) ⇒ <code>boolean</code>
+Checks whether an id is an XPath or CSS Selector
+
+**Kind**: global function  
+**Returns**: <code>boolean</code> - True | False  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>string</code> | XPath or CSS Selector |
+
 <a name="getElementByXPath"></a>
 
 ## getElementByXPath(xpath) ⇒ <code>Object</code>
@@ -821,6 +905,18 @@ Returns an element based on its XPath
 | Param | Type | Description |
 | --- | --- | --- |
 | xpath | <code>string</code> | XPath |
+
+<a name="getXPath"></a>
+
+## getXPath(element) ⇒ <code>string</code>
+Returns an XPath for the passed element
+
+**Kind**: global function  
+**Returns**: <code>string</code> - XPath  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| element | <code>Object</code> | HTML DOM element |
 
 <a name="getElement"></a>
 
@@ -846,9 +942,9 @@ Returns an easing function based on the input type
 | --- | --- | --- |
 | type | <code>string</code> | Type of easing animation, in camel case: i.e.: 'easeInSine' |
 
-<a name="getEasing..stringToBracketNotation"></a>
+<a name="getEasing.._stringToBracketNotation"></a>
 
-### getEasing~stringToBracketNotation(string) ⇒ <code>Array</code>
+### getEasing~\_stringToBracketNotation(string) ⇒ <code>Array</code>
 Converts camel case string into an <Array>.<String> for bracket notation
 
 **Kind**: inner method of [<code>getEasing</code>](#getEasing)  
@@ -858,9 +954,21 @@ Converts camel case string into an <Array>.<String> for bracket notation
 | --- | --- | --- |
 | string | <code>string</code> | Camel case string to split |
 
+<a name="getElementByXPathOrSelector"></a>
+
+## getElementByXPathOrSelector(id) ⇒ <code>Object</code>
+Returns an element based on its XPath or CSS Selector
+
+**Kind**: global function  
+**Returns**: <code>Object</code> - HTML DOM element  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>string</code> | XPath or CSS Selector |
+
 <a name="addGeneratedId"></a>
 
-## addGeneratedId(element) ⇒ <code>Object</code>
+## addGeneratedId(id) ⇒ <code>Object</code>
 Adds a generated id to the passed element
 
 **Kind**: global function  
@@ -868,7 +976,7 @@ Adds a generated id to the passed element
 
 | Param | Type | Description |
 | --- | --- | --- |
-| element | <code>Object</code> | HTML DOM element |
+| id | <code>string</code> | Element identifier |
 
 <a name="cleanScriptCode"></a>
 
@@ -882,6 +990,13 @@ Cleans script of it's function wrapper
 | --- | --- | --- |
 | script | <code>function</code> | JavaScript function |
 
+<a name="hotkeyListener"></a>
+
+## hotkeyListener() ⇒ <code>function</code>
+Mousetrap hotkey listener for activating MouseMove.go ( )
+
+**Kind**: global function  
+**Returns**: <code>function</code> - Mousetrap hotkey listener  
 <a name="embedMousetrap"></a>
 
 ## embedMousetrap()

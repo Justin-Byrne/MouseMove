@@ -1,6 +1,25 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.8] - 2023-08-25
+### Added
+- `Text` class; for text automation
+- `Pattern` class
+  - public `indexOfId ( )` to return the index of the passed id; within the pattern array
+  - public `insert ( )` to insert an object at the index provided
+- `Cursor` class, public `createSelectOptions ( )` to create and mirrors a select input element; from the DOM
+- `MouseMove` class
+  - private `isXPathOrCssSelector ( )` to check whether an id is an XPath or CSS Selector
+  - private `getXPath ( )` to return an XPath for the passed element
+  - private `getElementByXPathOrSelector ( )` to return an element based on its XPath or CSS Selector
+  - nested  `_writeText ( )` to invoke `Text.write ( )` method
+
+### Changed
+- `Cursor` class, added `this.#config.cache.position` to `nextElement ( )` and `toNextElement ( )`, to cache the position of the next element; for a more precise position transition
+- `MouseMove` class
+  - modified `addGeneratedId` to incorporate special inputs; such as `<select>` elements
+  - modified nested `_action ( )` method to include text objects
+
 ## [0.1.7] - 2023-08-25
 ### Changed
 - minor refactoring and cleanup of `Cursor` and `MouseMove` classes
@@ -8,7 +27,7 @@ All notable changes to this project will be documented in this file.
 ## [0.1.6] - 2023-08-24
 ### Added
 - `Cursor` class
-  - added os selector ( i.e: mac, win, linux ) to `#config.presentation.settings.os`
+  - added `os` selector ( i.e: mac, win, linux ) to `#config.presentation.settings.os`
   - added 20 different mac cursors, under `#config.presentation.mac`
 
 ### Changed
@@ -110,7 +129,8 @@ All notable changes to this project will be documented in this file.
 ---
 | Version | Date       | Commit                                                                   | Comments                                                          |
 | :-----: | :--------: | :----------------------------------------------------------------------: | :---------------------------------------------------------------- |
-| 0.1.7   | 2023-08-25 | CURRENT REVISION                                                         | Minor refactoring and cleanup of Cursor and MouseMove classes
+| 0.1.8   | 2023-09-06 | CURRENT REVISION                                                         | Added Text class, with minor additions to Pattern, Cursor, and MouseMove classes
+| 0.1.7   | 2023-08-25 | [5c625d7](https://github.com/Justin-Byrne/MouseMove/commit/5c625d7)      | Minor refactoring and cleanup of Cursor and MouseMove classes
 | 0.1.6   | 2023-08-24 | [59aa038](https://github.com/Justin-Byrne/MouseMove/commit/59aa038)      | Refactored Cursor class's cursor type settings while including more cursor types
 | 0.1.5   | 2023-08-21 | [cc6d871](https://github.com/Justin-Byrne/MouseMove/commit/cc6d871)      | Minor refactoring to MouseMove class for the inclusion of easing functions and mouse events
 | 0.1.4   | 2023-08-15 | [7f31f7f](https://github.com/Justin-Byrne/MouseMove/commit/7f31f7f)      | Minor revisions to Cursor, Pattern, and MoveMouse class

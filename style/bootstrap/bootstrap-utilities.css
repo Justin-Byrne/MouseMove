@@ -1,0 +1,5440 @@
+/*!
+   * Bootstrap Utilities v5.2.3 (https://getbootstrap.com/)
+   * Copyright 2011-2022 The Bootstrap Authors
+   * Copyright 2011-2022 Twitter, Inc.
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   */
+/* line 1, ../../../../../HTML5/MouseMove/style/scss/bootstrap/_root.scss */
+:root {
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-black: #000;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-gray-100: #f8f9fa;
+  --bs-gray-200: #e9ecef;
+  --bs-gray-300: #dee2e6;
+  --bs-gray-400: #ced4da;
+  --bs-gray-500: #adb5bd;
+  --bs-gray-600: #6c757d;
+  --bs-gray-700: #495057;
+  --bs-gray-800: #343a40;
+  --bs-gray-900: #212529;
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-primary-rgb: 13, 110, 253;
+  --bs-secondary-rgb: 108, 117, 125;
+  --bs-success-rgb: 25, 135, 84;
+  --bs-info-rgb: 13, 202, 240;
+  --bs-warning-rgb: 255, 193, 7;
+  --bs-danger-rgb: 220, 53, 69;
+  --bs-light-rgb: 248, 249, 250;
+  --bs-dark-rgb: 33, 37, 41;
+  --bs-white-rgb: 255, 255, 255;
+  --bs-black-rgb: 0, 0, 0;
+  --bs-body-color-rgb: 33, 37, 41;
+  --bs-body-bg-rgb: 255, 255, 255;
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  --bs-body-font-family: var(--bs-font-sans-serif);
+  --bs-body-font-size: 1rem;
+  --bs-body-font-weight: 400;
+  --bs-body-line-height: 1.5;
+  --bs-body-color: #212529;
+  --bs-body-bg: #fff;
+  --bs-border-width: 1px;
+  --bs-border-style: solid;
+  --bs-border-color: #dee2e6;
+  --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
+  --bs-border-radius: 0.375rem;
+  --bs-border-radius-sm: 0.25rem;
+  --bs-border-radius-lg: 0.5rem;
+  --bs-border-radius-xl: 1rem;
+  --bs-border-radius-2xl: 2rem;
+  --bs-border-radius-pill: 50rem;
+  --bs-link-color: #0d6efd;
+  --bs-link-hover-color: #0a58ca;
+  --bs-code-color: #d63384;
+  --bs-highlight-bg: #fff3cd;
+}
+
+/* line 3, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_clearfix.scss */
+.clearfix::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+/* line 6, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_color-bg.scss */
+.text-bg-primary {
+  color: #fff !important;
+  background-color: RGBA(13, 110, 253, var(--bs-bg-opacity, 1)) !important;
+}
+
+/* line 6, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_color-bg.scss */
+.text-bg-secondary {
+  color: #fff !important;
+  background-color: RGBA(108, 117, 125, var(--bs-bg-opacity, 1)) !important;
+}
+
+/* line 6, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_color-bg.scss */
+.text-bg-success {
+  color: #fff !important;
+  background-color: RGBA(25, 135, 84, var(--bs-bg-opacity, 1)) !important;
+}
+
+/* line 6, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_color-bg.scss */
+.text-bg-info {
+  color: #000 !important;
+  background-color: RGBA(13, 202, 240, var(--bs-bg-opacity, 1)) !important;
+}
+
+/* line 6, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_color-bg.scss */
+.text-bg-warning {
+  color: #000 !important;
+  background-color: RGBA(255, 193, 7, var(--bs-bg-opacity, 1)) !important;
+}
+
+/* line 6, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_color-bg.scss */
+.text-bg-danger {
+  color: #fff !important;
+  background-color: RGBA(220, 53, 69, var(--bs-bg-opacity, 1)) !important;
+}
+
+/* line 6, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_color-bg.scss */
+.text-bg-light {
+  color: #000 !important;
+  background-color: RGBA(248, 249, 250, var(--bs-bg-opacity, 1)) !important;
+}
+
+/* line 6, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_color-bg.scss */
+.text-bg-dark {
+  color: #fff !important;
+  background-color: RGBA(33, 37, 41, var(--bs-bg-opacity, 1)) !important;
+}
+
+/* line 2, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_colored-links.scss */
+.link-primary {
+  color: #0d6efd !important;
+}
+
+/* line 6, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_colored-links.scss */
+.link-primary:hover, .link-primary:focus {
+  color: #0a58ca !important;
+}
+
+/* line 2, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_colored-links.scss */
+.link-secondary {
+  color: #6c757d !important;
+}
+
+/* line 6, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_colored-links.scss */
+.link-secondary:hover, .link-secondary:focus {
+  color: #565e64 !important;
+}
+
+/* line 2, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_colored-links.scss */
+.link-success {
+  color: #198754 !important;
+}
+
+/* line 6, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_colored-links.scss */
+.link-success:hover, .link-success:focus {
+  color: #146c43 !important;
+}
+
+/* line 2, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_colored-links.scss */
+.link-info {
+  color: #0dcaf0 !important;
+}
+
+/* line 6, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_colored-links.scss */
+.link-info:hover, .link-info:focus {
+  color: #3dd5f3 !important;
+}
+
+/* line 2, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_colored-links.scss */
+.link-warning {
+  color: #ffc107 !important;
+}
+
+/* line 6, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_colored-links.scss */
+.link-warning:hover, .link-warning:focus {
+  color: #ffcd39 !important;
+}
+
+/* line 2, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_colored-links.scss */
+.link-danger {
+  color: #dc3545 !important;
+}
+
+/* line 6, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_colored-links.scss */
+.link-danger:hover, .link-danger:focus {
+  color: #b02a37 !important;
+}
+
+/* line 2, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_colored-links.scss */
+.link-light {
+  color: #f8f9fa !important;
+}
+
+/* line 6, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_colored-links.scss */
+.link-light:hover, .link-light:focus {
+  color: #f9fafb !important;
+}
+
+/* line 2, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_colored-links.scss */
+.link-dark {
+  color: #212529 !important;
+}
+
+/* line 6, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_colored-links.scss */
+.link-dark:hover, .link-dark:focus {
+  color: #1a1e21 !important;
+}
+
+/* line 3, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_ratio.scss */
+.ratio {
+  position: relative;
+  width: 100%;
+}
+
+/* line 7, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_ratio.scss */
+.ratio::before {
+  display: block;
+  padding-top: var(--bs-aspect-ratio);
+  content: "";
+}
+
+/* line 13, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_ratio.scss */
+.ratio > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 23, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_ratio.scss */
+.ratio-1x1 {
+  --bs-aspect-ratio: 100%;
+}
+
+/* line 23, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_ratio.scss */
+.ratio-4x3 {
+  --bs-aspect-ratio: calc(3 / 4 * 100%);
+}
+
+/* line 23, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_ratio.scss */
+.ratio-16x9 {
+  --bs-aspect-ratio: calc(9 / 16 * 100%);
+}
+
+/* line 23, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_ratio.scss */
+.ratio-21x9 {
+  --bs-aspect-ratio: calc(9 / 21 * 100%);
+}
+
+/* line 3, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_position.scss */
+.fixed-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+/* line 11, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_position.scss */
+.fixed-bottom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+/* line 24, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_position.scss */
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+}
+
+/* line 30, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_position.scss */
+.sticky-bottom {
+  position: sticky;
+  bottom: 0;
+  z-index: 1020;
+}
+
+@media (min-width: 576px) {
+  /* line 24, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_position.scss */
+  .sticky-sm-top {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+  }
+  /* line 30, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_position.scss */
+  .sticky-sm-bottom {
+    position: sticky;
+    bottom: 0;
+    z-index: 1020;
+  }
+}
+
+@media (min-width: 768px) {
+  /* line 24, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_position.scss */
+  .sticky-md-top {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+  }
+  /* line 30, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_position.scss */
+  .sticky-md-bottom {
+    position: sticky;
+    bottom: 0;
+    z-index: 1020;
+  }
+}
+
+@media (min-width: 992px) {
+  /* line 24, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_position.scss */
+  .sticky-lg-top {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+  }
+  /* line 30, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_position.scss */
+  .sticky-lg-bottom {
+    position: sticky;
+    bottom: 0;
+    z-index: 1020;
+  }
+}
+
+@media (min-width: 1200px) {
+  /* line 24, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_position.scss */
+  .sticky-xl-top {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+  }
+  /* line 30, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_position.scss */
+  .sticky-xl-bottom {
+    position: sticky;
+    bottom: 0;
+    z-index: 1020;
+  }
+}
+
+@media (min-width: 1400px) {
+  /* line 24, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_position.scss */
+  .sticky-xxl-top {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+  }
+  /* line 30, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_position.scss */
+  .sticky-xxl-bottom {
+    position: sticky;
+    bottom: 0;
+    z-index: 1020;
+  }
+}
+
+/* line 2, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_stacks.scss */
+.hstack {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: stretch;
+}
+
+/* line 9, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_stacks.scss */
+.vstack {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+/* line 5, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_visually-hidden.scss */
+.visually-hidden,
+.visually-hidden-focusable:not(:focus):not(:focus-within) {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* line 6, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_stretched-link.scss */
+.stretched-link::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: "";
+}
+
+/* line 5, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_text-truncation.scss */
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* line 1, ../../../../../HTML5/MouseMove/style/scss/bootstrap/helpers/_vr.scss */
+.vr {
+  display: inline-block;
+  align-self: stretch;
+  width: 1px;
+  min-height: 1em;
+  background-color: currentcolor;
+  opacity: 0.25;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-baseline {
+  vertical-align: baseline !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-top {
+  vertical-align: top !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-middle {
+  vertical-align: middle !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-bottom {
+  vertical-align: bottom !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-text-bottom {
+  vertical-align: text-bottom !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-text-top {
+  vertical-align: text-top !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.float-start {
+  float: left !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.float-end {
+  float: right !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.float-none {
+  float: none !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.opacity-0 {
+  opacity: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.opacity-25 {
+  opacity: 0.25 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.opacity-50 {
+  opacity: 0.5 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.opacity-75 {
+  opacity: 0.75 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.opacity-100 {
+  opacity: 1 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.overflow-auto {
+  overflow: auto !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.overflow-hidden {
+  overflow: hidden !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.overflow-visible {
+  overflow: visible !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.overflow-scroll {
+  overflow: scroll !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.d-inline {
+  display: inline !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.d-inline-block {
+  display: inline-block !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.d-block {
+  display: block !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.d-grid {
+  display: grid !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.d-table {
+  display: table !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.d-table-row {
+  display: table-row !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.d-table-cell {
+  display: table-cell !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.d-flex {
+  display: flex !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.d-inline-flex {
+  display: inline-flex !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.d-none {
+  display: none !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.shadow-lg {
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.shadow-none {
+  box-shadow: none !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.position-static {
+  position: static !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.position-relative {
+  position: relative !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.position-absolute {
+  position: absolute !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.position-fixed {
+  position: fixed !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.position-sticky {
+  position: sticky !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.top-0 {
+  top: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.top-50 {
+  top: 50% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.top-100 {
+  top: 100% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bottom-0 {
+  bottom: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bottom-50 {
+  bottom: 50% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bottom-100 {
+  bottom: 100% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.start-0 {
+  left: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.start-50 {
+  left: 50% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.start-100 {
+  left: 100% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.end-0 {
+  right: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.end-50 {
+  right: 50% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.end-100 {
+  right: 100% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.translate-middle {
+  transform: translate(-50%, -50%) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.translate-middle-x {
+  transform: translateX(-50%) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.translate-middle-y {
+  transform: translateY(-50%) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border {
+  border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-0 {
+  border: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-top {
+  border-top: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-top-0 {
+  border-top: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-end {
+  border-right: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-end-0 {
+  border-right: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-bottom {
+  border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-bottom-0 {
+  border-bottom: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-start {
+  border-left: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-start-0 {
+  border-left: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-primary {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-primary-rgb), var(--bs-border-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-secondary {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-secondary-rgb), var(--bs-border-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-success {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-success-rgb), var(--bs-border-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-info {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-info-rgb), var(--bs-border-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-warning {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-warning-rgb), var(--bs-border-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-danger {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-danger-rgb), var(--bs-border-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-light {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-light-rgb), var(--bs-border-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-dark {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-dark-rgb), var(--bs-border-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-white {
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-white-rgb), var(--bs-border-opacity)) !important;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-1 {
+  --bs-border-width: 1px;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-2 {
+  --bs-border-width: 2px;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-3 {
+  --bs-border-width: 3px;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-4 {
+  --bs-border-width: 4px;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-5 {
+  --bs-border-width: 5px;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-opacity-10 {
+  --bs-border-opacity: 0.1;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-opacity-25 {
+  --bs-border-opacity: 0.25;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-opacity-50 {
+  --bs-border-opacity: 0.5;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-opacity-75 {
+  --bs-border-opacity: 0.75;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.border-opacity-100 {
+  --bs-border-opacity: 1;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.w-25 {
+  width: 25% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.w-50 {
+  width: 50% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.w-75 {
+  width: 75% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.w-100 {
+  width: 100% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.w-auto {
+  width: auto !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mw-100 {
+  max-width: 100% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.vw-100 {
+  width: 100vw !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.min-vw-100 {
+  min-width: 100vw !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.h-25 {
+  height: 25% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.h-50 {
+  height: 50% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.h-75 {
+  height: 75% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.h-100 {
+  height: 100% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.h-auto {
+  height: auto !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mh-100 {
+  max-height: 100% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.vh-100 {
+  height: 100vh !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.min-vh-100 {
+  min-height: 100vh !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.flex-fill {
+  flex: 1 1 auto !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.flex-row {
+  flex-direction: row !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.flex-column {
+  flex-direction: column !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.flex-row-reverse {
+  flex-direction: row-reverse !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.flex-column-reverse {
+  flex-direction: column-reverse !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.flex-grow-0 {
+  flex-grow: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.flex-grow-1 {
+  flex-grow: 1 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.flex-shrink-0 {
+  flex-shrink: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.flex-shrink-1 {
+  flex-shrink: 1 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.flex-wrap {
+  flex-wrap: wrap !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.flex-nowrap {
+  flex-wrap: nowrap !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.flex-wrap-reverse {
+  flex-wrap: wrap-reverse !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.justify-content-start {
+  justify-content: flex-start !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.justify-content-end {
+  justify-content: flex-end !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.justify-content-center {
+  justify-content: center !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.justify-content-between {
+  justify-content: space-between !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.justify-content-around {
+  justify-content: space-around !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.justify-content-evenly {
+  justify-content: space-evenly !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-items-start {
+  align-items: flex-start !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-items-end {
+  align-items: flex-end !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-items-center {
+  align-items: center !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-items-baseline {
+  align-items: baseline !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-items-stretch {
+  align-items: stretch !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-content-start {
+  align-content: flex-start !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-content-end {
+  align-content: flex-end !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-content-center {
+  align-content: center !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-content-between {
+  align-content: space-between !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-content-around {
+  align-content: space-around !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-content-stretch {
+  align-content: stretch !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-self-auto {
+  align-self: auto !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-self-start {
+  align-self: flex-start !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-self-end {
+  align-self: flex-end !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-self-center {
+  align-self: center !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-self-baseline {
+  align-self: baseline !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.align-self-stretch {
+  align-self: stretch !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.order-first {
+  order: -1 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.order-0 {
+  order: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.order-1 {
+  order: 1 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.order-2 {
+  order: 2 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.order-3 {
+  order: 3 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.order-4 {
+  order: 4 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.order-5 {
+  order: 5 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.order-last {
+  order: 6 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.m-0 {
+  margin: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.m-1 {
+  margin: 0.25rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.m-2 {
+  margin: 0.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.m-3 {
+  margin: 1rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.m-4 {
+  margin: 1.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.m-5 {
+  margin: 3rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.m-auto {
+  margin: auto !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mx-0 {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mx-1 {
+  margin-right: 0.25rem !important;
+  margin-left: 0.25rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mx-2 {
+  margin-right: 0.5rem !important;
+  margin-left: 0.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mx-3 {
+  margin-right: 1rem !important;
+  margin-left: 1rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mx-4 {
+  margin-right: 1.5rem !important;
+  margin-left: 1.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mx-5 {
+  margin-right: 3rem !important;
+  margin-left: 3rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mx-auto {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.my-0 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.my-1 {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.my-2 {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.my-3 {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.my-4 {
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.my-5 {
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.my-auto {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mt-1 {
+  margin-top: 0.25rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mt-2 {
+  margin-top: 0.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mt-3 {
+  margin-top: 1rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mt-4 {
+  margin-top: 1.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mt-5 {
+  margin-top: 3rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mt-auto {
+  margin-top: auto !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.me-0 {
+  margin-right: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.me-1 {
+  margin-right: 0.25rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.me-2 {
+  margin-right: 0.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.me-3 {
+  margin-right: 1rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.me-4 {
+  margin-right: 1.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.me-5 {
+  margin-right: 3rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.me-auto {
+  margin-right: auto !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mb-1 {
+  margin-bottom: 0.25rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mb-2 {
+  margin-bottom: 0.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mb-5 {
+  margin-bottom: 3rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.mb-auto {
+  margin-bottom: auto !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.ms-0 {
+  margin-left: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.ms-1 {
+  margin-left: 0.25rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.ms-2 {
+  margin-left: 0.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.ms-3 {
+  margin-left: 1rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.ms-4 {
+  margin-left: 1.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.ms-5 {
+  margin-left: 3rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.ms-auto {
+  margin-left: auto !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.p-0 {
+  padding: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.p-1 {
+  padding: 0.25rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.p-2 {
+  padding: 0.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.p-3 {
+  padding: 1rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.p-4 {
+  padding: 1.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.p-5 {
+  padding: 3rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.px-0 {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.px-1 {
+  padding-right: 0.25rem !important;
+  padding-left: 0.25rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.px-2 {
+  padding-right: 0.5rem !important;
+  padding-left: 0.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.px-3 {
+  padding-right: 1rem !important;
+  padding-left: 1rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.px-4 {
+  padding-right: 1.5rem !important;
+  padding-left: 1.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.px-5 {
+  padding-right: 3rem !important;
+  padding-left: 3rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.py-0 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.py-1 {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.py-2 {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.py-3 {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.py-4 {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.py-5 {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pt-0 {
+  padding-top: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pt-1 {
+  padding-top: 0.25rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pt-2 {
+  padding-top: 0.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pt-3 {
+  padding-top: 1rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pt-4 {
+  padding-top: 1.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pt-5 {
+  padding-top: 3rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pe-0 {
+  padding-right: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pe-1 {
+  padding-right: 0.25rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pe-2 {
+  padding-right: 0.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pe-3 {
+  padding-right: 1rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pe-4 {
+  padding-right: 1.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pe-5 {
+  padding-right: 3rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pb-0 {
+  padding-bottom: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pb-1 {
+  padding-bottom: 0.25rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pb-2 {
+  padding-bottom: 0.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pb-3 {
+  padding-bottom: 1rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pb-4 {
+  padding-bottom: 1.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pb-5 {
+  padding-bottom: 3rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.ps-0 {
+  padding-left: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.ps-1 {
+  padding-left: 0.25rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.ps-2 {
+  padding-left: 0.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.ps-3 {
+  padding-left: 1rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.ps-4 {
+  padding-left: 1.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.ps-5 {
+  padding-left: 3rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.gap-0 {
+  gap: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.gap-1 {
+  gap: 0.25rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.gap-2 {
+  gap: 0.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.gap-3 {
+  gap: 1rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.gap-4 {
+  gap: 1.5rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.gap-5 {
+  gap: 3rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.font-monospace {
+  font-family: var(--bs-font-monospace) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.fs-1 {
+  font-size: calc(1.375rem + 1.5vw) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.fs-2 {
+  font-size: calc(1.325rem + 0.9vw) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.fs-3 {
+  font-size: calc(1.3rem + 0.6vw) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.fs-4 {
+  font-size: calc(1.275rem + 0.3vw) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.fs-5 {
+  font-size: 1.25rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.fs-6 {
+  font-size: 1rem !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.fst-italic {
+  font-style: italic !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.fst-normal {
+  font-style: normal !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.fw-light {
+  font-weight: 300 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.fw-lighter {
+  font-weight: lighter !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.fw-normal {
+  font-weight: 400 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.fw-bold {
+  font-weight: 700 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.fw-semibold {
+  font-weight: 600 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.fw-bolder {
+  font-weight: bolder !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.lh-1 {
+  line-height: 1 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.lh-sm {
+  line-height: 1.25 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.lh-base {
+  line-height: 1.5 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.lh-lg {
+  line-height: 2 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-start {
+  text-align: left !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-end {
+  text-align: right !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-center {
+  text-align: center !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-decoration-none {
+  text-decoration: none !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-decoration-underline {
+  text-decoration: underline !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-decoration-line-through {
+  text-decoration: line-through !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-lowercase {
+  text-transform: lowercase !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-capitalize {
+  text-transform: capitalize !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-wrap {
+  white-space: normal !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-nowrap {
+  white-space: nowrap !important;
+}
+
+/* rtl:begin:remove */
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-break {
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+/* rtl:end:remove */
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-primary {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-secondary {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-success {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-success-rgb), var(--bs-text-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-info {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-info-rgb), var(--bs-text-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-warning {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-warning-rgb), var(--bs-text-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-danger {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-danger-rgb), var(--bs-text-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-light {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-light-rgb), var(--bs-text-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-dark {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-black {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-black-rgb), var(--bs-text-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-white {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-body {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-body-color-rgb), var(--bs-text-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-muted {
+  --bs-text-opacity: 1;
+  color: #6c757d !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-black-50 {
+  --bs-text-opacity: 1;
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-white-50 {
+  --bs-text-opacity: 1;
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-reset {
+  --bs-text-opacity: 1;
+  color: inherit !important;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-opacity-25 {
+  --bs-text-opacity: 0.25;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-opacity-50 {
+  --bs-text-opacity: 0.5;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-opacity-75 {
+  --bs-text-opacity: 0.75;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.text-opacity-100 {
+  --bs-text-opacity: 1;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-primary {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-secondary {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-success {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-info {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-info-rgb), var(--bs-bg-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-warning {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-warning-rgb), var(--bs-bg-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-danger {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-light {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-dark {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-black {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-black-rgb), var(--bs-bg-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-white {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-white-rgb), var(--bs-bg-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-body {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-body-bg-rgb), var(--bs-bg-opacity)) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-transparent {
+  --bs-bg-opacity: 1;
+  background-color: transparent !important;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-opacity-10 {
+  --bs-bg-opacity: 0.1;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-opacity-25 {
+  --bs-bg-opacity: 0.25;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-opacity-50 {
+  --bs-bg-opacity: 0.5;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-opacity-75 {
+  --bs-bg-opacity: 0.75;
+}
+
+/* line 57, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-opacity-100 {
+  --bs-bg-opacity: 1;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.bg-gradient {
+  background-image: var(--bs-gradient) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.user-select-all {
+  user-select: all !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.user-select-auto {
+  user-select: auto !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.user-select-none {
+  user-select: none !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pe-none {
+  pointer-events: none !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.pe-auto {
+  pointer-events: auto !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.rounded {
+  border-radius: var(--bs-border-radius) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.rounded-0 {
+  border-radius: 0 !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.rounded-1 {
+  border-radius: var(--bs-border-radius-sm) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.rounded-2 {
+  border-radius: var(--bs-border-radius) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.rounded-3 {
+  border-radius: var(--bs-border-radius-lg) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.rounded-4 {
+  border-radius: var(--bs-border-radius-xl) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.rounded-5 {
+  border-radius: var(--bs-border-radius-2xl) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.rounded-pill {
+  border-radius: var(--bs-border-radius-pill) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.rounded-top {
+  border-top-left-radius: var(--bs-border-radius) !important;
+  border-top-right-radius: var(--bs-border-radius) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.rounded-end {
+  border-top-right-radius: var(--bs-border-radius) !important;
+  border-bottom-right-radius: var(--bs-border-radius) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.rounded-bottom {
+  border-bottom-right-radius: var(--bs-border-radius) !important;
+  border-bottom-left-radius: var(--bs-border-radius) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.rounded-start {
+  border-bottom-left-radius: var(--bs-border-radius) !important;
+  border-top-left-radius: var(--bs-border-radius) !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.visible {
+  visibility: visible !important;
+}
+
+/* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+.invisible {
+  visibility: hidden !important;
+}
+
+@media (min-width: 576px) {
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .float-sm-start {
+    float: left !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .float-sm-end {
+    float: right !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .float-sm-none {
+    float: none !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-sm-inline {
+    display: inline !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-sm-inline-block {
+    display: inline-block !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-sm-block {
+    display: block !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-sm-grid {
+    display: grid !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-sm-table {
+    display: table !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-sm-table-row {
+    display: table-row !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-sm-table-cell {
+    display: table-cell !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-sm-flex {
+    display: flex !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-sm-inline-flex {
+    display: inline-flex !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-sm-none {
+    display: none !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-sm-fill {
+    flex: 1 1 auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-sm-row {
+    flex-direction: row !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-sm-column {
+    flex-direction: column !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-sm-row-reverse {
+    flex-direction: row-reverse !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-sm-column-reverse {
+    flex-direction: column-reverse !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-sm-grow-0 {
+    flex-grow: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-sm-grow-1 {
+    flex-grow: 1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-sm-shrink-0 {
+    flex-shrink: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-sm-shrink-1 {
+    flex-shrink: 1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-sm-wrap {
+    flex-wrap: wrap !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-sm-nowrap {
+    flex-wrap: nowrap !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-sm-wrap-reverse {
+    flex-wrap: wrap-reverse !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-sm-start {
+    justify-content: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-sm-end {
+    justify-content: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-sm-center {
+    justify-content: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-sm-between {
+    justify-content: space-between !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-sm-around {
+    justify-content: space-around !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-sm-evenly {
+    justify-content: space-evenly !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-sm-start {
+    align-items: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-sm-end {
+    align-items: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-sm-center {
+    align-items: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-sm-baseline {
+    align-items: baseline !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-sm-stretch {
+    align-items: stretch !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-sm-start {
+    align-content: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-sm-end {
+    align-content: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-sm-center {
+    align-content: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-sm-between {
+    align-content: space-between !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-sm-around {
+    align-content: space-around !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-sm-stretch {
+    align-content: stretch !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-sm-auto {
+    align-self: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-sm-start {
+    align-self: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-sm-end {
+    align-self: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-sm-center {
+    align-self: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-sm-baseline {
+    align-self: baseline !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-sm-stretch {
+    align-self: stretch !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-sm-first {
+    order: -1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-sm-0 {
+    order: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-sm-1 {
+    order: 1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-sm-2 {
+    order: 2 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-sm-3 {
+    order: 3 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-sm-4 {
+    order: 4 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-sm-5 {
+    order: 5 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-sm-last {
+    order: 6 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-sm-0 {
+    margin: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-sm-1 {
+    margin: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-sm-2 {
+    margin: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-sm-3 {
+    margin: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-sm-4 {
+    margin: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-sm-5 {
+    margin: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-sm-auto {
+    margin: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-sm-0 {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-sm-1 {
+    margin-right: 0.25rem !important;
+    margin-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-sm-2 {
+    margin-right: 0.5rem !important;
+    margin-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-sm-3 {
+    margin-right: 1rem !important;
+    margin-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-sm-4 {
+    margin-right: 1.5rem !important;
+    margin-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-sm-5 {
+    margin-right: 3rem !important;
+    margin-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-sm-auto {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-sm-0 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-sm-1 {
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-sm-2 {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-sm-3 {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-sm-4 {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-sm-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-sm-auto {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-sm-0 {
+    margin-top: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-sm-1 {
+    margin-top: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-sm-2 {
+    margin-top: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-sm-3 {
+    margin-top: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-sm-4 {
+    margin-top: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-sm-5 {
+    margin-top: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-sm-auto {
+    margin-top: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-sm-0 {
+    margin-right: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-sm-1 {
+    margin-right: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-sm-2 {
+    margin-right: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-sm-3 {
+    margin-right: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-sm-4 {
+    margin-right: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-sm-5 {
+    margin-right: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-sm-auto {
+    margin-right: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-sm-0 {
+    margin-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-sm-1 {
+    margin-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-sm-2 {
+    margin-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-sm-3 {
+    margin-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-sm-4 {
+    margin-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-sm-5 {
+    margin-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-sm-auto {
+    margin-bottom: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-sm-0 {
+    margin-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-sm-1 {
+    margin-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-sm-2 {
+    margin-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-sm-3 {
+    margin-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-sm-4 {
+    margin-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-sm-5 {
+    margin-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-sm-auto {
+    margin-left: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-sm-0 {
+    padding: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-sm-1 {
+    padding: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-sm-2 {
+    padding: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-sm-3 {
+    padding: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-sm-4 {
+    padding: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-sm-5 {
+    padding: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-sm-0 {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-sm-1 {
+    padding-right: 0.25rem !important;
+    padding-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-sm-2 {
+    padding-right: 0.5rem !important;
+    padding-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-sm-3 {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-sm-4 {
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-sm-5 {
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-sm-0 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-sm-1 {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-sm-2 {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-sm-3 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-sm-4 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-sm-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-sm-0 {
+    padding-top: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-sm-1 {
+    padding-top: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-sm-2 {
+    padding-top: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-sm-3 {
+    padding-top: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-sm-4 {
+    padding-top: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-sm-5 {
+    padding-top: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-sm-0 {
+    padding-right: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-sm-1 {
+    padding-right: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-sm-2 {
+    padding-right: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-sm-3 {
+    padding-right: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-sm-4 {
+    padding-right: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-sm-5 {
+    padding-right: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-sm-0 {
+    padding-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-sm-1 {
+    padding-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-sm-2 {
+    padding-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-sm-3 {
+    padding-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-sm-4 {
+    padding-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-sm-5 {
+    padding-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-sm-0 {
+    padding-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-sm-1 {
+    padding-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-sm-2 {
+    padding-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-sm-3 {
+    padding-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-sm-4 {
+    padding-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-sm-5 {
+    padding-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-sm-0 {
+    gap: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-sm-1 {
+    gap: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-sm-2 {
+    gap: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-sm-3 {
+    gap: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-sm-4 {
+    gap: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-sm-5 {
+    gap: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .text-sm-start {
+    text-align: left !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .text-sm-end {
+    text-align: right !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .text-sm-center {
+    text-align: center !important;
+  }
+}
+
+@media (min-width: 768px) {
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .float-md-start {
+    float: left !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .float-md-end {
+    float: right !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .float-md-none {
+    float: none !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-md-inline {
+    display: inline !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-md-inline-block {
+    display: inline-block !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-md-block {
+    display: block !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-md-grid {
+    display: grid !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-md-table {
+    display: table !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-md-table-row {
+    display: table-row !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-md-table-cell {
+    display: table-cell !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-md-flex {
+    display: flex !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-md-inline-flex {
+    display: inline-flex !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-md-none {
+    display: none !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-md-fill {
+    flex: 1 1 auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-md-row {
+    flex-direction: row !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-md-column {
+    flex-direction: column !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-md-row-reverse {
+    flex-direction: row-reverse !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-md-column-reverse {
+    flex-direction: column-reverse !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-md-grow-0 {
+    flex-grow: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-md-grow-1 {
+    flex-grow: 1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-md-shrink-0 {
+    flex-shrink: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-md-shrink-1 {
+    flex-shrink: 1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-md-wrap {
+    flex-wrap: wrap !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-md-nowrap {
+    flex-wrap: nowrap !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-md-wrap-reverse {
+    flex-wrap: wrap-reverse !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-md-start {
+    justify-content: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-md-end {
+    justify-content: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-md-center {
+    justify-content: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-md-between {
+    justify-content: space-between !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-md-around {
+    justify-content: space-around !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-md-evenly {
+    justify-content: space-evenly !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-md-start {
+    align-items: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-md-end {
+    align-items: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-md-center {
+    align-items: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-md-baseline {
+    align-items: baseline !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-md-stretch {
+    align-items: stretch !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-md-start {
+    align-content: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-md-end {
+    align-content: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-md-center {
+    align-content: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-md-between {
+    align-content: space-between !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-md-around {
+    align-content: space-around !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-md-stretch {
+    align-content: stretch !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-md-auto {
+    align-self: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-md-start {
+    align-self: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-md-end {
+    align-self: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-md-center {
+    align-self: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-md-baseline {
+    align-self: baseline !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-md-stretch {
+    align-self: stretch !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-md-first {
+    order: -1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-md-0 {
+    order: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-md-1 {
+    order: 1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-md-2 {
+    order: 2 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-md-3 {
+    order: 3 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-md-4 {
+    order: 4 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-md-5 {
+    order: 5 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-md-last {
+    order: 6 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-md-0 {
+    margin: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-md-1 {
+    margin: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-md-2 {
+    margin: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-md-3 {
+    margin: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-md-4 {
+    margin: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-md-5 {
+    margin: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-md-auto {
+    margin: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-md-0 {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-md-1 {
+    margin-right: 0.25rem !important;
+    margin-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-md-2 {
+    margin-right: 0.5rem !important;
+    margin-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-md-3 {
+    margin-right: 1rem !important;
+    margin-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-md-4 {
+    margin-right: 1.5rem !important;
+    margin-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-md-5 {
+    margin-right: 3rem !important;
+    margin-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-md-auto {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-md-0 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-md-1 {
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-md-2 {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-md-3 {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-md-4 {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-md-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-md-auto {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-md-0 {
+    margin-top: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-md-1 {
+    margin-top: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-md-2 {
+    margin-top: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-md-3 {
+    margin-top: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-md-4 {
+    margin-top: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-md-5 {
+    margin-top: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-md-auto {
+    margin-top: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-md-0 {
+    margin-right: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-md-1 {
+    margin-right: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-md-2 {
+    margin-right: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-md-3 {
+    margin-right: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-md-4 {
+    margin-right: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-md-5 {
+    margin-right: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-md-auto {
+    margin-right: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-md-0 {
+    margin-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-md-1 {
+    margin-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-md-2 {
+    margin-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-md-3 {
+    margin-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-md-4 {
+    margin-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-md-5 {
+    margin-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-md-auto {
+    margin-bottom: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-md-0 {
+    margin-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-md-1 {
+    margin-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-md-2 {
+    margin-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-md-3 {
+    margin-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-md-4 {
+    margin-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-md-5 {
+    margin-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-md-auto {
+    margin-left: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-md-0 {
+    padding: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-md-1 {
+    padding: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-md-2 {
+    padding: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-md-3 {
+    padding: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-md-4 {
+    padding: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-md-5 {
+    padding: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-md-0 {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-md-1 {
+    padding-right: 0.25rem !important;
+    padding-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-md-2 {
+    padding-right: 0.5rem !important;
+    padding-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-md-3 {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-md-4 {
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-md-5 {
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-md-0 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-md-1 {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-md-2 {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-md-3 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-md-4 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-md-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-md-0 {
+    padding-top: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-md-1 {
+    padding-top: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-md-2 {
+    padding-top: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-md-3 {
+    padding-top: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-md-4 {
+    padding-top: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-md-5 {
+    padding-top: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-md-0 {
+    padding-right: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-md-1 {
+    padding-right: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-md-2 {
+    padding-right: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-md-3 {
+    padding-right: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-md-4 {
+    padding-right: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-md-5 {
+    padding-right: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-md-0 {
+    padding-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-md-1 {
+    padding-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-md-2 {
+    padding-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-md-3 {
+    padding-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-md-4 {
+    padding-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-md-5 {
+    padding-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-md-0 {
+    padding-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-md-1 {
+    padding-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-md-2 {
+    padding-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-md-3 {
+    padding-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-md-4 {
+    padding-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-md-5 {
+    padding-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-md-0 {
+    gap: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-md-1 {
+    gap: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-md-2 {
+    gap: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-md-3 {
+    gap: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-md-4 {
+    gap: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-md-5 {
+    gap: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .text-md-start {
+    text-align: left !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .text-md-end {
+    text-align: right !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .text-md-center {
+    text-align: center !important;
+  }
+}
+
+@media (min-width: 992px) {
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .float-lg-start {
+    float: left !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .float-lg-end {
+    float: right !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .float-lg-none {
+    float: none !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-lg-inline {
+    display: inline !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-lg-inline-block {
+    display: inline-block !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-lg-block {
+    display: block !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-lg-grid {
+    display: grid !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-lg-table {
+    display: table !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-lg-table-row {
+    display: table-row !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-lg-table-cell {
+    display: table-cell !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-lg-flex {
+    display: flex !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-lg-inline-flex {
+    display: inline-flex !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-lg-none {
+    display: none !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-lg-fill {
+    flex: 1 1 auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-lg-row {
+    flex-direction: row !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-lg-column {
+    flex-direction: column !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-lg-row-reverse {
+    flex-direction: row-reverse !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-lg-column-reverse {
+    flex-direction: column-reverse !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-lg-grow-0 {
+    flex-grow: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-lg-grow-1 {
+    flex-grow: 1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-lg-shrink-0 {
+    flex-shrink: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-lg-shrink-1 {
+    flex-shrink: 1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-lg-wrap {
+    flex-wrap: wrap !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-lg-nowrap {
+    flex-wrap: nowrap !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-lg-wrap-reverse {
+    flex-wrap: wrap-reverse !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-lg-start {
+    justify-content: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-lg-end {
+    justify-content: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-lg-center {
+    justify-content: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-lg-between {
+    justify-content: space-between !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-lg-around {
+    justify-content: space-around !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-lg-evenly {
+    justify-content: space-evenly !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-lg-start {
+    align-items: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-lg-end {
+    align-items: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-lg-center {
+    align-items: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-lg-baseline {
+    align-items: baseline !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-lg-stretch {
+    align-items: stretch !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-lg-start {
+    align-content: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-lg-end {
+    align-content: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-lg-center {
+    align-content: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-lg-between {
+    align-content: space-between !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-lg-around {
+    align-content: space-around !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-lg-stretch {
+    align-content: stretch !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-lg-auto {
+    align-self: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-lg-start {
+    align-self: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-lg-end {
+    align-self: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-lg-center {
+    align-self: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-lg-baseline {
+    align-self: baseline !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-lg-stretch {
+    align-self: stretch !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-lg-first {
+    order: -1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-lg-0 {
+    order: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-lg-1 {
+    order: 1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-lg-2 {
+    order: 2 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-lg-3 {
+    order: 3 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-lg-4 {
+    order: 4 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-lg-5 {
+    order: 5 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-lg-last {
+    order: 6 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-lg-0 {
+    margin: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-lg-1 {
+    margin: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-lg-2 {
+    margin: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-lg-3 {
+    margin: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-lg-4 {
+    margin: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-lg-5 {
+    margin: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-lg-auto {
+    margin: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-lg-0 {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-lg-1 {
+    margin-right: 0.25rem !important;
+    margin-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-lg-2 {
+    margin-right: 0.5rem !important;
+    margin-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-lg-3 {
+    margin-right: 1rem !important;
+    margin-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-lg-4 {
+    margin-right: 1.5rem !important;
+    margin-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-lg-5 {
+    margin-right: 3rem !important;
+    margin-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-lg-auto {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-lg-0 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-lg-1 {
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-lg-2 {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-lg-3 {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-lg-4 {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-lg-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-lg-auto {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-lg-0 {
+    margin-top: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-lg-1 {
+    margin-top: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-lg-2 {
+    margin-top: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-lg-3 {
+    margin-top: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-lg-4 {
+    margin-top: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-lg-5 {
+    margin-top: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-lg-auto {
+    margin-top: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-lg-0 {
+    margin-right: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-lg-1 {
+    margin-right: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-lg-2 {
+    margin-right: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-lg-3 {
+    margin-right: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-lg-4 {
+    margin-right: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-lg-5 {
+    margin-right: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-lg-auto {
+    margin-right: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-lg-0 {
+    margin-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-lg-1 {
+    margin-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-lg-2 {
+    margin-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-lg-3 {
+    margin-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-lg-4 {
+    margin-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-lg-5 {
+    margin-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-lg-auto {
+    margin-bottom: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-lg-0 {
+    margin-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-lg-1 {
+    margin-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-lg-2 {
+    margin-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-lg-3 {
+    margin-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-lg-4 {
+    margin-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-lg-5 {
+    margin-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-lg-auto {
+    margin-left: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-lg-0 {
+    padding: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-lg-1 {
+    padding: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-lg-2 {
+    padding: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-lg-3 {
+    padding: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-lg-4 {
+    padding: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-lg-5 {
+    padding: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-lg-0 {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-lg-1 {
+    padding-right: 0.25rem !important;
+    padding-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-lg-2 {
+    padding-right: 0.5rem !important;
+    padding-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-lg-3 {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-lg-4 {
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-lg-5 {
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-lg-0 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-lg-1 {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-lg-2 {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-lg-3 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-lg-4 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-lg-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-lg-0 {
+    padding-top: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-lg-1 {
+    padding-top: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-lg-2 {
+    padding-top: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-lg-3 {
+    padding-top: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-lg-4 {
+    padding-top: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-lg-5 {
+    padding-top: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-lg-0 {
+    padding-right: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-lg-1 {
+    padding-right: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-lg-2 {
+    padding-right: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-lg-3 {
+    padding-right: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-lg-4 {
+    padding-right: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-lg-5 {
+    padding-right: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-lg-0 {
+    padding-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-lg-1 {
+    padding-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-lg-2 {
+    padding-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-lg-3 {
+    padding-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-lg-4 {
+    padding-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-lg-5 {
+    padding-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-lg-0 {
+    padding-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-lg-1 {
+    padding-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-lg-2 {
+    padding-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-lg-3 {
+    padding-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-lg-4 {
+    padding-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-lg-5 {
+    padding-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-lg-0 {
+    gap: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-lg-1 {
+    gap: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-lg-2 {
+    gap: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-lg-3 {
+    gap: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-lg-4 {
+    gap: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-lg-5 {
+    gap: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .text-lg-start {
+    text-align: left !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .text-lg-end {
+    text-align: right !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .text-lg-center {
+    text-align: center !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .float-xl-start {
+    float: left !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .float-xl-end {
+    float: right !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .float-xl-none {
+    float: none !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xl-inline {
+    display: inline !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xl-inline-block {
+    display: inline-block !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xl-block {
+    display: block !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xl-grid {
+    display: grid !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xl-table {
+    display: table !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xl-table-row {
+    display: table-row !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xl-table-cell {
+    display: table-cell !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xl-flex {
+    display: flex !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xl-inline-flex {
+    display: inline-flex !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xl-none {
+    display: none !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xl-fill {
+    flex: 1 1 auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xl-row {
+    flex-direction: row !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xl-column {
+    flex-direction: column !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xl-row-reverse {
+    flex-direction: row-reverse !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xl-column-reverse {
+    flex-direction: column-reverse !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xl-grow-0 {
+    flex-grow: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xl-grow-1 {
+    flex-grow: 1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xl-shrink-0 {
+    flex-shrink: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xl-shrink-1 {
+    flex-shrink: 1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xl-wrap {
+    flex-wrap: wrap !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xl-nowrap {
+    flex-wrap: nowrap !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xl-wrap-reverse {
+    flex-wrap: wrap-reverse !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-xl-start {
+    justify-content: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-xl-end {
+    justify-content: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-xl-center {
+    justify-content: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-xl-between {
+    justify-content: space-between !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-xl-around {
+    justify-content: space-around !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-xl-evenly {
+    justify-content: space-evenly !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-xl-start {
+    align-items: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-xl-end {
+    align-items: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-xl-center {
+    align-items: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-xl-baseline {
+    align-items: baseline !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-xl-stretch {
+    align-items: stretch !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-xl-start {
+    align-content: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-xl-end {
+    align-content: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-xl-center {
+    align-content: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-xl-between {
+    align-content: space-between !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-xl-around {
+    align-content: space-around !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-xl-stretch {
+    align-content: stretch !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-xl-auto {
+    align-self: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-xl-start {
+    align-self: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-xl-end {
+    align-self: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-xl-center {
+    align-self: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-xl-baseline {
+    align-self: baseline !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-xl-stretch {
+    align-self: stretch !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-xl-first {
+    order: -1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-xl-0 {
+    order: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-xl-1 {
+    order: 1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-xl-2 {
+    order: 2 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-xl-3 {
+    order: 3 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-xl-4 {
+    order: 4 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-xl-5 {
+    order: 5 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-xl-last {
+    order: 6 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-xl-0 {
+    margin: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-xl-1 {
+    margin: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-xl-2 {
+    margin: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-xl-3 {
+    margin: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-xl-4 {
+    margin: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-xl-5 {
+    margin: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-xl-auto {
+    margin: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-xl-0 {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-xl-1 {
+    margin-right: 0.25rem !important;
+    margin-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-xl-2 {
+    margin-right: 0.5rem !important;
+    margin-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-xl-3 {
+    margin-right: 1rem !important;
+    margin-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-xl-4 {
+    margin-right: 1.5rem !important;
+    margin-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-xl-5 {
+    margin-right: 3rem !important;
+    margin-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-xl-auto {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-xl-0 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-xl-1 {
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-xl-2 {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-xl-3 {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-xl-4 {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-xl-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-xl-auto {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-xl-0 {
+    margin-top: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-xl-1 {
+    margin-top: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-xl-2 {
+    margin-top: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-xl-3 {
+    margin-top: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-xl-4 {
+    margin-top: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-xl-5 {
+    margin-top: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-xl-auto {
+    margin-top: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-xl-0 {
+    margin-right: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-xl-1 {
+    margin-right: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-xl-2 {
+    margin-right: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-xl-3 {
+    margin-right: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-xl-4 {
+    margin-right: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-xl-5 {
+    margin-right: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-xl-auto {
+    margin-right: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-xl-0 {
+    margin-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-xl-1 {
+    margin-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-xl-2 {
+    margin-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-xl-3 {
+    margin-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-xl-4 {
+    margin-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-xl-5 {
+    margin-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-xl-auto {
+    margin-bottom: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-xl-0 {
+    margin-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-xl-1 {
+    margin-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-xl-2 {
+    margin-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-xl-3 {
+    margin-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-xl-4 {
+    margin-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-xl-5 {
+    margin-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-xl-auto {
+    margin-left: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-xl-0 {
+    padding: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-xl-1 {
+    padding: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-xl-2 {
+    padding: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-xl-3 {
+    padding: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-xl-4 {
+    padding: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-xl-5 {
+    padding: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-xl-0 {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-xl-1 {
+    padding-right: 0.25rem !important;
+    padding-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-xl-2 {
+    padding-right: 0.5rem !important;
+    padding-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-xl-3 {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-xl-4 {
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-xl-5 {
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-xl-0 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-xl-1 {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-xl-2 {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-xl-3 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-xl-4 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-xl-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-xl-0 {
+    padding-top: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-xl-1 {
+    padding-top: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-xl-2 {
+    padding-top: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-xl-3 {
+    padding-top: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-xl-4 {
+    padding-top: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-xl-5 {
+    padding-top: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-xl-0 {
+    padding-right: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-xl-1 {
+    padding-right: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-xl-2 {
+    padding-right: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-xl-3 {
+    padding-right: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-xl-4 {
+    padding-right: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-xl-5 {
+    padding-right: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-xl-0 {
+    padding-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-xl-1 {
+    padding-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-xl-2 {
+    padding-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-xl-3 {
+    padding-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-xl-4 {
+    padding-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-xl-5 {
+    padding-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-xl-0 {
+    padding-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-xl-1 {
+    padding-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-xl-2 {
+    padding-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-xl-3 {
+    padding-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-xl-4 {
+    padding-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-xl-5 {
+    padding-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-xl-0 {
+    gap: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-xl-1 {
+    gap: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-xl-2 {
+    gap: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-xl-3 {
+    gap: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-xl-4 {
+    gap: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-xl-5 {
+    gap: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .text-xl-start {
+    text-align: left !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .text-xl-end {
+    text-align: right !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .text-xl-center {
+    text-align: center !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .float-xxl-start {
+    float: left !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .float-xxl-end {
+    float: right !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .float-xxl-none {
+    float: none !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xxl-inline {
+    display: inline !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xxl-inline-block {
+    display: inline-block !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xxl-block {
+    display: block !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xxl-grid {
+    display: grid !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xxl-table {
+    display: table !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xxl-table-row {
+    display: table-row !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xxl-table-cell {
+    display: table-cell !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xxl-flex {
+    display: flex !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xxl-inline-flex {
+    display: inline-flex !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-xxl-none {
+    display: none !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xxl-fill {
+    flex: 1 1 auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xxl-row {
+    flex-direction: row !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xxl-column {
+    flex-direction: column !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xxl-row-reverse {
+    flex-direction: row-reverse !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xxl-column-reverse {
+    flex-direction: column-reverse !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xxl-grow-0 {
+    flex-grow: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xxl-grow-1 {
+    flex-grow: 1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xxl-shrink-0 {
+    flex-shrink: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xxl-shrink-1 {
+    flex-shrink: 1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xxl-wrap {
+    flex-wrap: wrap !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xxl-nowrap {
+    flex-wrap: nowrap !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .flex-xxl-wrap-reverse {
+    flex-wrap: wrap-reverse !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-xxl-start {
+    justify-content: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-xxl-end {
+    justify-content: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-xxl-center {
+    justify-content: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-xxl-between {
+    justify-content: space-between !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-xxl-around {
+    justify-content: space-around !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .justify-content-xxl-evenly {
+    justify-content: space-evenly !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-xxl-start {
+    align-items: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-xxl-end {
+    align-items: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-xxl-center {
+    align-items: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-xxl-baseline {
+    align-items: baseline !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-items-xxl-stretch {
+    align-items: stretch !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-xxl-start {
+    align-content: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-xxl-end {
+    align-content: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-xxl-center {
+    align-content: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-xxl-between {
+    align-content: space-between !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-xxl-around {
+    align-content: space-around !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-content-xxl-stretch {
+    align-content: stretch !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-xxl-auto {
+    align-self: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-xxl-start {
+    align-self: flex-start !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-xxl-end {
+    align-self: flex-end !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-xxl-center {
+    align-self: center !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-xxl-baseline {
+    align-self: baseline !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .align-self-xxl-stretch {
+    align-self: stretch !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-xxl-first {
+    order: -1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-xxl-0 {
+    order: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-xxl-1 {
+    order: 1 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-xxl-2 {
+    order: 2 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-xxl-3 {
+    order: 3 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-xxl-4 {
+    order: 4 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-xxl-5 {
+    order: 5 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .order-xxl-last {
+    order: 6 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-xxl-0 {
+    margin: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-xxl-1 {
+    margin: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-xxl-2 {
+    margin: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-xxl-3 {
+    margin: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-xxl-4 {
+    margin: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-xxl-5 {
+    margin: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .m-xxl-auto {
+    margin: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-xxl-0 {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-xxl-1 {
+    margin-right: 0.25rem !important;
+    margin-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-xxl-2 {
+    margin-right: 0.5rem !important;
+    margin-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-xxl-3 {
+    margin-right: 1rem !important;
+    margin-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-xxl-4 {
+    margin-right: 1.5rem !important;
+    margin-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-xxl-5 {
+    margin-right: 3rem !important;
+    margin-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mx-xxl-auto {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-xxl-0 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-xxl-1 {
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-xxl-2 {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-xxl-3 {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-xxl-4 {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-xxl-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .my-xxl-auto {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-xxl-0 {
+    margin-top: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-xxl-1 {
+    margin-top: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-xxl-2 {
+    margin-top: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-xxl-3 {
+    margin-top: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-xxl-4 {
+    margin-top: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-xxl-5 {
+    margin-top: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mt-xxl-auto {
+    margin-top: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-xxl-0 {
+    margin-right: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-xxl-1 {
+    margin-right: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-xxl-2 {
+    margin-right: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-xxl-3 {
+    margin-right: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-xxl-4 {
+    margin-right: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-xxl-5 {
+    margin-right: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .me-xxl-auto {
+    margin-right: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-xxl-0 {
+    margin-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-xxl-1 {
+    margin-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-xxl-2 {
+    margin-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-xxl-3 {
+    margin-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-xxl-4 {
+    margin-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-xxl-5 {
+    margin-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .mb-xxl-auto {
+    margin-bottom: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-xxl-0 {
+    margin-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-xxl-1 {
+    margin-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-xxl-2 {
+    margin-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-xxl-3 {
+    margin-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-xxl-4 {
+    margin-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-xxl-5 {
+    margin-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ms-xxl-auto {
+    margin-left: auto !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-xxl-0 {
+    padding: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-xxl-1 {
+    padding: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-xxl-2 {
+    padding: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-xxl-3 {
+    padding: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-xxl-4 {
+    padding: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .p-xxl-5 {
+    padding: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-xxl-0 {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-xxl-1 {
+    padding-right: 0.25rem !important;
+    padding-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-xxl-2 {
+    padding-right: 0.5rem !important;
+    padding-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-xxl-3 {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-xxl-4 {
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .px-xxl-5 {
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-xxl-0 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-xxl-1 {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-xxl-2 {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-xxl-3 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-xxl-4 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .py-xxl-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-xxl-0 {
+    padding-top: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-xxl-1 {
+    padding-top: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-xxl-2 {
+    padding-top: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-xxl-3 {
+    padding-top: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-xxl-4 {
+    padding-top: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pt-xxl-5 {
+    padding-top: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-xxl-0 {
+    padding-right: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-xxl-1 {
+    padding-right: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-xxl-2 {
+    padding-right: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-xxl-3 {
+    padding-right: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-xxl-4 {
+    padding-right: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pe-xxl-5 {
+    padding-right: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-xxl-0 {
+    padding-bottom: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-xxl-1 {
+    padding-bottom: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-xxl-2 {
+    padding-bottom: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-xxl-3 {
+    padding-bottom: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-xxl-4 {
+    padding-bottom: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .pb-xxl-5 {
+    padding-bottom: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-xxl-0 {
+    padding-left: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-xxl-1 {
+    padding-left: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-xxl-2 {
+    padding-left: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-xxl-3 {
+    padding-left: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-xxl-4 {
+    padding-left: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .ps-xxl-5 {
+    padding-left: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-xxl-0 {
+    gap: 0 !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-xxl-1 {
+    gap: 0.25rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-xxl-2 {
+    gap: 0.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-xxl-3 {
+    gap: 1rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-xxl-4 {
+    gap: 1.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .gap-xxl-5 {
+    gap: 3rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .text-xxl-start {
+    text-align: left !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .text-xxl-end {
+    text-align: right !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .text-xxl-center {
+    text-align: center !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .fs-1 {
+    font-size: 2.5rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .fs-2 {
+    font-size: 2rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .fs-3 {
+    font-size: 1.75rem !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .fs-4 {
+    font-size: 1.5rem !important;
+  }
+}
+
+@media print {
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-print-inline {
+    display: inline !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-print-inline-block {
+    display: inline-block !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-print-block {
+    display: block !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-print-grid {
+    display: grid !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-print-table {
+    display: table !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-print-table-row {
+    display: table-row !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-print-table-cell {
+    display: table-cell !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-print-flex {
+    display: flex !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-print-inline-flex {
+    display: inline-flex !important;
+  }
+  /* line 67, ../../../../../HTML5/MouseMove/style/scss/bootstrap/mixins/_utilities.scss */
+  .d-print-none {
+    display: none !important;
+  }
+}
+
+/*# sourceMappingURL=bootstrap-utilities.css.map */

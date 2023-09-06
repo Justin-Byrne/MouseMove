@@ -9,7 +9,7 @@ class Pattern extends Array
     _index   = 0;
     _current = undefined;
 
-    #length = undefined;
+    #length  = undefined;
 
     /**
      * Creates a list
@@ -132,6 +132,10 @@ class Pattern extends Array
                     if ( ! _results ) return false;
                 }
 
+            else
+
+                return false;
+
 
             return true;
         }
@@ -146,6 +150,7 @@ class Pattern extends Array
             if ( this._index > this.#length )
             {
                 this._index = this.#length;
+
 
                 return false;
             }
@@ -162,5 +167,33 @@ class Pattern extends Array
         prev ( )
         {
             return ( this._index == 0 ) ? false : this.current = this [ --this._index ];
+        }
+
+        /**
+         * Returns the index of the passed id; within the pattern array
+         * @param           {string} id                                 Identifier of DOM; XPath, CSS Selector
+         */
+        indexOfId ( id )
+        {
+            for ( let [ _index, _entry ] of Object.entries ( this ) )
+
+                if ( id === _entry.id )
+
+                    return _index;
+
+
+            return -1;
+        }
+
+        /**
+         * Inserts an object at the index provided
+         * @param           {number} index                              Index number to insert into
+         * @param           {Object} object                             Implicitly of explicitly declared object; see README.md
+         */
+        insert ( index, object )
+        {
+            super.splice ( index, 0, object );
+
+            this.#length += 1;
         }
 }

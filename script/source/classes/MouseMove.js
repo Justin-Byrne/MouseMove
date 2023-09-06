@@ -16,7 +16,7 @@ class MouseMove
     {
         animation:
         {
-            duration: 1500,
+            duration: 1500,         // Default: 1500
             timing:   undefined,    // Note: defined at creation
             ease:
             {
@@ -112,8 +112,8 @@ class MouseMove
             Author:    'Justin Don Byrne',
             Created:   'Aug, 04 2023',
             Library:   'Mouse Move: Automated mouse cursor for web presentation',
-            Updated:   'Aug, 25 2023',
-            Version:   '0.1.7',
+            Updated:   'Sep, 06 2023',
+            Version:   '0.1.8',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -127,21 +127,21 @@ class MouseMove
              * @param           {string} id                                 XPath
              * @return          {boolean}                                   True | False
              */
-            isXpath:        ( id )  => id.substring ( 0, 2 ).includes ( '/' ),
+            isXPath:        ( id )      => id.substring ( 0, 2 ).includes ( '/' ),
 
             /**
              * Checks whether the passed id is a CSS query selector
              * @param           {string} id                                 CSS query selector
              * @return          {boolean}                                   True | False
              */
-            isCssSelector:  ( id )  =>
+            isCssSelector:  ( id )      =>
             {
                 let _symbols = this.#config.identifiers.symbols
 
 
                 for ( let _symbol of _symbols )
 
-                    if ( id.includes ( _symbol ) && ! this.#tools.isXpath ( id ) )
+                    if ( id.includes ( _symbol ) && ! this.#tools.isXPath ( id ) )
 
                         return true;
 
@@ -154,14 +154,14 @@ class MouseMove
              * @param           {string} id                                 Element identifier
              * @return          {boolean}                                   True | False
              */
-            isId:           ( id )  =>
+            isId:           ( id )      =>
             {
                 let _symbols = this.#config.identifiers.symbols
 
 
                 for ( let _symbol of _symbols )
 
-                    if ( id.includes ( _symbol ) || this.#tools.isXpath ( id ) )
+                    if ( id.includes ( _symbol ) || this.#tools.isXPath ( id ) )
 
                         return false;
 
@@ -174,7 +174,7 @@ class MouseMove
              * @param           {string} string                             Camel case string
              * @return          {boolean}                                   True | False
              */
-            isCamelCase ( string )
+            isCamelCase:    ( string )  =>
             {
                 let _camel = /[A-Z]+[^A-Z]+/.test ( string );
 
@@ -186,6 +186,13 @@ class MouseMove
                 return ( _camel && _lower );
             },
 
+            /**
+             * Checks whether an id is an XPath or CSS Selector
+             * @param           {string} id                                 XPath or CSS Selector
+             * @return          {boolean}                                   True | False
+             */
+            isXPathOrCssSelector: ( id ) => ( this.#tools.isXPath ( id ) || this.#tools.isCssSelector ( id ) ),
+
         ////    GETTERS    /////////////////////////////////////
 
             /**
@@ -196,17 +203,43 @@ class MouseMove
             getElementByXPath:  ( xpath )   => document.evaluate ( xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue,
 
             /**
+             * Returns an XPath for the passed element
+             * @param           {Object} element                            HTML DOM element
+             * @return          {string}                                    XPath
+             */
+            getXPath:           ( element ) =>
+            {
+                if ( element.tagName == 'HTML' ) return '/HTML[1]';
+
+                if ( element === document.body ) return '/HTML[1]/BODY[1]';
+
+
+                let ix = 0;
+
+                let siblings = element.parentNode.childNodes;
+
+
+                for ( let i = 0; i < siblings.length; i++ )
+                {
+                    let sibling = siblings [ i ];
+
+
+                    if ( sibling === element ) return this.#tools.getXPath ( element.parentNode ) + '/' + element.tagName + '[' + ( ix + 1 ) + ']';
+
+                    if ( sibling.nodeType === 1 && sibling.tagName === element.tagName ) ix++;
+                }
+            },
+
+            /**
              * Returns a DOM's element based on its identifier
              * @param           {string} id                                 CSS query, identifier, or XPath
              * @return          {Object}                                    HTML DOM element
              */
             getElement:         ( id )      =>
             {
-                if ( this.#tools.isXpath       ( id ) ) return this.#tools.addGeneratedId   ( this.#tools.getElementByXPath ( id ) );
+                if ( this.#tools.isXPathOrCssSelector ( id ) ) return this.#tools.addGeneratedId ( id );
 
-                if ( this.#tools.isCssSelector ( id ) ) return this.#tools.addGeneratedId   ( document.querySelector   ( id ) );
-
-                if ( this.#tools.isId          ( id ) ) return document.getElementById ( id );
+                if ( this.#tools.isId                 ( id ) ) return document.getElementById    ( id );
 
 
                 return undefined;
@@ -217,14 +250,14 @@ class MouseMove
              * @param           {string} type                               Type of easing animation, in camel case: i.e.: 'easeInSine'
              * @return          {function}                                  Easing function from #config.animation.ease
              */
-            getEasing:          ( type )  =>
+            getEasing:          ( type )    =>
             {
                 /**
                  * Converts camel case string into an <Array>.<String> for bracket notation
                  * @param       {string} string                         Camel case string to split
                  * @return      {Array}                                 Array of strings
                  */
-                function stringToBracketNotation ( string )
+                function _stringToBracketNotation ( string )
                 {
                     let _bracketEntries = string.split ( /(?=[A-Z])/ );
 
@@ -239,42 +272,97 @@ class MouseMove
                     return _bracketEntries;
                 }
 
-                let _result = ( type != undefined ) ? stringToBracketNotation ( type ) : stringToBracketNotation ( this.animation );
+                let _result = ( type != undefined ) ? _stringToBracketNotation ( type ) : _stringToBracketNotation ( this.animation );
 
 
                 return this.#config.animation.ease [ _result [ 0 ] ] [ _result [ 1 ] ];
             },
 
+            /**
+             * Returns an element based on its XPath or CSS Selector
+             * @param           {string} id                                 XPath or CSS Selector
+             * @return          {Object}                                    HTML DOM element
+             */
+            getElementByXPathOrSelector: ( id ) => ( this.#tools.isXPath ( id ) ) ? this.#tools.getElementByXPath ( id ) : ( this.#tools.isCssSelector ( id ) ) ? document.querySelector ( id ) : null,
+
         ////    ADDITIVE    ////////////////////////////////////
 
             /**
              * Adds a generated id to the passed element
-             * @param           {Object} element                            HTML DOM element
+             * @param           {string} id                                 Element identifier
              * @return          {Object} element                            HTML DOM element
              */
-            addGeneratedId:     ( element ) =>
+            addGeneratedId:     ( id ) =>
             {
-                let _index      = this.#config.identifiers.generativeIndex;
+                ////    FUNCTIONS    ///////////////////////
 
-                let _qualifier  = this.#config.identifiers.qualifier;
-
-                let _numberWord = this.#config.identifiers.words [ _index ];
-
-
-                element.id = this.sequence [ _index ].id = _qualifier + '_' + _numberWord;
+                function _isNestedElement ( element )
+                {
+                    let _result = false;
 
 
-                this.#config.identifiers.generativeIndex++;
+                    switch ( element.tagName )
+                    {
+                        case 'OPTION':  _result = ( element.parentElement.tagName === 'SELECT' );   break;
+                    }
 
 
-                return element;
+                    return _result;
+                }
+
+                ////    LOGIC    ///////////////////////////
+
+                let _identifiers = this.#config.identifiers;
+
+                let _index       = this.sequence.indexOfId ( id );
+
+                let _element     = this.#tools.getElementByXPathOrSelector ( id );
+
+                let _qualifier   = _identifiers.qualifier;
+
+                let _numberWord  = _identifiers.words [ _identifiers.generativeIndex ];
+
+
+                if ( _isNestedElement ( _element ) )
+                {
+                    _element = this.#tools.getElementByXPath ( this.#tools.getXPath ( _element.parentElement ) );
+
+
+                    this.sequence.insert ( _index, { 'id': this.#tools.getXPath ( _element ), 'action': 'click' } );
+
+
+                    _element.id = this.sequence [ _index ].id = `${_qualifier}_${_numberWord}`;
+
+
+                    _index++;
+
+                    _identifiers.generativeIndex++;
+
+
+                    _numberWord  = _identifiers.words [ _identifiers.generativeIndex ];
+
+
+                    this.sequence [ _index ].id = `${_qualifier}_${_numberWord}`;
+
+
+                    _element.onclick = ( ) => this.cursor.createSelectOptions ( { origin: _element.id, target: this.sequence [ _index ].id, option: id } );
+                }
+                else
+                {
+                    _element.id = this.sequence [ _index ].id = `${_qualifier}_${_numberWord}`;
+
+
+                    _identifiers.generativeIndex++;
+                }
+
+                return _element;
             },
 
         ////    STERILIZATION    ///////////////////////////////
 
             /**
              * Cleans script of it's function wrapper
-             * @param           {function} script                   JavaScript function
+             * @param           {Function} script                   JavaScript function
              * @return          {string}                            Function as a string
              */
             cleanScriptCode:    ( script )  =>
@@ -286,7 +374,11 @@ class MouseMove
 
         ////    CREATION    ////////////////////////////////////
 
-            hotkeyListener: ( ) =>
+            /**
+             * Mousetrap hotkey listener for activating MouseMove.go ( )
+             * @return          {Function}                          Mousetrap hotkey listener
+             */
+            hotkeyListener:  ( ) =>
             {
                 Mousetrap.bind ( [ 'ctrl+g', 'command+g' ], function ( event )
                 {
@@ -314,7 +406,6 @@ class MouseMove
                 document.body.appendChild ( _script );
             },
 
-
             /**
              * Seeds mouse binding mouse events along with unique identifiers
              */
@@ -323,10 +414,10 @@ class MouseMove
                 let _seedEvents = ( ) =>
                 {
                     for ( let _step of this.sequence )
-
-                        if ( this.#tools.isCssSelector ( _step.id ) || this.#tools.isXpath ( _step.id ) )
+                    {
+                        if ( this.#tools.isCssSelector ( _step.id ) || this.#tools.isXPath ( _step.id ) )
                         {
-                            let _element    = this.#tools.getElement ( _step.id );
+                            let _element = this.#tools.getElement ( _step.id );
 
                             let _binds      = _step.bind;
 
@@ -347,6 +438,16 @@ class MouseMove
 
                                         : console.log ( ` >> [ ERROR ]: Bind "${_bind}" is not a valid mouse action !` );
                         }
+                        // else
+                        // {
+                        //     let _element = this.#tools.getElement ( _value.id );
+
+
+                        //     if ( _element.tagName === 'SELECT' && _element.childElementCount > 0 )
+
+                        //         _element.onclick = ( ) => this.cursor.createSelectOptions ( _value.id );
+                        // }
+                    }
                 }
 
 
@@ -374,28 +475,6 @@ class MouseMove
         this.#tools.embedMousetrap ( );
     }
 
-    ////    [ CURSOR ]     /////////////////////////////////
-
-        /**
-         * Set cursor property
-         * @param           {Cursor} cursor                             Cursor object
-         */
-        set cursor ( cursor )
-        {
-            this._cursor = ( cursor instanceof Cursor  ) ? cursor     : this._cursor;
-
-            this._cursor = ( this._cursor == undefined ) ? new Cursor : this._cursor;
-        }
-
-        /**
-         * Get cursor property
-         * @return          {Cursor}                                    Cursor object
-         */
-        get cursor ( )
-        {
-            return this._cursor;
-        }
-
     ////    [ SEQUENCE ]    ////////////////////////////////
 
         /**
@@ -417,6 +496,28 @@ class MouseMove
         get sequence ( )
         {
             return this._sequence;
+        }
+
+    ////    [ CURSOR ]     /////////////////////////////////
+
+        /**
+         * Set cursor property
+         * @param           {Cursor} cursor                             Cursor object
+         */
+        set cursor ( cursor )
+        {
+            this._cursor = ( cursor instanceof Cursor  ) ? cursor     : this._cursor;
+
+            this._cursor = ( this._cursor == undefined ) ? new Cursor : this._cursor;
+        }
+
+        /**
+         * Get cursor property
+         * @return          {Cursor}                                    Cursor object
+         */
+        get cursor ( )
+        {
+            return this._cursor;
         }
 
     ////    [ ANIMATION ]    ///////////////////////////////
@@ -449,6 +550,19 @@ class MouseMove
         {
             ////    FUNCTIONS    ///////////////////////////
 
+                async function _writeText ( object )
+                {
+                    let _text = object.action.substring ( 5, object.action.length );
+
+
+                    await _cursor.switchType ( 'click' );
+
+                    await _cursor.switchType (         );
+
+
+                    await Text.write ( _text, object.id );
+                }
+
                 async function _action ( object )
                 {
                     _cursor.mouseAction ( document.getElementById ( object.id ) );              // Initiate mouse event action
@@ -471,6 +585,15 @@ class MouseMove
                             case 'click':       await _cursor.switchType (   'click'   );       await _cursor.switchType ( );   break;
 
                             case 'dblclick':    /*              Nothing ...            */       /*        Nothing ...      */   break;
+
+                            default:
+
+                                ( object.action.substring ( 0, 5 ) === 'type~' )
+
+                                    ? await _writeText ( object )
+
+                                    : console.log ( ` >> [ ERROR ]: Action "${object.action}" is not a valid action !` );
+
                         }
                     }
                 }
