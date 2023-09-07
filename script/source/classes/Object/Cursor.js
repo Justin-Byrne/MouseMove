@@ -21,15 +21,15 @@ class Cursor
         },
         cache:
         {
-            avoid: [ '', 'ui-cursor', 'canvas', 'ui-overlay', 'canvas-underlay' ],
-            over:  [ ],
+            avoid:    [ 'html', 'ui-cursor', 'canvas' ],
+            over:     [ ],
             position: undefined
         },
         presentation:
         {
             settings:
             {
-                os: 'mac',        // Mac, Win, Linux
+                os: 'mac',              // Mac, Win, Linux
                 css:
                 {
                     cursors:
@@ -504,8 +504,17 @@ class Cursor
          */
         createSelectOptions ( id = { origin: undefined, target: undefined, option: undefined } )
         {
+            /**
+             * Creates a ul element, mirroring the passed select input element
+             * @param           {Object} element                            Select element from DOM
+             * @param           {Object} tools                              #tools object from 'this' context; this.#tools
+             * @return          {Object}                                    Ul element with subsequent li elements
+             */
             function _createUl ( element, tools )
             {
+                let _checkMark        = '<img width="20" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0id2hpdGUiIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgPHBhdGggZD0iTTEwLjk3IDQuOTdhLjc1Ljc1IDAgMCAxIDEuMDcgMS4wNWwtMy45OSA0Ljk5YS43NS43NSAwIDAgMS0xLjA4LjAyTDQuMzI0IDguMzg0YS43NS43NSAwIDEgMSAxLjA2LTEuMDZsMi4wOTQgMi4wOTMgMy40NzMtNC40MjVhLjI2Ny4yNjcgMCAwIDEgLjAyLS4wMjJ6Ii8+Cjwvc3ZnPg=="/>';
+
+
                 let _ul               = document.createElement ( 'ul' );
 
                     _ul.style.cssText = tools.jsonToCss ( _css.ul );
@@ -520,7 +529,7 @@ class Cursor
 
                         _icon.style     = tools.jsonToCss ( _css.icon );
 
-                        _icon.innerHTML = ( element [ _i ].attributes.selected != undefined ) ? '<img width="20" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0id2hpdGUiIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgPHBhdGggZD0iTTEwLjk3IDQuOTdhLjc1Ljc1IDAgMCAxIDEuMDcgMS4wNWwtMy45OSA0Ljk5YS43NS43NSAwIDAgMS0xLjA4LjAyTDQuMzI0IDguMzg0YS43NS43NSAwIDEgMSAxLjA2LTEuMDZsMi4wOTQgMi4wOTMgMy40NzMtNC40MjVhLjI2Ny4yNjcgMCAwIDEgLjAyLS4wMjJ6Ii8+Cjwvc3ZnPg=="/>' : ' ';
+                        _icon.innerHTML = ( element [ _i ].attributes.selected != undefined ) ? _checkMark : ' ';
 
 
                     let _span           = document.createElement ( 'span' );
@@ -532,11 +541,16 @@ class Cursor
 
                         _li.style       = tools.jsonToCss ( _css.li );
 
+                        _li.id          = ( _option - 1 == _i ) ? id.target : '';
+
                         _li.setAttribute ( 'onmouseover', "this.style.background = 'rgb(73,133,218)';" );
 
-                        _li.setAttribute ( 'onmouseout',  "this.style.background = 'none'" );
+                        _li.setAttribute ( 'onmouseout',  "this.style.background = 'none';" );
 
-                        _li.id = ( _option - 1 == _i ) ? id.target : '';
+                        _li.setAttribute ( 'onclick',     `for ( let _child of this.parentElement.children ) _child.firstChild.firstChild.innerHTML = ' '; this.firstChild.firstChild.insertAdjacentHTML ( 'afterbegin', '${_checkMark}' ); for ( let _option of ${id.origin}.options ) if ( _option.attributes.selected != undefined ) _option.removeAttribute ( 'selected' ); else if ( _option.index == ${_option} - 1 ) _option.setAttribute ( 'selected', '' ); setTimeout ( ( ) => this.parentElement.style.display = 'none', 100 );` );
+
+                        // /* for ( let _i; _i < ${id.origin.length}; _i++ ) { console.log ( _i ); /* console.log ( _option.attributes.selected != undefined ); */ }` );
+
 
 
                         _span.prepend   ( _icon );
@@ -564,9 +578,9 @@ class Cursor
 
             let _css         = this.#config.presentation.settings.css.ui.select;
 
-                _css.ul.left = _point.x - ( _select.getBoundingClientRect ( ).width / 2 );
+                _css.ul.left = _point.x - ( _select.getBoundingClientRect ( ).width  / 2 );
 
-                _css.ul.top  = _point.y;
+                _css.ul.top  = _point.y - ( _select.getBoundingClientRect ( ).height / 2 );
 
             ////    UL CREATION    /////////////////////////////////////////////
 

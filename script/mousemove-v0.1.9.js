@@ -1,36 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>JSDoc: Source: mousemove-v0.1.8.js</title>
-
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
-
-<body>
-
-<div id="main">
-
-    <h1 class="page-title">Source: mousemove-v0.1.8.js</h1>
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>// @program: 		Mouse Move 
+// @program: 		Mouse Move 
 // @brief: 			Automated mouse cursor for web presentation 
 // @author: 		Justin D. Byrne 
 // @email: 			justin@byrne-systems.com 
-// @version: 		0.1.8 
+// @version: 		0.1.9 
 // @license: 		GPL-2.0
 
 "use strict";
@@ -109,7 +81,7 @@ class List extends Array
             return this._current;
         }
 
-    ////    &amp; EXTEND &amp;    //////////////////////////////////
+    ////    & EXTEND &    //////////////////////////////////
 
         /**
          * Get current DOM identifier
@@ -154,7 +126,7 @@ class List extends Array
             let _stringArray = _isArrayOfStrings ( array );
 
 
-            return ( _List || _Array &amp;&amp; _1_Dim &amp;&amp; _stringArray );
+            return ( _List || _Array && _1_Dim && _stringArray );
         }
 
         /**
@@ -260,7 +232,7 @@ class Pattern extends Array
             return this._current;
         }
 
-    ////    &amp; EXTEND &amp;    //////////////////////////////////
+    ////    & EXTEND &    //////////////////////////////////
 
         /**
          * Get current DOM identifier
@@ -301,7 +273,7 @@ class Pattern extends Array
 
                     if ( typeof _object == 'object')
                     {
-                        let _keys   = ( Object.keys ( _object ).length &lt;= 3 );
+                        let _keys   = ( Object.keys ( _object ).length <= 3 );
 
                         let _id     = ( _object.hasOwnProperty ( 'id'     ) ) ? ( typeof _object.id     === 'string' ) : false
 
@@ -310,7 +282,7 @@ class Pattern extends Array
                         let _bind   = ( _object.hasOwnProperty ( 'bind'   ) ) ? ( typeof _object.bind   === 'object' || typeof _object.bind === 'function' ) : false;
 
 
-                        _results = ( _keys &amp;&amp; _id &amp;&amp; ( _action || _bind ) );
+                        _results = ( _keys && _id && ( _action || _bind ) );
                     }
                     else
 
@@ -387,7 +359,7 @@ class Pattern extends Array
 }
  
 /**
- * @class           {Object}  Point                             X &amp; Y coordinates for an object
+ * @class           {Object}  Point                             X & Y coordinates for an object
  * @property        {number}  [x=0]                             X - x-axis coordinate
  * @property        {number}  [y=0]                             Y - y-axis coordinate
  */
@@ -415,7 +387,7 @@ class Point
          */
         set x ( value )
         {
-            this._x = (  ( typeof value === 'number' )  &amp;&amp;  !isNaN ( value )  ) ? value : this._x;
+            this._x = (  ( typeof value === 'number' )  &&  !isNaN ( value )  ) ? value : this._x;
         }
 
         /**
@@ -435,7 +407,7 @@ class Point
          */
         set y ( value )
         {
-            this._y = (  ( typeof value === 'number' )  &amp;&amp;  !isNaN ( value )  ) ? value : this._y;
+            this._y = (  ( typeof value === 'number' )  &&  !isNaN ( value )  ) ? value : this._y;
         }
 
         /**
@@ -465,13 +437,13 @@ class Point
             let _y      = ( object.hasOwnProperty ( 'y' ) ) ? ( typeof object.y === 'number' ) : false;
 
 
-            return ( _Point || _length &amp;&amp; _x &amp;&amp; _y );
+            return ( _Point || _length && _x && _y );
         }
 }
  
 /**
  * @class           {Object} Cursor                             Cursor object
- * @property        {Point}  position                           X &amp; Y axis coordinates
+ * @property        {Point}  position                           X & Y axis coordinates
  * @property        {string} id                                 Cursor's DOM identifier
  * @property        {string} type                               Type of cursor
  * @property        {Object} config                             Internal private configuration
@@ -492,15 +464,15 @@ class Cursor
         },
         cache:
         {
-            avoid: [ '', 'ui-cursor', 'canvas', 'ui-overlay', 'canvas-underlay' ],
-            over:  [ ],
+            avoid:    [ 'html', 'ui-cursor', 'canvas' ],
+            over:     [ ],
             position: undefined
         },
         presentation:
         {
             settings:
             {
-                os: 'mac',        // Mac, Win, Linux
+                os: 'mac',              // Mac, Win, Linux
                 css:
                 {
                     cursors:
@@ -610,7 +582,7 @@ class Cursor
 
                 for ( let [ _key, _value ] of Object.entries ( json ) )
                 {
-                    _value   = ( typeof _value === 'number' &amp;&amp; _key != 'z-index') ? `${_value}px` : _value;
+                    _value   = ( typeof _value === 'number' && _key != 'z-index') ? `${_value}px` : _value;
 
 
                     _result += `${_key}: ${_value}; `
@@ -625,7 +597,7 @@ class Cursor
             /**
              * Gets the center point of an element
              * @param           {Object} element                            HTML DOM element
-             * @return          {Point}                                     X &amp; Y Coordinates
+             * @return          {Point}                                     X & Y Coordinates
              */
             getCenterPoint: ( element ) =>
             ( {
@@ -710,7 +682,7 @@ class Cursor
 
     /**
      * Create a single instance of a Cursor
-     * @param           {string} position                           X &amp; Y axis coordinates
+     * @param           {string} position                           X & Y axis coordinates
      * @param           {string} id                                 Cursor's DOM identifier
      * @param           {string} type                               Type of cursor, within #_cursors
      */
@@ -773,7 +745,7 @@ class Cursor
 
         /**
          * Set position property
-         * @param           {Point} point                               X &amp; Y coordinates
+         * @param           {Point} point                               X & Y coordinates
          */
         set position ( point )
         {
@@ -792,7 +764,7 @@ class Cursor
 
         /**
          * Get position property
-         * @return          {Point}                                     X &amp; Y coordinates
+         * @return          {Point}                                     X & Y coordinates
          */
         get position ( )
         {
@@ -887,7 +859,7 @@ class Cursor
             let _type   = ( value.hasOwnProperty ( 'type' ) ) ? ( typeof value.type === 'string' ) : false;
 
 
-            return ( _cursor || _length &amp;&amp; _id &amp;&amp; _type );
+            return ( _cursor || _length && _id && _type );
         }
 
         /**
@@ -975,14 +947,23 @@ class Cursor
          */
         createSelectOptions ( id = { origin: undefined, target: undefined, option: undefined } )
         {
+            /**
+             * Creates a ul element, mirroring the passed select input element
+             * @param           {Object} element                            Select element from DOM
+             * @param           {Object} tools                              #tools object from 'this' context; this.#tools
+             * @return          {Object}                                    Ul element with subsequent li elements
+             */
             function _createUl ( element, tools )
             {
+                let _checkMark        = '<img width="20" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0id2hpdGUiIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgPHBhdGggZD0iTTEwLjk3IDQuOTdhLjc1Ljc1IDAgMCAxIDEuMDcgMS4wNWwtMy45OSA0Ljk5YS43NS43NSAwIDAgMS0xLjA4LjAyTDQuMzI0IDguMzg0YS43NS43NSAwIDEgMSAxLjA2LTEuMDZsMi4wOTQgMi4wOTMgMy40NzMtNC40MjVhLjI2Ny4yNjcgMCAwIDEgLjAyLS4wMjJ6Ii8+Cjwvc3ZnPg=="/>';
+
+
                 let _ul               = document.createElement ( 'ul' );
 
                     _ul.style.cssText = tools.jsonToCss ( _css.ul );
 
 
-                for ( let _i = 0; _i &lt; element.length; _i++ )
+                for ( let _i = 0; _i < element.length; _i++ )
                 {
                     let _text = element [ _i ].innerText;
 
@@ -991,7 +972,7 @@ class Cursor
 
                         _icon.style     = tools.jsonToCss ( _css.icon );
 
-                        _icon.innerHTML = ( element [ _i ].attributes.selected != undefined ) ? '&lt;img width="20" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0id2hpdGUiIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgPHBhdGggZD0iTTEwLjk3IDQuOTdhLjc1Ljc1IDAgMCAxIDEuMDcgMS4wNWwtMy45OSA0Ljk5YS43NS43NSAwIDAgMS0xLjA4LjAyTDQuMzI0IDguMzg0YS43NS43NSAwIDEgMSAxLjA2LTEuMDZsMi4wOTQgMi4wOTMgMy40NzMtNC40MjVhLjI2Ny4yNjcgMCAwIDEgLjAyLS4wMjJ6Ii8+Cjwvc3ZnPg=="/>' : ' ';
+                        _icon.innerHTML = ( element [ _i ].attributes.selected != undefined ) ? _checkMark : ' ';
 
 
                     let _span           = document.createElement ( 'span' );
@@ -1003,11 +984,16 @@ class Cursor
 
                         _li.style       = tools.jsonToCss ( _css.li );
 
+                        _li.id          = ( _option - 1 == _i ) ? id.target : '';
+
                         _li.setAttribute ( 'onmouseover', "this.style.background = 'rgb(73,133,218)';" );
 
-                        _li.setAttribute ( 'onmouseout',  "this.style.background = 'none'" );
+                        _li.setAttribute ( 'onmouseout',  "this.style.background = 'none';" );
 
-                        _li.id = ( _option - 1 == _i ) ? id.target : '';
+                        _li.setAttribute ( 'onclick',     `for ( let _child of this.parentElement.children ) _child.firstChild.firstChild.innerHTML = ' '; this.firstChild.firstChild.insertAdjacentHTML ( 'afterbegin', '${_checkMark}' ); for ( let _option of ${id.origin}.options ) if ( _option.attributes.selected != undefined ) _option.removeAttribute ( 'selected' ); else if ( _option.index == ${_option} - 1 ) _option.setAttribute ( 'selected', '' ); setTimeout ( ( ) => this.parentElement.style.display = 'none', 100 );` );
+
+                        // /* for ( let _i; _i < ${id.origin.length}; _i++ ) { console.log ( _i ); /* console.log ( _option.attributes.selected != undefined ); */ }` );
+
 
 
                         _span.prepend   ( _icon );
@@ -1035,9 +1021,9 @@ class Cursor
 
             let _css         = this.#config.presentation.settings.css.ui.select;
 
-                _css.ul.left = _point.x - ( _select.getBoundingClientRect ( ).width / 2 );
+                _css.ul.left = _point.x - ( _select.getBoundingClientRect ( ).width  / 2 );
 
-                _css.ul.top  = _point.y;
+                _css.ul.top  = _point.y - ( _select.getBoundingClientRect ( ).height / 2 );
 
             ////    UL CREATION    /////////////////////////////////////////////
 
@@ -1183,21 +1169,21 @@ class MouseMove
                 {
                     sine:    ( timeFraction ) => - ( Math.cos ( Math.PI * timeFraction ) - 1 ) / 2,
 
-                    cubic:   ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 4 * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 3 ) / 2,
+                    cubic:   ( timeFraction ) => ( timeFraction < 0.5 ) ? 4 * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 3 ) / 2,
 
-                    quint:   ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 16 * timeFraction * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 5 ) / 2,
+                    quint:   ( timeFraction ) => ( timeFraction < 0.5 ) ? 16 * timeFraction * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 5 ) / 2,
 
-                    circ:    ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? ( 1 - Math.sqrt ( 1 - Math.pow ( 2 * timeFraction, 2 ) ) ) / 2 : ( Math.sqrt ( 1 - Math.pow ( -2 * timeFraction + 2, 2 ) ) + 1 ) / 2,
+                    circ:    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( 1 - Math.sqrt ( 1 - Math.pow ( 2 * timeFraction, 2 ) ) ) / 2 : ( Math.sqrt ( 1 - Math.pow ( -2 * timeFraction + 2, 2 ) ) + 1 ) / 2,
 
-                    elastic: ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction &lt; 0.5 ) ? - ( Math.pow ( 2, 20 * timeFraction - 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( ( 2 * Math.PI ) / 4.5 ) ) ) / 2 : ( Math.pow ( 2, -20 * timeFraction + 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( 2 * Math.PI ) / 4.5 ) ) / 2 + 1,
+                    elastic: ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction < 0.5 ) ? - ( Math.pow ( 2, 20 * timeFraction - 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( ( 2 * Math.PI ) / 4.5 ) ) ) / 2 : ( Math.pow ( 2, -20 * timeFraction + 10 ) * Math.sin ( ( 20 * timeFraction - 11.125 ) * ( 2 * Math.PI ) / 4.5 ) ) / 2 + 1,
 
-                    quad:    ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 2 * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 2 ) / 2,
+                    quad:    ( timeFraction ) => ( timeFraction < 0.5 ) ? 2 * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 2 ) / 2,
 
-                    quart:   ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? 8 * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 4 ) / 2,
+                    quart:   ( timeFraction ) => ( timeFraction < 0.5 ) ? 8 * timeFraction * timeFraction * timeFraction * timeFraction : 1 - Math.pow ( -2 * timeFraction + 2, 4 ) / 2,
 
-                    expo:    ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction &lt; 0.5 ) ? Math.pow ( 2, 20 * timeFraction - 10 ) / 2 : ( 2 - Math.pow ( 2, -20 * timeFraction + 10 ) ) / 2,
+                    expo:    ( timeFraction ) => ( timeFraction === 0 ) ? 0 : ( timeFraction === 1 ) ? 1 : ( timeFraction < 0.5 ) ? Math.pow ( 2, 20 * timeFraction - 10 ) / 2 : ( 2 - Math.pow ( 2, -20 * timeFraction + 10 ) ) / 2,
 
-                    back:    ( timeFraction ) => ( timeFraction &lt; 0.5 ) ? ( Math.pow ( 2 * timeFraction, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * 2 * timeFraction - ( 1.70158 * 1.525 ) ) ) / 2 : ( Math.pow ( 2 * timeFraction - 2, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * ( timeFraction * 2 - 2 ) + ( 1.70158 * 1.525 ) ) + 2 ) / 2
+                    back:    ( timeFraction ) => ( timeFraction < 0.5 ) ? ( Math.pow ( 2 * timeFraction, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * 2 * timeFraction - ( 1.70158 * 1.525 ) ) ) / 2 : ( Math.pow ( 2 * timeFraction - 2, 2 ) * ( ( ( 1.70158 * 1.525 ) + 1 ) * ( timeFraction * 2 - 2 ) + ( 1.70158 * 1.525 ) ) + 2 ) / 2
                 }
             },
         },
@@ -1231,8 +1217,8 @@ class MouseMove
             Author:    'Justin Don Byrne',
             Created:   'Aug, 04 2023',
             Library:   'Mouse Move: Automated mouse cursor for web presentation',
-            Updated:   'Sep, 06 2023',
-            Version:   '0.1.8',
+            Updated:   'Sep, 07 2023',
+            Version:   '0.1.9',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -1260,7 +1246,7 @@ class MouseMove
 
                 for ( let _symbol of _symbols )
 
-                    if ( id.includes ( _symbol ) &amp;&amp; ! this.#tools.isXPath ( id ) )
+                    if ( id.includes ( _symbol ) && ! this.#tools.isXPath ( id ) )
 
                         return true;
 
@@ -1302,7 +1288,7 @@ class MouseMove
                 let _lower = ( isNaN ( _char ) ) ? ( _char == _char.toLowerCase ( ) ) : false;
 
 
-                return ( _camel &amp;&amp; _lower );
+                return ( _camel && _lower );
             },
 
             /**
@@ -1338,14 +1324,14 @@ class MouseMove
                 let siblings = element.parentNode.childNodes;
 
 
-                for ( let i = 0; i &lt; siblings.length; i++ )
+                for ( let i = 0; i < siblings.length; i++ )
                 {
                     let sibling = siblings [ i ];
 
 
                     if ( sibling === element ) return this.#tools.getXPath ( element.parentNode ) + '/' + element.tagName + '[' + ( ix + 1 ) + ']';
 
-                    if ( sibling.nodeType === 1 &amp;&amp; sibling.tagName === element.tagName ) ix++;
+                    if ( sibling.nodeType === 1 && sibling.tagName === element.tagName ) ix++;
                 }
             },
 
@@ -1372,7 +1358,7 @@ class MouseMove
             getEasing:          ( type )    =>
             {
                 /**
-                 * Converts camel case string into an &lt;Array>.&lt;String> for bracket notation
+                 * Converts camel case string into an <Array>.<String> for bracket notation
                  * @param       {string} string                         Camel case string to split
                  * @return      {Array}                                 Array of strings
                  */
@@ -1383,7 +1369,7 @@ class MouseMove
                         _bracketEntries.shift ( );
 
 
-                    for ( let _i = 0; _i &lt; _bracketEntries.length; _i++ )
+                    for ( let _i = 0; _i < _bracketEntries.length; _i++ )
 
                         _bracketEntries [ _i ] = _bracketEntries [ _i ].toLowerCase ( );
 
@@ -1543,7 +1529,7 @@ class MouseMove
                             let _setActions = this.#config.identifiers.actions;
 
 
-                            if ( _binds != undefined &amp;&amp; ( typeof _binds === 'object' || typeof _binds === 'function' ) )
+                            if ( _binds != undefined && ( typeof _binds === 'object' || typeof _binds === 'function' ) )
 
                                 for ( let _bind in _binds )
 
@@ -1562,7 +1548,7 @@ class MouseMove
                         //     let _element = this.#tools.getElement ( _value.id );
 
 
-                        //     if ( _element.tagName === 'SELECT' &amp;&amp; _element.childElementCount > 0 )
+                        //     if ( _element.tagName === 'SELECT' && _element.childElementCount > 0 )
 
                         //         _element.onclick = ( ) => this.cursor.createSelectOptions ( _value.id );
                         // }
@@ -1745,7 +1731,7 @@ class MouseMove
                         _draw ( _progress );
 
 
-                        if ( _timeFraction &lt; 1 ) requestAnimationFrame ( animate );
+                        if ( _timeFraction < 1 ) requestAnimationFrame ( animate );
                     } );
                 }
 
@@ -1793,30 +1779,7 @@ class MouseMove
 
 let initMouseMove = ( pattern, cursor ) =>
 {
-    if ( typeof MouseMove === 'function' &amp;&amp; typeof window.mouseMove  === 'undefined' )
+    if ( typeof MouseMove === 'function' && typeof window.mouseMove  === 'undefined' )
 
             window.mouseMove = new MouseMove ( pattern, cursor );
 }
-</code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Cursor.html">Cursor</a></li><li><a href="List.html">List</a></li><li><a href="MouseMove.html">MouseMove</a></li><li><a href="Pattern.html">Pattern</a></li><li><a href="Point.html">Point</a></li><li><a href="Text.html">Text</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addGeneratedId">addGeneratedId</a></li><li><a href="global.html#cleanScriptCode">cleanScriptCode</a></li><li><a href="global.html#createCursor">createCursor</a></li><li><a href="global.html#embedMousetrap">embedMousetrap</a></li><li><a href="global.html#getCenterPoint">getCenterPoint</a></li><li><a href="global.html#getEasing">getEasing</a></li><li><a href="global.html#getElement">getElement</a></li><li><a href="global.html#getElementByXPath">getElementByXPath</a></li><li><a href="global.html#getElementByXPathOrSelector">getElementByXPathOrSelector</a></li><li><a href="global.html#getXPath">getXPath</a></li><li><a href="global.html#hotkeyListener">hotkeyListener</a></li><li><a href="global.html#isCamelCase">isCamelCase</a></li><li><a href="global.html#isCssSelector">isCssSelector</a></li><li><a href="global.html#isId">isId</a></li><li><a href="global.html#isXPath">isXPath</a></li><li><a href="global.html#isXPathOrCssSelector">isXPathOrCssSelector</a></li><li><a href="global.html#jsonToCss">jsonToCss</a></li><li><a href="global.html#mouseout">mouseout</a></li><li><a href="global.html#mouseover">mouseover</a></li><li><a href="global.html#pxToNumber">pxToNumber</a></li><li><a href="global.html#seedMouseEvents">seedMouseEvents</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Sep 06 2023 11:30:19 GMT-0700 (Pacific Daylight Time)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
-</body>
-</html>

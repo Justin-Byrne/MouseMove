@@ -1,7 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [0.1.8] - 2023-08-25
+## [0.1.9] - 2023-09-07
+### Changed
+- `Cursor` class, refactored and finalized public `createSelectOptions ( )` to recreate a select input element and mirror its inputs
+
+## [0.1.8] - 2023-09-06
 ### Added
 - `Text` class; for text automation
 - `Pattern` class
@@ -129,7 +133,8 @@ All notable changes to this project will be documented in this file.
 ---
 | Version | Date       | Commit                                                                   | Comments                                                          |
 | :-----: | :--------: | :----------------------------------------------------------------------: | :---------------------------------------------------------------- |
-| 0.1.8   | 2023-09-06 | CURRENT REVISION                                                         | Added Text class, with minor additions to Pattern, Cursor, and MouseMove classes
+| 0.1.9   | 2023-09-07 | CURRENT REVISION                                                         | Finalized public createSelectOptions ( ) to recreate a select element while mirroring its inputs; for the Cursor class
+| 0.1.8   | 2023-09-06 | [826267b](https://github.com/Justin-Byrne/MouseMove/commit/826267b)      | Added Text class, with minor additions to Pattern, Cursor, and MouseMove classes
 | 0.1.7   | 2023-08-25 | [5c625d7](https://github.com/Justin-Byrne/MouseMove/commit/5c625d7)      | Minor refactoring and cleanup of Cursor and MouseMove classes
 | 0.1.6   | 2023-08-24 | [59aa038](https://github.com/Justin-Byrne/MouseMove/commit/59aa038)      | Refactored Cursor class's cursor type settings while including more cursor types
 | 0.1.5   | 2023-08-21 | [cc6d871](https://github.com/Justin-Byrne/MouseMove/commit/cc6d871)      | Minor refactoring to MouseMove class for the inclusion of easing functions and mouse events

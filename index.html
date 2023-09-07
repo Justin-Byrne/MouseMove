@@ -39,7 +39,7 @@
 
 	<!-- JS libraries -->
 	<script src="script/libs/mousetrap-v1.6.5.js"></script>
-	<script src="script/mousemove-v0.1.8.js"></script>
+	<script src="script/mousemove-v0.1.9.js"></script>
 
 	<!-- Stylesheets: main -->
 	<link rel="stylesheet" href="style/main.css">
@@ -169,17 +169,17 @@
 
 						<div class="form-check">
 
-							<input class="form-check-input" type="radio" name="radioInput" id="radioInput" checked>
+							<input class="form-check-input" type="radio" name="radioInputs" id="radioInputOne" checked>
 
-							<label class="form-check-label" for="radioInput">Radio 1</label>
+							<label class="form-check-label" for="radioInputOne">Radio 1</label>
 
 						</div>
 
 						<div class="form-check">
 
-							<input class="form-check-input" type="radio" name="radioInput" id="radioInput">
+							<input class="form-check-input" type="radio" name="radioInputs" id="radioInputTwo">
 
-							<label class="form-check-label" for="radioInput">Radio 2</label>
+							<label class="form-check-label" for="radioInputTwo">Radio 2</label>
 
 						</div>
 
@@ -252,29 +252,21 @@
 			id:     'checkboxThree',
 			action: 'click'
 		},
-		// {
-		// 	id: 	'inputSelect',
-		// 	action: 'click'
-		// },
-		{
+		{   // 5
 			id: 	'//*[@id="inputSelect"]/option[3]',
 			action: 'click'
-		}
+		},
+		{   // 6
+			id:     'radioInputTwo',
+			action: 'click'
+		},
+		{   // 7
+			id:     'rangeInput',
+			action: 'click'
+		},
 		// {
-		// 	id: 	'//*[@id="inputState"]/option[3]',
+		// 	id:     'body > main > div > div:nth-child(2) > form > div:nth-child(6) > button',
 		// 	action: 'click'
-		// }
-		// {
-		// 	id:     'ui-node-07-04',
-		// 	action: 'click'
-		// },
-		// {
-		// 	id:     'ui-node-07-05',
-		// 	action: 'mousedown'
-		// },
-		// {
-		// 	id:     'ui-node-07-00',
-		// 	action: 'mouseup'
 		// }
 	]
 
