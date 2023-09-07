@@ -214,7 +214,6 @@ Please [open an issue](https://github.com/Justin-Byrne/MouseMove/issues/new) for
 │   │       │   ├── Pattern.js
 │   │       │   └── Point.js
 │   │       └── MouseMove.js
-│   ├── mousemove-v0.1.8.js
 │   └── mousemove-v0.1.9.js
 ├── LICENSE
 └── README.md
