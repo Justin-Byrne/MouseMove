@@ -39,7 +39,7 @@
 
 	<!-- JS libraries -->
 	<script src="script/libs/mousetrap-v1.6.5.js"></script>
-	<script src="script/mousemove-v0.1.9.js"></script>
+	<script src="script/mousemove-v0.1.10.js"></script>
 
 	<!-- Stylesheets: main -->
 	<link rel="stylesheet" href="style/main.css">
@@ -189,7 +189,11 @@
 
 						<label for="rangeInput" class="form-label">Range</label>
 
-						<input type="range" class="form-range" id="rangeInput">
+						<!-- <input type="range" class="form-range" id="rangeInput" value="0"> -->
+						<!-- <input type="range" class="form-range" id="rangeInput" value="25"> -->
+						<!-- <input type="range" class="form-range" id="rangeInput" value="50"> -->
+						<input type="range" class="form-range" id="rangeInput" value="75">
+						<!-- <input type="range" class="form-range" id="rangeInput" value="100"> -->
 
 					</div>
 
@@ -232,37 +236,37 @@
 
 	let _pattern =
 	[
-		{ 	// 0
-			id: 	'//*[@id="navbarSupportedContent"]/ul/li/a',
-			action: 'click'
-		},
-		{ 	// 1
-			id: 	'//*[@id="navbarSupportedContent"]/ul/li/ul/li[2]/a',
-			action: 'click'
-		},
-		{ 	// 2
-			id: 	'inputText',
-			action: 'type~Example text !',
-		},
-		{ 	// 3
-			id:     'checkboxOne',
-			action: 'click'
-		},
-		{ 	// 4
-			id:     'checkboxThree',
-			action: 'click'
-		},
-		{   // 5
-			id: 	'//*[@id="inputSelect"]/option[3]',
-			action: 'click'
-		},
-		{   // 6
-			id:     'radioInputTwo',
-			action: 'click'
-		},
+		// { 	// 0
+		// 	id: 	'//*[@id="navbarSupportedContent"]/ul/li/a',
+		// 	action: 'click'
+		// },
+		// { 	// 1
+		// 	id: 	'//*[@id="navbarSupportedContent"]/ul/li/ul/li[2]/a',
+		// 	action: 'click'
+		// },
+		// { 	// 2
+		// 	id: 	'inputText',
+		// 	action: 'type~Example text !',
+		// },
+		// { 	// 3
+		// 	id:     'checkboxOne',
+		// 	action: 'click'
+		// },
+		// { 	// 4
+		// 	id:     'checkboxThree',
+		// 	action: 'click'
+		// },
+		// {   // 5
+		// 	id: 	'//*[@id="inputSelect"]/option[3]',
+		// 	action: 'click'
+		// },
+		// {   // 6
+		// 	id:     'radioInputTwo',
+		// 	action: 'click'
+		// },
 		{   // 7
 			id:     'rangeInput',
-			action: 'click'
+			action: 'mousedown'
 		},
 		// {
 		// 	id:     'body > main > div > div:nth-child(2) > form > div:nth-child(6) > button',
@@ -273,3 +277,15 @@
 	initMouseMove ( _pattern );
 
 </script>
+
+<script type="text/javascript">
+
+	// document.onmousemove = function ( event ) { console.log ( 'x:', event.pageX, 'y:', event.pageY ) };
+
+</script>
+
+<!--   0: 346, 374   - 66 -->
+<!--  25: 379, 374   - 33 -->
+<!--  50: 412, 374        -->
+<!--  75: 445, 374   + 33 -->
+<!-- 100: 478, 374   + 66 -->

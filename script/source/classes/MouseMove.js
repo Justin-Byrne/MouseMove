@@ -112,8 +112,8 @@ class MouseMove
             Author:    'Justin Don Byrne',
             Created:   'Aug, 04 2023',
             Library:   'Mouse Move: Automated mouse cursor for web presentation',
-            Updated:   'Sep, 07 2023',
-            Version:   '0.1.9',
+            Updated:   'Sep, 11 2023',
+            Version:   '0.1.10',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         }
     }
@@ -565,8 +565,10 @@ class MouseMove
 
                 async function _action ( object )
                 {
-                    _cursor.mouseAction ( document.getElementById ( object.id ) );              // Initiate mouse event action
+                    let _element = document.getElementById ( object.id );
 
+
+                        _cursor.mouseAction ( _element );   // Initiate mouse event action
 
                     if ( 'action' in object )
                     {

@@ -163,6 +163,61 @@ class Cursor
                   y: element.getBoundingClientRect ( ).top  + ( element.getBoundingClientRect ( ).height / 2 ) + this.#config.presentation.settings.css.cursors.offset.top
             } ),
 
+            /**
+             * Gets the center point of the value of a range element
+             * @param           {Object} element                            HTML Range element
+             * @return          {Point}                                     X & Y Coordinates
+             */
+            getRangeValuesPoint: ( element ) =>
+            {
+                let _point  = this.#tools.getCenterPoint ( element );
+
+                let _value  = Number ( element.value );
+
+                let _number = this.#tools.getValueFromStandardDeviation ( _value );
+
+
+                    _point.x = ( _value > 50 ) ? _point.x + _number : _point.x - _number;
+
+
+                return _point;
+            },
+
+            /**
+             * Gets the standard deviation range value
+             * @param           {number} number                             Range value
+             * @return          {number}                                    Amount to adjust cursor's position value
+             */
+            getValueFromStandardDeviation: ( number ) =>
+            {
+                let _array   = [ number, 50 ];
+
+                let _initial = 0;
+
+                let _scaler  = 0.378;
+
+
+                let _mean = _array.reduce ( ( accumulator, current ) =>
+                {
+                    return accumulator + current;
+                },
+                _initial ) / _array.length;
+
+
+                _array = _array.map ( ( element ) =>
+                {
+                    return ( element - _mean ) ** 2
+                });
+
+
+                let _total = _array.reduce ( ( accumulator, current ) => accumulator + current, _initial );
+
+                    _total = Math.sqrt ( _total / _array.length ) / _scaler;
+
+
+                return Math.floor ( _total );
+            },
+
         ////    MOUSE EVENTS    ////////////////////////////////
 
             /**
@@ -174,6 +229,7 @@ class Cursor
                 if ( element.getAttribute ( `onmouseover` ) != null )
                 {
                     element.onmouseover ( );
+
 
                     this.#config.cache.over.push ( element );
                 }
@@ -188,6 +244,7 @@ class Cursor
                 if ( element.getAttribute ( `onmouseout` ) != null )
                 {
                     element.onmouseout ( );
+
 
                     this.#config.cache.over.shift ( );
                 }
@@ -339,19 +396,24 @@ class Cursor
             let _element = document.getElementById ( id );
 
 
-            if ( _element != undefined )
-            {
-                let _point = this.#tools.getCenterPoint ( _element );
+            let _point = ( _element.type === 'range' )
+
+                             ? this.#tools.getRangeValuesPoint ( _element )
+
+                             : ( _element != undefined )
+
+                                   ? this.#tools.getCenterPoint ( _element )
+
+                                   : null;
 
 
-                this.#config.calculations.distance = Math.sqrt (
+            this.#config.calculations.distance = Math.sqrt (
 
-                                                        ( Math.pow ( _point.x - this.position.x, 2 ) ) +
+                                                ( Math.pow ( _point.x - this.position.x, 2 ) ) +
 
-                                                        ( Math.pow ( _point.y - this.position.y, 2 ) )
+                                                ( Math.pow ( _point.y - this.position.y, 2 ) )
 
-                                                     );
-            }
+                                             );
         }
 
         /**
@@ -374,19 +436,24 @@ class Cursor
             let _element = document.getElementById ( id );
 
 
-            if ( _element != undefined )
-            {
-                let _point = this.#tools.getCenterPoint ( _element );
+            let _point = ( _element.type === 'range' )
+
+                             ? this.#tools.getRangeValuesPoint ( _element )
+
+                             : ( _element != undefined )
+
+                                   ? this.#tools.getCenterPoint ( _element )
+
+                                   : null;
 
 
-                this.#config.calculations.angle = Math.atan2 (
+            this.#config.calculations.angle = Math.atan2 (
 
-                                                      _point.y - this.position.y,
+                                                  _point.y - this.position.y,
 
-                                                      _point.x - this.position.x
+                                                  _point.x - this.position.x
 
-                                                  );
-            }
+                                              );
         }
 
         /**
@@ -425,12 +492,15 @@ class Cursor
          */
         nextElement ( id )
         {
+            let _element = document.getElementById ( id );
+
+
             this.distance = id;
 
             this.angle    = id;
 
 
-            this.#config.cache.position = this.#tools.getCenterPoint ( document.getElementById ( id ) );    // @NOTE: cache this position for `toNextElement ( )` method; to ensure element's position is captured "pre-mouse event"
+            this.#config.cache.position = ( _element.type === 'range' ) ? this.#tools.getRangeValuesPoint ( _element ) : this.#tools.getCenterPoint ( _element );              // @NOTE: cache this position for `toNextElement ( )` method; to ensure element's position is captured "pre-mouse event"
         }
 
         /**
@@ -549,9 +619,7 @@ class Cursor
 
                         _li.setAttribute ( 'onclick',     `for ( let _child of this.parentElement.children ) _child.firstChild.firstChild.innerHTML = ' '; this.firstChild.firstChild.insertAdjacentHTML ( 'afterbegin', '${_checkMark}' ); for ( let _option of ${id.origin}.options ) if ( _option.attributes.selected != undefined ) _option.removeAttribute ( 'selected' ); else if ( _option.index == ${_option} - 1 ) _option.setAttribute ( 'selected', '' ); setTimeout ( ( ) => this.parentElement.style.display = 'none', 100 );` );
 
-                        // /* for ( let _i; _i < ${id.origin.length}; _i++ ) { console.log ( _i ); /* console.log ( _option.attributes.selected != undefined ); */ }` );
-
-
+                    ////////////////////////////////////////////////////////////
 
                         _span.prepend   ( _icon );
 

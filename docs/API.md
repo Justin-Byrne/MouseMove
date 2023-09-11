@@ -33,6 +33,12 @@
 <dt><a href="#getCenterPoint">getCenterPoint(element)</a> ⇒ <code><a href="#Point">Point</a></code></dt>
 <dd><p>Gets the center point of an element</p>
 </dd>
+<dt><a href="#getRangeValuesPoint">getRangeValuesPoint(element)</a> ⇒ <code><a href="#Point">Point</a></code></dt>
+<dd><p>Gets the center point of the value of a range element</p>
+</dd>
+<dt><a href="#getValueFromStandardDeviation">getValueFromStandardDeviation(number)</a> ⇒ <code>number</code></dt>
+<dd><p>Gets the standard deviation range value</p>
+</dd>
 <dt><a href="#mouseover">mouseover(element)</a></dt>
 <dd><p>Actions executed after a mouseover event</p>
 </dd>
@@ -799,6 +805,30 @@ Gets the center point of an element
 | Param | Type | Description |
 | --- | --- | --- |
 | element | <code>Object</code> | HTML DOM element |
+
+<a name="getRangeValuesPoint"></a>
+
+## getRangeValuesPoint(element) ⇒ [<code>Point</code>](#Point)
+Gets the center point of the value of a range element
+
+**Kind**: global function  
+**Returns**: [<code>Point</code>](#Point) - X & Y Coordinates  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| element | <code>Object</code> | HTML Range element |
+
+<a name="getValueFromStandardDeviation"></a>
+
+## getValueFromStandardDeviation(number) ⇒ <code>number</code>
+Gets the standard deviation range value
+
+**Kind**: global function  
+**Returns**: <code>number</code> - Amount to adjust cursor's position value  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| number | <code>number</code> | Range value |
 
 <a name="mouseover"></a>
 
