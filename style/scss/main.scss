@@ -1,8 +1,24 @@
 @import 'bootstrap/bootstrap.scss';
 
-body
+////    STYLING    /////////////////////////////////////////
+
+*,
+*::before,
+*::after
 {
-    overflow-x: clip;
+    box-sizing: border-box;
+}
+
+#fork-me
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 135px;
+    height: 135px;
+
+    z-index: 100;
 }
 
 nav
@@ -11,10 +27,15 @@ nav
 
     top: -1px;
 
+    border-top:    1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
     margin-bottom: 12px;
 
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    &.no-bottom
+    {
+        margin-bottom: 0;
+    }
 
     div
     {
@@ -56,15 +77,84 @@ nav
             }
         }
     }
+
+    #website
+    {
+        width: 80px;
+        margin-left: 0;
+        margin-right: auto;
+
+        img
+        {
+            width: 40px;
+            left: 0;
+        }
+    }
+
+    #funding
+    {
+        width: 200px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: 0;
+
+        a
+        {
+            text-decoration: none;
+
+            &:nth-child(2)
+            {
+                padding-left: 20px;
+            }
+
+            &:nth-child(3)
+            {
+                padding-left: 15px;
+            }
+        }
+    }
 }
 
 main
 {
-    div
+    @extend .container-fluid;
+
+    div.row
     {
-        div
+        @extend .align-items-start;
+
+        div.col-3
         {
-            @extend .col;
+            @extend .align-self-center;
+
+            div.activation
+            {
+                padding-top:    30px;
+                padding-bottom: 30px;
+
+                div:nth-child(1)
+                {
+                    .letter
+                    {
+                        position: relative;
+                        display: inline-block;
+                        top: 1px;
+                    }
+                }
+
+                div:nth-child(2)
+                {
+                    position: relative;
+                    display: block;
+                    padding-top: 8px;
+                    left: -12px;
+                }
+            }
+
+            div.blurb
+            {
+                text-align: justify;
+            }
         }
     }
 }
@@ -76,7 +166,7 @@ div#logo
     justify-content: start;
     align-items: center;
 
-    min-height: 100vh;
+    // min-height: 100vh;
     padding: 20px;
 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -113,6 +203,28 @@ div#logo
 
         background: var(--bc);
         animation: revealingIn var(--td) var(--d) forwards, revealingOut var(--td) var(--t) forwards;
+    }
+}
+
+pre
+{
+    border: 1px solid #ccc;
+
+    height: 83vh;
+
+    overflow: auto;
+
+    code
+    {
+        line-height: 13px;
+
+        padding: 0 !important;
+
+        text-align: initial;
+
+        font-size: 0.55rem;
+
+        border: 1px solid black;
     }
 }
 

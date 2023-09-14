@@ -30,14 +30,11 @@
 <dt><a href="#jsonToCss">jsonToCss(json)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts the &#39;css&#39; object into a CSS inline string</p>
 </dd>
+<dt><a href="#setCursorType">setCursorType(element)</a></dt>
+<dd><p>Set&#39;s the cursor type based on passed element&#39;s tag name</p>
+</dd>
 <dt><a href="#getCenterPoint">getCenterPoint(element)</a> ⇒ <code><a href="#Point">Point</a></code></dt>
 <dd><p>Gets the center point of an element</p>
-</dd>
-<dt><a href="#getRangeValuesPoint">getRangeValuesPoint(element)</a> ⇒ <code><a href="#Point">Point</a></code></dt>
-<dd><p>Gets the center point of the value of a range element</p>
-</dd>
-<dt><a href="#getValueFromStandardDeviation">getValueFromStandardDeviation(number)</a> ⇒ <code>number</code></dt>
-<dd><p>Gets the standard deviation range value</p>
 </dd>
 <dt><a href="#mouseover">mouseover(element)</a></dt>
 <dd><p>Actions executed after a mouseover event</p>
@@ -62,6 +59,9 @@
 </dd>
 <dt><a href="#isXPathOrCssSelector">isXPathOrCssSelector(id)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Checks whether an id is an XPath or CSS Selector</p>
+</dd>
+<dt><a href="#setUserAgent">setUserAgent()</a></dt>
+<dd><p>Identifies and sets the present user agent</p>
 </dd>
 <dt><a href="#getElementByXPath">getElementByXPath(xpath)</a> ⇒ <code>Object</code></dt>
 <dd><p>Returns an element based on its XPath</p>
@@ -794,6 +794,17 @@ Converts the 'css' object into a CSS inline string
 | --- | --- | --- |
 | json | <code>object</code> | CSS object from #config.presentation.settings.css [ type ] |
 
+<a name="setCursorType"></a>
+
+## setCursorType(element)
+Set's the cursor type based on passed element's tag name
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| element | <code>Object</code> | HTML DOM element |
+
 <a name="getCenterPoint"></a>
 
 ## getCenterPoint(element) ⇒ [<code>Point</code>](#Point)
@@ -805,30 +816,6 @@ Gets the center point of an element
 | Param | Type | Description |
 | --- | --- | --- |
 | element | <code>Object</code> | HTML DOM element |
-
-<a name="getRangeValuesPoint"></a>
-
-## getRangeValuesPoint(element) ⇒ [<code>Point</code>](#Point)
-Gets the center point of the value of a range element
-
-**Kind**: global function  
-**Returns**: [<code>Point</code>](#Point) - X & Y Coordinates  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| element | <code>Object</code> | HTML Range element |
-
-<a name="getValueFromStandardDeviation"></a>
-
-## getValueFromStandardDeviation(number) ⇒ <code>number</code>
-Gets the standard deviation range value
-
-**Kind**: global function  
-**Returns**: <code>number</code> - Amount to adjust cursor's position value  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| number | <code>number</code> | Range value |
 
 <a name="mouseover"></a>
 
@@ -924,6 +911,12 @@ Checks whether an id is an XPath or CSS Selector
 | --- | --- | --- |
 | id | <code>string</code> | XPath or CSS Selector |
 
+<a name="setUserAgent"></a>
+
+## setUserAgent()
+Identifies and sets the present user agent
+
+**Kind**: global function  
 <a name="getElementByXPath"></a>
 
 ## getElementByXPath(xpath) ⇒ <code>Object</code>

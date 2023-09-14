@@ -5,7 +5,7 @@
 ![stars](https://img.shields.io/github/stars/Justin-Byrne/MouseMove)
 ![license](https://img.shields.io/github/license/Justin-Byrne/MouseMove)
 <img src=https://img.shields.io/badge/Mousetrap-1.6.0-yellow />
-<img src=https://img.shields.io/badge/Version-0.1.10-green />
+<img src=https://img.shields.io/badge/Version-0.1.11-green />
 
 JavaScript automated mouse cursor for web presentation
 
@@ -201,6 +201,27 @@ Please [open an issue](https://github.com/Justin-Byrne/MouseMove/issues/new) for
 │   ├── API.md
 │   ├── CHANGELOG.md
 │   └── FUNDING.yml
+├── fonts
+│   ├── courier-prime
+│   │   ├── courier_prime_code-webfont.svg
+│   │   ├── courier_prime_code-webfont.ttf
+│   │   ├── courier_prime_code-webfont.woff
+│   │   └── courier_prime_code-webfont.woff2
+│   ├── jetbrains-mono
+│   │   ├── jetbrains-mono-regular-webfont.svg
+│   │   ├── jetbrains-mono-regular-webfont.ttf
+│   │   ├── jetbrains-mono-regular-webfont.woff
+│   │   └── jetbrains-mono-regular-webfont.woff2
+│   ├── opensans
+│   │   ├── opensans-regular-webfont.svg
+│   │   ├── opensans-regular-webfont.ttf
+│   │   ├── opensans-regular-webfont.woff
+│   │   └── opensans-regular-webfont.woff2
+│   └── opensans-bold
+│       ├── opensans-bold-webfont.svg
+│       ├── opensans-bold-webfont.ttf
+│       ├── opensans-bold-webfont.woff
+│       └── opensans-bold-webfont.woff2
 ├── script
 │   ├── libs
 │   │   └── mousetrap-v1.6.5.js
@@ -214,7 +235,7 @@ Please [open an issue](https://github.com/Justin-Byrne/MouseMove/issues/new) for
 │   │       │   ├── Pattern.js
 │   │       │   └── Point.js
 │   │       └── MouseMove.js
-│   └── mousemove-v0.1.10.js
+│   └── mousemove-v0.1.11.js
 ├── LICENSE
 └── README.md
 ```

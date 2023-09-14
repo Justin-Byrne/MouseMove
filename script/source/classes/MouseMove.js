@@ -105,17 +105,18 @@ class MouseMove
         mousetrap:
         {
             cdn: '//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.6.0/mousetrap.min.js',
-            hotkeys: [ 'ctrl+g', 'command+g' ]                  // For mousetrap
+            hotkeys: [ 'ctrl+g', 'command+g' ]              // For mousetrap
         },
         about:
         {
             Author:    'Justin Don Byrne',
             Created:   'Aug, 04 2023',
             Library:   'Mouse Move: Automated mouse cursor for web presentation',
-            Updated:   'Sep, 11 2023',
-            Version:   '0.1.10',
+            Updated:   'Sep, 14 2023',
+            Version:   '0.1.11',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
-        }
+        },
+        userAgent: undefined
     }
 
     #tools =
@@ -192,6 +193,29 @@ class MouseMove
              * @return          {boolean}                                   True | False
              */
             isXPathOrCssSelector: ( id ) => ( this.#tools.isXPath ( id ) || this.#tools.isCssSelector ( id ) ),
+
+        ////    SETTERS    /////////////////////////////////////
+
+            /**
+             * Identifies and sets the present user agent
+             */
+            setUserAgent: ( ) =>
+            {
+                let _browsers = [ 'Chrome', 'Firefox', 'MSIE', 'Edge', 'Safari', 'Opera', 'YaBrowser' ]
+
+
+                for ( let _browser of _browsers )
+
+                    if ( navigator.userAgent.indexOf ( _browser ) != -1 )
+                    {
+                        this.#config.userAgent = _browser;
+
+                        break;
+                    }
+                    else
+
+                        this.#config.userAgent = 'Other';
+            },
 
         ////    GETTERS    /////////////////////////////////////
 
@@ -303,7 +327,7 @@ class MouseMove
 
                     switch ( element.tagName )
                     {
-                        case 'OPTION':  _result = ( element.parentElement.tagName === 'SELECT' );   break;
+                        case 'OPTION':    _result = ( element.parentElement.tagName === 'SELECT' );    break;
                     }
 
 
@@ -350,10 +374,11 @@ class MouseMove
                 else
                 {
                     _element.id = this.sequence [ _index ].id = `${_qualifier}_${_numberWord}`;
-
-
-                    _identifiers.generativeIndex++;
                 }
+
+
+                _identifiers.generativeIndex++;
+
 
                 return _element;
             },
@@ -382,6 +407,8 @@ class MouseMove
             {
                 Mousetrap.bind ( [ 'ctrl+g', 'command+g' ], function ( event )
                 {
+                    event.preventDefault ( );
+
                     mouseMove.go ( );
                 });
             },
@@ -438,15 +465,6 @@ class MouseMove
 
                                         : console.log ( ` >> [ ERROR ]: Bind "${_bind}" is not a valid mouse action !` );
                         }
-                        // else
-                        // {
-                        //     let _element = this.#tools.getElement ( _value.id );
-
-
-                        //     if ( _element.tagName === 'SELECT' && _element.childElementCount > 0 )
-
-                        //         _element.onclick = ( ) => this.cursor.createSelectOptions ( _value.id );
-                        // }
                     }
                 }
 
@@ -466,6 +484,8 @@ class MouseMove
 
         this.cursor   = cursor;
 
+
+        this.#tools.setUserAgent ( );
 
         this.#config.animation.timing = this.#tools.getEasing ( );
 

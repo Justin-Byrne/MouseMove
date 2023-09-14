@@ -149,6 +149,22 @@ class Cursor
                 return _result;
             },
 
+        ////    SETTERS    /////////////////////////////////////
+
+            /**
+             * Set's the cursor type based on passed element's tag name
+             * @param           {Object} element                            HTML DOM element
+             */
+            setCursorType: ( element )  =>
+            {
+                let elements = [ 'A', 'INPUT', 'SELECT', 'BUTTON' ];
+
+
+                if ( elements.includes ( element.tagName ) )
+
+                    this.switchType ( 'handPoint' );
+            },
+
         ////    GETTERS    /////////////////////////////////////
 
             /**
@@ -157,66 +173,50 @@ class Cursor
              * @return          {Point}                                     X & Y Coordinates
              */
             getCenterPoint: ( element ) =>
-            ( {
-                  x: element.getBoundingClientRect ( ).left + ( element.getBoundingClientRect ( ).width  / 2 ) + this.#config.presentation.settings.css.cursors.offset.left,
+            {
+                ////    FUNCTIONS    ///////////////////////
 
-                  y: element.getBoundingClientRect ( ).top  + ( element.getBoundingClientRect ( ).height / 2 ) + this.#config.presentation.settings.css.cursors.offset.top
-            } ),
+                let _getCenter = ( ) =>
+                ( {
+                      x: element.getBoundingClientRect ( ).left + ( element.getBoundingClientRect ( ).width  / 2 ) + this.#config.presentation.settings.css.cursors.offset.left,
+
+                      y: element.getBoundingClientRect ( ).top  + ( element.getBoundingClientRect ( ).height / 2 ) + this.#config.presentation.settings.css.cursors.offset.top + window.scrollY
+                } );
+
+                ////    LOGIC    ///////////////////////////
+
+                let _center = _getCenter ( );
+
+
+                if ( element.type === 'range' )
+                {
+                    let _rect     = element.getBoundingClientRect ( );
+
+                        _center.x = Number ( _rect.left + ( ( element.value / element.max ) * _rect.width ) );
+                }
+
+
+                return _center;
+            },
 
             /**
              * Gets the center point of the value of a range element
              * @param           {Object} element                            HTML Range element
              * @return          {Point}                                     X & Y Coordinates
              */
-            getRangeValuesPoint: ( element ) =>
-            {
-                let _point  = this.#tools.getCenterPoint ( element );
+            // getRangeValuesPoint: ( element ) =>
+            // {
+            //     let _point   = this.#tools.getCenterPoint ( element );
 
-                let _value  = Number ( element.value );
+            //     let _rect    = element.getBoundingClientRect ( );
 
-                let _number = this.#tools.getValueFromStandardDeviation ( _value );
+            //     ////////////////////////////////////////////
 
-
-                    _point.x = ( _value > 50 ) ? _point.x + _number : _point.x - _number;
-
-
-                return _point;
-            },
-
-            /**
-             * Gets the standard deviation range value
-             * @param           {number} number                             Range value
-             * @return          {number}                                    Amount to adjust cursor's position value
-             */
-            getValueFromStandardDeviation: ( number ) =>
-            {
-                let _array   = [ number, 50 ];
-
-                let _initial = 0;
-
-                let _scaler  = 0.378;
+            //         _point.x = Number ( _rect.left + ( ( element.value / element.max ) * _rect.width ) );
 
 
-                let _mean = _array.reduce ( ( accumulator, current ) =>
-                {
-                    return accumulator + current;
-                },
-                _initial ) / _array.length;
-
-
-                _array = _array.map ( ( element ) =>
-                {
-                    return ( element - _mean ) ** 2
-                });
-
-
-                let _total = _array.reduce ( ( accumulator, current ) => accumulator + current, _initial );
-
-                    _total = Math.sqrt ( _total / _array.length ) / _scaler;
-
-
-                return Math.floor ( _total );
-            },
+            //     return _point;
+            // },
 
         ////    MOUSE EVENTS    ////////////////////////////////
 
@@ -393,27 +393,16 @@ class Cursor
          */
         set distance ( id )
         {
-            let _element = document.getElementById ( id );
-
-
-            let _point = ( _element.type === 'range' )
-
-                             ? this.#tools.getRangeValuesPoint ( _element )
-
-                             : ( _element != undefined )
-
-                                   ? this.#tools.getCenterPoint ( _element )
-
-                                   : null;
+            let _point = this.#tools.getCenterPoint ( document.getElementById ( id ) );
 
 
             this.#config.calculations.distance = Math.sqrt (
 
-                                                ( Math.pow ( _point.x - this.position.x, 2 ) ) +
+                                                    ( Math.pow ( _point.x - this.position.x, 2 ) ) +
 
-                                                ( Math.pow ( _point.y - this.position.y, 2 ) )
+                                                    ( Math.pow ( _point.y - this.position.y, 2 ) )
 
-                                             );
+                                                 );
         }
 
         /**
@@ -433,18 +422,7 @@ class Cursor
          */
         set angle ( id )
         {
-            let _element = document.getElementById ( id );
-
-
-            let _point = ( _element.type === 'range' )
-
-                             ? this.#tools.getRangeValuesPoint ( _element )
-
-                             : ( _element != undefined )
-
-                                   ? this.#tools.getCenterPoint ( _element )
-
-                                   : null;
+            let _point = this.#tools.getCenterPoint ( document.getElementById ( id ) );
 
 
             this.#config.calculations.angle = Math.atan2 (
@@ -492,15 +470,12 @@ class Cursor
          */
         nextElement ( id )
         {
-            let _element = document.getElementById ( id );
-
-
             this.distance = id;
 
             this.angle    = id;
 
 
-            this.#config.cache.position = ( _element.type === 'range' ) ? this.#tools.getRangeValuesPoint ( _element ) : this.#tools.getCenterPoint ( _element );              // @NOTE: cache this position for `toNextElement ( )` method; to ensure element's position is captured "pre-mouse event"
+            this.#config.cache.position = this.#tools.getCenterPoint ( document.getElementById ( id ) );                  // @NOTE: cache this position for `toNextElement ( )` method; to ensure element's position is captured "pre-mouse event"
         }
 
         /**
@@ -672,8 +647,11 @@ class Cursor
                 if ( ! _avoid.includes ( _element.id ) )
 
                     if ( ! _wasOver.includes ( _element ) )
+                    {
+                        this.#tools.setCursorType ( _element );
 
-                        this.#tools.mouseover ( _element );
+                        this.#tools.mouseover     ( _element );
+                    }
 
                 else
 
