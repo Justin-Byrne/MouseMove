@@ -4,11 +4,12 @@
 ![forks](https://img.shields.io/github/forks/Justin-Byrne/MouseMove)
 ![stars](https://img.shields.io/github/stars/Justin-Byrne/MouseMove)
 ![license](https://img.shields.io/github/license/Justin-Byrne/MouseMove)
-<img src=https://img.shields.io/badge/Mousetrap-1.6.0-yellow />
+<img src=https://img.shields.io/badge/Mousetrap-1.6.5-yellow />
 <img src=https://img.shields.io/badge/Version-0.1.11-green />
 
 JavaScript automated mouse cursor for web presentation
 
+- [Example](#example)
 - [Requirements](#requirements)
 - [Installation](#installation)
   - [Mousetrap](#mousetrap)
@@ -16,8 +17,13 @@ JavaScript automated mouse cursor for web presentation
 - [Usage](#usage)
   - [Basic](#basic)
   - [Advanced](#advanced)
+- [Api](#api)
 - [Support](#support)
 - [Structure](#structure)
+
+## Example
+
+![MouseMove](https://github.com/Justin-Byrne/MouseMove/blob/main/images/example.gif)
 
 ## Requirements
 
@@ -73,13 +79,29 @@ Create an `<array>` of DOM identifiers to push into ***MouseMove***.
 ```javascript
 let _list =
 [
-    'node',                              // Elemental id
-    '//input[@id = "fakebox-input"]',    // XPath
-    'body > ul > li:nth-child(1)'        // CSS Selector
+    'node',                              // Elemental Identifier
+    'body > ul > li:nth-child(1)',       // CSS Selector
+    '//input[@id = "fakebox-input"]'     // XPath
 ]
 
 initMouseMove ( _list );                 // Initiate the MouseMove class
 ```
+
+<details>
+
+<summary><b>Note:</b> attribute declarations for <code>id</code></summary>
+
+>- `id` : `<string>` :eight_spoked_asterisk: `required`
+>   - `<string>`
+>     - Element.`Identifier`
+>     - CSS Selector
+>     - XPath
+
+</details>
+
+<br>
+
+...then and push into ***MouseMove***.
 
 ***MouseMove*** defaults to navigating towards each identifier ( i.e., in the sequence provided ) and initiates a default `click` event on each element id
 
@@ -96,6 +118,29 @@ let _object =
     action: 'click'       // <string> ( ) => actions: [ 'mousedown', 'mouseup', 'mouseover', 'mouseout', 'mousemove', 'click', 'dblclick' ]
 }
 ```
+
+<details>
+
+<summary><b>Note:</b> attribute declarations for <code>id</code> and <code>action</code></summary>
+
+>- `id` : `<string>` :eight_spoked_asterisk: `required`
+>   - `<string>`
+>     - Element.`Identifier`
+>     - CSS Selector
+>     - XPath
+>- `action` : `<string>` :eight_pointed_black_star: `optional`
+>    - `<string>`
+>      - `mousedown`
+>      - `mouseup`
+>      - `mouseover`
+>      - `mouseout`
+>      - `mousemove`
+>      - `click`
+>      - `dblclick`
+
+</details>
+
+<br>
 
 ...then and push into ***MouseMove***.
 
@@ -138,29 +183,33 @@ let _object =
 
 <details>
 
-<summary><b>Note:</b> attribute declarations for <code>bind</code> and <code>action</code></summary>
+<summary><b>Note:</b> attribute declarations for <code>id</code>, <code>bind</code> and <code>action</code></summary>
 
-> - `bind` : `Object.<string, function>`
->  - `<string>`
->    - `onmousedown`
->    - `onmouseup`
->    - `onmouseover`
->    - `onmouseout`
->    - `onmousemove`
->    - `onclick`
->    - `ondblclick`
->  - `<function>`
->    - anonymous function
->
->- `action` : `<string>`
->  - `<string>`
->    - `mousedown`
->    - `mouseup`
->    - `mouseover`
->    - `mouseout`
->    - `mousemove`
->    - `click`
->    - `dblclick`
+>- `id` : `<string>` :eight_spoked_asterisk: `required`
+>   - `<string>`
+>     - Element.`Identifier`
+>     - CSS Selector
+>     - XPath
+> - `bind` : `Object.<string, function>` :eight_pointed_black_star: `optional`
+>    - `<string>`
+>      - `onmousedown`
+>      - `onmouseup`
+>      - `onmouseover`
+>      - `onmouseout`
+>      - `onmousemove`
+>      - `onclick`
+>      - `ondblclick`
+>    - `<function>`
+>      - User-defined anonymous function
+>- `action` : `<string>`  :eight_pointed_black_star: `optional`
+>    - `<string>`
+>      - `mousedown`
+>      - `mouseup`
+>      - `mouseover`
+>      - `mouseout`
+>      - `mousemove`
+>      - `click`
+>      - `dblclick`
 
 </details>
 
@@ -179,7 +228,11 @@ let _pattern =
 initMouseMove ( _pattern );         // Initiate the MouseMove class
 ```
 
-> Note: for more information see the `Pattern` class
+> <b>Note:</b> for more information see the `Pattern` class
+
+## Api
+
+[:book: Single Page API Sheet](https://github.com/Justin-Byrne/MouseMove/blob/main/docs/API.md)
 
 
 ## Support
@@ -201,27 +254,6 @@ Please [open an issue](https://github.com/Justin-Byrne/MouseMove/issues/new) for
 │   ├── API.md
 │   ├── CHANGELOG.md
 │   └── FUNDING.yml
-├── fonts
-│   ├── courier-prime
-│   │   ├── courier_prime_code-webfont.svg
-│   │   ├── courier_prime_code-webfont.ttf
-│   │   ├── courier_prime_code-webfont.woff
-│   │   └── courier_prime_code-webfont.woff2
-│   ├── jetbrains-mono
-│   │   ├── jetbrains-mono-regular-webfont.svg
-│   │   ├── jetbrains-mono-regular-webfont.ttf
-│   │   ├── jetbrains-mono-regular-webfont.woff
-│   │   └── jetbrains-mono-regular-webfont.woff2
-│   ├── opensans
-│   │   ├── opensans-regular-webfont.svg
-│   │   ├── opensans-regular-webfont.ttf
-│   │   ├── opensans-regular-webfont.woff
-│   │   └── opensans-regular-webfont.woff2
-│   └── opensans-bold
-│       ├── opensans-bold-webfont.svg
-│       ├── opensans-bold-webfont.ttf
-│       ├── opensans-bold-webfont.woff
-│       └── opensans-bold-webfont.woff2
 ├── script
 │   ├── libs
 │   │   └── mousetrap-v1.6.5.js

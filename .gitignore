@@ -23,5 +23,12 @@ build/readme
 readme.sh
 docs/uml
 
+## SCSS
+style/scss
+style/bootstrap
+
+## Media
+*.mov
+
 ## Extras
 !docs/JSDoc/index.html
