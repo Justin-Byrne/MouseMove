@@ -112,9 +112,9 @@ let _list =
     // etc ...
 ]
 
-initMouseMove ( _list );                 // Instantiate the MouseMove class
+initMouseMove ( _list );            // Instantiate the MouseMove class
 
-mouseMove.go ( );                        // Initiates animation(s)
+mouseMove.go ( );                   // Initiates animation(s); hotkey [ ⌘ + G ] also initiates animations
 ```
 
 <b>Note:</b> ***MouseMove*** defaults to transitioning to each identifier supplied, then initiating a default `click` event.
@@ -174,7 +174,7 @@ let _pattern =
 
 initMouseMove ( _pattern );    // Instantiate the MouseMove class
 
-mouseMove.go ( );              // Initiates animation(s)
+mouseMove.go ( );              // Initiates animation(s); hotkey [ ⌘ + G ] also initiates animations
 ```
 
 #### Bind
@@ -251,7 +251,7 @@ let _pattern =
 
 initMouseMove ( _pattern );         // Instantiate the MouseMove class
 
-mouseMove.go ( );                   // Initiates animation(s)
+mouseMove.go ( );                   // Initiates animation(s); hotkey [ ⌘ + G ] also initiates animations
 ```
 
 > <b>Note:</b> for more information see the `Pattern` class
