@@ -112,7 +112,7 @@ class MouseMove
             Author:    'Justin Don Byrne',
             Created:   'Aug, 04 2023',
             Library:   'Mouse Move: Automated mouse cursor for web presentation',
-            Updated:   'Sep, 15 2023',
+            Updated:   'Sep, 20 2023',
             Version:   '0.1.11',
             Copyright: 'Copyright (c) 2023 Justin Don Byrne'
         },

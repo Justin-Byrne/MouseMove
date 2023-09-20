@@ -15,8 +15,8 @@ JavaScript automated mouse cursor for web presentation
   - [Mousetrap](#mousetrap)
   - [MouseMove](#mousemove)
 - [Usage](#usage)
-  - [Basic](#basic)
-  - [Advanced](#advanced)
+  - [Implicit](#implicit)
+  - [Explicit](#explicit)
 - [Api](#api)
 - [Support](#support)
 - [Structure](#structure)
@@ -72,9 +72,11 @@ git clone https://github.com/Justin-Byrne/MouseMove.git
 
 ## Usage
 
-### Basic
+### Implicit
 
-Create an `<array>` of DOM identifiers to push into ***MouseMove***.
+Implicit control only requires you indicate which DOM element(s) you wish ***MouseMove*** to transition to.
+
+Each element can be expressed by either an element `identifier`, `CSS Selector`, or `XPath`:
 
 ```javascript
 let _list =
@@ -83,8 +85,6 @@ let _list =
     'body > ul > li:nth-child(1)',       // CSS Selector
     '//input[@id = "fakebox-input"]'     // XPath
 ]
-
-initMouseMove ( _list );                 // Initiate the MouseMove class
 ```
 
 <details>
@@ -94,22 +94,42 @@ initMouseMove ( _list );                 // Initiate the MouseMove class
 >- `id` : `<string>` :eight_spoked_asterisk: `required`
 >   - `<string>`
 >     - Element.`Identifier`
->     - CSS Selector
->     - XPath
+>     - `CSS Selector`
+>     - `XPath`
 
 </details>
 
 <br>
 
-...then and push into ***MouseMove***.
+After creating an `<array>` of DOM identifiers, you can push it into `initMouseMove ( )` to implement your list.
 
-***MouseMove*** defaults to navigating towards each identifier ( i.e., in the sequence provided ) and initiates a default `click` event on each element id
+```javascript
+let _list =
+[
+    'ui-node-1',
+    'ui-node-2',
+    'ui-node-3',
+    // etc ...
+]
 
-### Advanced
+initMouseMove ( _list );                 // Instantiate the MouseMove class
 
-#### Implicit
+mouseMove.go ( );                        // Initiates animation(s)
+```
 
-Create an `<array>` of `<objects>`, with the following structure:
+<b>Note:</b> ***MouseMove*** defaults to transitioning to each identifier supplied, then initiating a default `click` event.
+
+### Explicit
+
+Explicit control allows users to indicate a set of actions; for each DOM element supplied.
+
+The `id` attribute behaves the same as the implicit list ( above ), however, subsequent `action` and `bind` attributes allow users to layer more actions and mouse events.
+
+#### Action
+
+The `action` attribute sets a ( final ) action for each DOM element; expressed within an `id` attribute.
+
+Each one of these `<object>` events follows this primitive structure:
 
 ```javascript
 let _object =
@@ -126,8 +146,8 @@ let _object =
 >- `id` : `<string>` :eight_spoked_asterisk: `required`
 >   - `<string>`
 >     - Element.`Identifier`
->     - CSS Selector
->     - XPath
+>     - `CSS Selector`
+>     - `XPath`
 >- `action` : `<string>` :eight_pointed_black_star: `optional`
 >    - `<string>`
 >      - `mousedown`
@@ -142,7 +162,7 @@ let _object =
 
 <br>
 
-...then and push into ***MouseMove***.
+This example will transition to each `id`, while initiating a single `action`; once that transition is complete.
 
 ```javascript
 let _pattern =
@@ -152,12 +172,16 @@ let _pattern =
     {  id: 'node-2',  action: 'mouseout'   } 	// Initiates a single 'onmouseout' event
 ]
 
-initMouseMove ( _pattern );    // Initiate the MouseMove class
+initMouseMove ( _pattern );    // Instantiate the MouseMove class
+
+mouseMove.go ( );              // Initiates animation(s)
 ```
 
-#### Explicit
+#### Bind
 
-Create an `<array>` of `<objects>`, with the following structure:
+The `bind` attribute allows users to bind user-defined anonymous functions to each element expressed within an `id` attribute.
+
+You can expand upon the previous `<object>` event structure, like so:
 
 ```javascript
 let _object =
@@ -188,8 +212,8 @@ let _object =
 >- `id` : `<string>` :eight_spoked_asterisk: `required`
 >   - `<string>`
 >     - Element.`Identifier`
->     - CSS Selector
->     - XPath
+>     - `CSS Selector`
+>     - `XPath`
 > - `bind` : `Object.<string, function>` :eight_pointed_black_star: `optional`
 >    - `<string>`
 >      - `onmousedown`
@@ -215,7 +239,7 @@ let _object =
 
 <br>
 
-...then and push into ***MouseMove***.
+This example will transition to each `id`, initiating code enclosed within each `bind` attribute ( if present ), then finalizing with the `action` attribute ( if present ).
 
 ```javascript
 let _pattern =
@@ -225,7 +249,9 @@ let _pattern =
     {  id: 'node-2',  bind: ( ) => {  /* code ... */  }, action: 'click' }
 ]
 
-initMouseMove ( _pattern );         // Initiate the MouseMove class
+initMouseMove ( _pattern );         // Instantiate the MouseMove class
+
+mouseMove.go ( );                   // Initiates animation(s)
 ```
 
 > <b>Note:</b> for more information see the `Pattern` class
